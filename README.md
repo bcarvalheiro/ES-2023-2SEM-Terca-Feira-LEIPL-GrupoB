@@ -8,7 +8,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Criação de horário para estudantes a partir de um subconjunto de unidades curriculares de um horário carregado para a aplicação.
 - Visualização das aulas em sobreposição e sobrelotação.
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 - Ambiente de programação em Java em IntelliJ.
 - Git para gestão de configurações e controlo de versões, com plugin do Git no IDE.
 - GitHub para gestão de configurações e controlo de versões remoto, suporte ao trabalho colaborativo e entrega do projeto
@@ -19,7 +19,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - EMMA para avaliação da cobertura da bateria de testes unitários, com plugin no IDE
 -Trello com PowerUp do GitHub para gestão do projeto segundo abordagem Scrum, com rastreio entre os cartões das user stories e os eventos respetivos no GitHub (commits, pull requests e issues)
 
-##Participantes
+## Participantes
 - Ana Rita Pereira Francisco (94639)
 - Bruno Alexandre Guinapo Carvalheiro (94514)
 - Carolina Varanda Roque (98494)
@@ -27,7 +27,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Nuno Filipe de Oliveira Monteiro (94587)
 - Diogo Miguel Leal da Costa (94466)
 
-##Como Usar
+## Como Usar
 - Clone o repositório para a sua máquina:
 - git clone https://github.com/bcarvalheiro/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB.git
 - Abra o projeto em um ambiente de desenvolvimento Java de sua escolha.
