@@ -1,4 +1,4 @@
-package org.example;
+package org.es.leipl.tercafeira.grupob;
 
 public class Main {
     public static void main(String[] args) {
