@@ -37,7 +37,7 @@ public class Turno {
 
 
     private int parseNumeroInscritos(String numeroInscritos) {
-        int result;
+
         try{
             return Integer.parseInt(numeroInscritos);
         }catch(NumberFormatException e) {
@@ -92,12 +92,12 @@ public class Turno {
 
     @Override
     public String toString() {
-        String result = "Designacao: " + getDesignacao() + "\n";
-        result += "Inscritos: " + getNumeroInscritos() + "\n";
-        result += "Turma(s): ";
+        StringBuilder result = new StringBuilder("Designacao: " + getDesignacao() + "\n");
+        result.append("Inscritos: ").append(getNumeroInscritos()).append("\n");
+        result.append("Turma(s): ");
         for (String turma : turmasList) {
-            result += turma + ",";
+            result.append(turma).append(",");
         }
-        return result;
+        return result.toString();
     }
 }
