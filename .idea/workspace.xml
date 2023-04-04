@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Pojos iniciais.">
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Adicionar lista de cursos aos turnos e métodos de adicionar às listas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/Turno.java" afterDir="false" />
     </list>
@@ -75,7 +75,7 @@
       <updated>1680439808218</updated>
       <workItem from="1680439809240" duration="405000" />
       <workItem from="1680601107453" duration="875000" />
-      <workItem from="1680603241707" duration="365000" />
+      <workItem from="1680603241707" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -98,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680543746594</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Adicionar lista de cursos aos turnos e métodos de adicionar às listas">
+      <created>1680603685246</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680603685246</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +125,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first_Commit: Project Started" />
     <MESSAGE value="Pojos iniciais." />
-    <option name="LAST_COMMIT_MESSAGE" value="Pojos iniciais." />
+    <MESSAGE value="Adicionar lista de cursos aos turnos e métodos de adicionar às listas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionar lista de cursos aos turnos e métodos de adicionar às listas" />
   </component>
 </project>

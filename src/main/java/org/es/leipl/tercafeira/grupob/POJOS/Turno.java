@@ -1,6 +1,5 @@
 package org.es.leipl.tercafeira.grupob.POJOS;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Turno {
@@ -11,30 +10,29 @@ public class Turno {
     private String designacao;
     private int numeroInscritos;
 
-    public Turno (String designacao, List<String> turmasList, String numeroInscritos) {
-        if (isNull(designacao, turmasList, numeroInscritos)) {
+    public Turno (String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+        if (isNull(designacao, turmasList, numeroInscritos, cursosList)) {
             System.out.println("Turno not created, at least one argument is null");
             return;
         }
-        if (isEmpty(designacao, turmasList, numeroInscritos)) {
+        if (isEmpty(designacao, turmasList, numeroInscritos, cursosList)) {
             System.out.println("Turno not created, at least one argument is empty");
         }
         this.designacao = designacao;
         this.turmasList = turmasList;
         this.numeroInscritos = parseNumeroInscritos(numeroInscritos);
+        this.cursosList = cursosList;
     }
 
 
 
 
-    private boolean isNull (String designacao, List<String> turmasList, String numeroInscritos) {
-        if (designacao == null || turmasList ==  null || numeroInscritos == null) return true;
-        return false;
+    private boolean isNull (String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+        return designacao == null || turmasList == null || numeroInscritos == null || cursosList == null;
     }
 
-    private boolean isEmpty(String designacao, List<String> turmasList, String numeroInscritos) {
-        if (designacao.trim().isEmpty() || turmasList.isEmpty() || numeroInscritos.trim().isEmpty()) return true;
-        return false;
+    private boolean isEmpty(String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+        return designacao.trim().isEmpty() || turmasList.isEmpty() || numeroInscritos.trim().isEmpty() || cursosList.isEmpty();
     }
 
 
