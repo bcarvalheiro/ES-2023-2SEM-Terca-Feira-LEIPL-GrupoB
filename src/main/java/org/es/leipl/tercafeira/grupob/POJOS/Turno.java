@@ -6,6 +6,8 @@ import java.util.List;
 public class Turno {
 
     private List<String> turmasList;
+
+    private List<Curso> cursosList;
     private String designacao;
     private int numeroInscritos;
 
@@ -50,8 +52,28 @@ public class Turno {
         return turmasList;
     }
 
-    public void setTurmasList(List<String> turmasList) {
-        this.turmasList = turmasList;
+    public void addTurma(String turma) {
+
+        this.turmasList.add(turma);
+    }
+
+    public void addTurmasList(List<String> turmasList) {
+
+        this.turmasList.addAll(turmasList);
+    }
+
+    public List<Curso> getcursosList() {
+        return cursosList;
+    }
+
+    public void addCurso(Curso curso) {
+
+        this.cursosList.add(curso);
+    }
+
+    public void addCursosList(List<Curso> cursosList) {
+
+        this.cursosList.addAll(cursosList);
     }
 
     public String getDesignacao() {
