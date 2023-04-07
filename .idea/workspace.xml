@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Adicionar lista de cursos aos turnos e métodos de adicionar às listas">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/Bloco.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/DiaSemana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/DiaSemana.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/FileUpload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680603932090</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS">
+      <created>1680895111419</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680895111419</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,69 +192,70 @@
     <MESSAGE value="first_Commit: Project Started" />
     <MESSAGE value="Pojos iniciais." />
     <MESSAGE value="Adicionar lista de cursos aos turnos e métodos de adicionar às listas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionar lista de cursos aos turnos e métodos de adicionar às listas" />
+    <MESSAGE value="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>77</line>
+          <line>40</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>116</line>
+          <line>81</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>165</line>
+          <line>131</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>163</line>
+          <line>129</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>161</line>
+          <line>127</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>162</line>
+          <line>128</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>160</line>
+          <line>126</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>159</line>
+          <line>125</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>157</line>
+          <line>123</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>156</line>
+          <line>122</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>155</line>
+          <line>121</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>151</line>
+          <line>117</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -272,7 +275,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>167</line>
+          <line>133</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>

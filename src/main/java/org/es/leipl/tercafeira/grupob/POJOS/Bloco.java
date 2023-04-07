@@ -1,5 +1,7 @@
 package org.es.leipl.tercafeira.grupob.POJOS;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +41,22 @@ public class Bloco {
 
     public String toString(){
         return "Bloco: " + curso + " " + uc + " " + turno + " " + inscritos + " " + diaSemana + " " + horaIni + " " + horaFim + " " + data + " " + sala + " " + lotacao + "\n";
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Inscritos no turno", this.inscritos);
+        json.put("Hora início da aula", this.horaIni);
+        json.put("Lotação da sala", this.lotacao);
+        json.put("Turma", this.turma);
+        json.put("Turno", this.turno);
+        json.put("Hora fim da aula", this.horaFim);
+        json.put("Curso", this.curso);
+        json.put("Unidade Curricular", this.uc);
+        json.put("Dia da semana", this.diaSemana);
+        json.put("Data da aula", this.data);
+        json.put("Sala atribuída à aula", this.sala);
+        return json;
     }
 
 }

@@ -5,6 +5,7 @@ import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.POJOS.Bloco;
+import org.es.leipl.tercafeira.grupob.POJOS.Horario;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
@@ -15,39 +16,6 @@ import java.util.List;
 
 
 public class ImportFiles {
-    public static void importFile(String filePath) throws IOException, ParserException {
-        String type;
-        File file = new File(filePath);
-        if (file.exists()) {
-            type = "localFile";
-        }
-
-        if (filePath.startsWith("http://") || filePath.startsWith("https://") || filePath.startsWith("www.")) {
-            type = "webLink";
-        } else if (filePath.startsWith("webcal://")) {
-            type = "webCal";
-        } else {
-            type = "unkown";
-        }
-        switch (type) {
-            case "localFile":
-                System.out.println("Local file");
-                getFromLocalFile(file); //FILE SENT
-                break;
-            case "webLink":
-                System.out.println("Web link");
-                getFromURL(filePath); //URL SENT
-                break;
-            case "webCal":
-                System.out.println("Web cal");
-                getFromWebCal(filePath); //webcal SENT
-                break;
-            default:
-                System.out.println("Unkown");
-                getFromWebCal(filePath);
-                break;
-        }
-    }
 
     //Gets calendar from webcal link
     //saves in .ics format
@@ -75,21 +43,22 @@ public class ImportFiles {
 
     /**
      * Saves a JSON object to a file named "output.json" in the current directory.
-     * @param json
+     * @param jsonList
      */
-    private static void saveJSON(JSONObject json) {
-        String jsonString = json.toString();
-        try{
+    private static void saveJSONtoFile(List<?> jsonList) {
+        try {
             FileWriter fw = new FileWriter("output.json");
-            fw.write(jsonString);
+            for (Object json : jsonList) {
+                String jsonString = json.toString();
+                fw.write(jsonString + "\n");
+            }
             fw.close();
             System.out.println("JSON successfully saved");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error saving JSON");
             e.printStackTrace();
         }
     }
-
 
     /**
      * Reads a CSV file from path and converts it to a JSON object,
@@ -101,8 +70,9 @@ public class ImportFiles {
      */
     public static void CSVtoJSon(String file){
         File f = new File(file);
-        JSONObject json = new JSONObject();
+        List<JSONObject> jsonList = new LinkedList<>();
         if(checkExtention(f).equals("csv") || checkExtention(f).equals("CSV") || checkExtention(f).equals("txt")){
+            JSONObject json = new JSONObject();
             CSVReader reader = null;
             try{
                 //Parse CSV para o CSVReader
@@ -113,6 +83,7 @@ public class ImportFiles {
                     for(int i=0; i<jsonProperties.length;i++){
                         json.put(jsonProperties[i], nextLine[i]);
                     }
+                    jsonList.add(json);
                 }
             } catch (Exception e){
                 e.printStackTrace();
@@ -120,7 +91,7 @@ public class ImportFiles {
         } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
-        saveJSON(json);
+        saveJSONtoFile(jsonList);
     }
 
 
@@ -169,7 +140,7 @@ public class ImportFiles {
             System.out.println("File is not a CSV, can't convert to JSON");
         }
         System.out.println(horario.toString() + horario.size());
-        //saveJSON(json);
+        saveJSONtoFile(horario);
     }
 
     private static void getFromURL(String filePath) throws IOException {
