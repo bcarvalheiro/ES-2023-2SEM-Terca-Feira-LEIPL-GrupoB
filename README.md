@@ -34,3 +34,12 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Compile o projeto.
 - Execute a aplicação.
 - Siga as instruções na tela para carregar, converter e visualizar o horário, criar horários para estudantes e visualizar aulas em sobreposição e sobrelotação.
+
+## Metodologia de trabalho Git
+- Criar branch a partir do master para issue especifico. Nome da branch deve informar qual o issue (ex.: feature/conversion-csv-to-json)
+- Fazer checkout para branch criada
+- Fazer alterações ao código
+- Fazer commit/push
+- Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), voltar a fazer checkout para o nosso branch e fazer merge da master (assim, ficamos com o nosso branch já atualizado). Para o caso de haver conflitos, resolver manualmente.
+- Criar Pull Request (no site do git existe uma barra "Pull Requests", ao clicar vamos ver um botão "New Pull Request". Teremos que seleccionar duas branchs, sendo que a da esquerda vai ser a master, e a da direita a branch que queremos inserir na master. É boa prática user o Pull Request pois podemos enviar o link para o resto dos participantes a fim de receber feedback caso necessário.
+- No final, aceitar Pull Request e apagar branch usada.
