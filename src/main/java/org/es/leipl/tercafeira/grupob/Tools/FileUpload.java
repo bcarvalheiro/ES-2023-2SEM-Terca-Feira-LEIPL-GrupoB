@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class FileUpload {
     public static void main(String[] args) {
-
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle("Escolha o ficheiro para fazer upload");
         jfc.setAcceptAllFileFilterUsed(false);
