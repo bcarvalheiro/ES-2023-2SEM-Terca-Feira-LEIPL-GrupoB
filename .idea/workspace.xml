@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Adicionar lista de cursos aos turnos e métodos de adicionar às listas">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/POJOS/Turno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/FileUpload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,13 +55,15 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Aulas/ES/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/Tools",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,6 +78,7 @@
       <workItem from="1680439809240" duration="405000" />
       <workItem from="1680601107453" duration="875000" />
       <workItem from="1680603241707" duration="755000" />
+      <workItem from="1680872282761" duration="295000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
