@@ -1,5 +1,7 @@
 package org.es.leipl.tercafeira.grupob.Tools.GUI;
 
+import javax.swing.UIManager;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.Tools.FileUpload;
 
 import javax.swing.*;
@@ -9,6 +11,9 @@ import java.awt.event.ActionListener;
 
 public class GUI {
     public static void main(String[] args) {
+
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf() );
         // create a new JFrame object
         JFrame frame = new JFrame();
 
@@ -50,5 +55,9 @@ public class GUI {
 
         // make the JFrame object visible
         frame.setVisible(true);
+
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
     }
 }
