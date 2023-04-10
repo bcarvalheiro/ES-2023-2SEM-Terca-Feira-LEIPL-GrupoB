@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Horario {
-    private List<Aula> aulasList = new LinkedList<>();
+    private List<Bloco> aulasList = new LinkedList<>();
 
-    public Horario (List<Aula> aulasList) {
+    public Horario (List<Bloco> aulasList) {
         if (aulasList == null) {
             System.out.println("Horario not created, aulas list is null");
             return;
@@ -23,11 +23,15 @@ public class Horario {
     public String toString() {
         String result = "Horário: \n";
         result += "Aulas(s): \n";
-        for (Aula aula : aulasList) {
+        for (Bloco aula : aulasList) {
             result += aula;
         }
 
         return result;
+    }
+
+    public List<Bloco> getAulasList() {
+        return aulasList;
     }
 
 }

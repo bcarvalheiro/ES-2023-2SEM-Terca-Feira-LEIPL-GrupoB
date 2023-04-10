@@ -1,6 +1,6 @@
 package org.es.leipl.tercafeira.grupob.POJOS;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -58,5 +58,4 @@ public class Bloco {
         json.put("Sala atribuída à aula", this.sala);
         return json;
     }
-
 }
