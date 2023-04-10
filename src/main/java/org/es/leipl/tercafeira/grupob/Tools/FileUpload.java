@@ -17,7 +17,10 @@ import java.net.URL;
 
 
 public class FileUpload {
-    public FileUpload() {}
+    JFrame parent;
+    public FileUpload(JFrame parent) {
+        this.parent = parent;
+    }
 
     public void uploadLocal() {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -26,7 +29,7 @@ public class FileUpload {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV ou JSON", "csv", "JSON");
         jfc.addChoosableFileFilter(filter);
 
-        int returnValue = jfc.showDialog(null, "Upload");
+        int returnValue = jfc.showOpenDialog(parent);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jfc.getSelectedFile();

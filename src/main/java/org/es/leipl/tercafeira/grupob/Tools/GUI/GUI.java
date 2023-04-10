@@ -27,14 +27,14 @@ public class GUI {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FileUpload().uploadLocal();
+                new FileUpload(frame).uploadLocal();
             }
         });
 
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FileUpload().uploadUrl();
+                new FileUpload(frame).uploadUrl();
             }
         });
 
