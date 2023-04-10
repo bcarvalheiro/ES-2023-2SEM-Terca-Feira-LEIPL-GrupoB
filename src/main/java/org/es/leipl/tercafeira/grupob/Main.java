@@ -4,6 +4,7 @@ import net.fortuna.ical4j.data.ParserException;
 import org.es.leipl.tercafeira.grupob.POJOS.Bloco;
 import org.es.leipl.tercafeira.grupob.POJOS.Horario;
 import org.es.leipl.tercafeira.grupob.Tools.FileUpload;
+import org.es.leipl.tercafeira.grupob.Tools.GUI.GUI;
 import org.es.leipl.tercafeira.grupob.Tools.ImportFiles;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,7 +20,6 @@ public class Main {
         JSONArray json = CSVtoJSon("Horario.csv");
         System.out.println(json);
         saveJSONtoFile(json);
-
-
+        GUI.createGUI();
     }
 }
