@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI {
-    public static void main(String[] args) {
+    public static void createGUI() {
 
         try {
             UIManager.setLookAndFeel( new FlatDarculaLaf() );

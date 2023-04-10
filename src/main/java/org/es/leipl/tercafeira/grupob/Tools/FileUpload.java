@@ -64,6 +64,8 @@ public class FileUpload {
         urlPanel.add(downloadButton);
         frame.getContentPane().add(urlPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(frame.getX() - 200, frame.getY());
         frame.pack();
         frame.setVisible(true);
 
