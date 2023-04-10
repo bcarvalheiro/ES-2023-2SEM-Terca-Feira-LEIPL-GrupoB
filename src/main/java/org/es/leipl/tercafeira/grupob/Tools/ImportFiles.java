@@ -18,21 +18,6 @@ import org.json.simple.JSONObject;
 
 
 public class ImportFiles {
-
-    //Gets calendar from webcal link
-    //saves in .ics format
-    private static void getFromWebCal(String filePath) throws IOException, ParserException {
-        URL url = new URL(filePath);
-        URLConnection urlConn = url.openConnection();
-        InputStream is = urlConn.getInputStream();
-        CalendarBuilder calBuilder = new CalendarBuilder();
-        Calendar calendar = calBuilder.build(is);
-        File newCal = new File("calendar.ics");
-        FileWriter fw = new FileWriter(newCal);
-        fw.write(calendar.toString());
-        fw.close();
-    }
-
     /**
      * Checks the file extension
      * @param file
@@ -58,12 +43,11 @@ public class ImportFiles {
             e.printStackTrace();
         }
     }
-//TO-DO: CHANGE THE JAVADOC
+
     /**
      * Reads a CSV file from path and converts it to a JSON object,
      * using the first row of the CSV file as the keys for the JSON object.
-     * The resulting JSON object is saved to a file named "output.json" in the current directory.
-     *This methods doesn't uses POJO's
+     * This methods doesn't uses POJO's
      * @param file the path to the CSV file to be converted
      *
      */
@@ -128,32 +112,4 @@ public class ImportFiles {
         URL calendarURL = new URL(filePath);
         URLConnection calendarConn = calendarURL.openConnection();
     }
-
-    private static void getFromLocalFile(File file) {    }
-
-//    public void convertICStoCSV(File file) throws IOException, ParserException {
-//        String csvFilePath = "calendarFromICS.csv";
-//        CalendarBuilder calBuilder = new CalendarBuilder();
-//        Calendar calendar = null;
-//        try(FileReader fr = new FileReader(file)) {
-//            calendar = calBuilder.build(fr);
-//        }catch (ParserException e){
-//            e.printStackTrace();
-//            throw e;
-//        }
-//        FileWriter fw = new FileWriter(new File(csvFilePath));
-//        Iterator<Component> components = calendar.getComponents().iterator();
-//        while(components.hasNext()){
-//            Component component = components.next();
-//            PropertyList properties = component.getProperties();
-//            StringBuilder sb = new StringBuilder();
-//            for (Property p : properties){
-//                sb.append(p.getName()).append(",").append(p.getValue()).append(",");
-//            }
-//            sb.deleteCharAt(sb.length()-1);
-//            sb.append("\n");
-//            fw.write(sb.toString());
-//        }
-//        fw.close();
-//        }
     }
