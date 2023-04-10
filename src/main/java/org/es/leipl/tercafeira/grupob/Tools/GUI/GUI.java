@@ -18,8 +18,8 @@ public class GUI {
         JFrame frame = new JFrame();
 
         // create two JButton objects
-        JButton button1 = new JButton("Upload local");
-        JButton button2 = new JButton("Button 2");
+        JButton button1 = new JButton("Upload Local");
+        JButton button2 = new JButton("Upload Remoto");
 
         button1.setBounds(100,100,150,40);
         button2.setBounds(300,100,150,40);
@@ -27,8 +27,14 @@ public class GUI {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FileUpload fileupload = new FileUpload();
-                fileupload.uploadLocal();
+                new FileUpload().uploadLocal();
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FileUpload().uploadUrl();
             }
         });
 
@@ -43,7 +49,7 @@ public class GUI {
         frame.setSize(600, 500);
 
         // set the title of the JFrame object
-        frame.setTitle("Upload de horário");
+        frame.setTitle("Upload de Horário");
 
         // set the default close operation of the JFrame object
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
