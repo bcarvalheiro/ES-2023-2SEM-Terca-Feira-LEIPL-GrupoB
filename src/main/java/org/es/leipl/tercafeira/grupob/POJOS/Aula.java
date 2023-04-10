@@ -2,6 +2,7 @@ package org.es.leipl.tercafeira.grupob.POJOS;
 
 import java.util.Date;
 
+//git test
 public class Aula {
     private Sala sala;
     private UC uc;
