@@ -1,8 +1,8 @@
-package org.es.leipl.tercafeira.grupob.Tools.GUI;
+package org.es.leipl.tercafeira.grupob.tools.gui;
 
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
-import org.es.leipl.tercafeira.grupob.Tools.FileUpload;
+import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 
 import javax.swing.*;
 import java.awt.*;

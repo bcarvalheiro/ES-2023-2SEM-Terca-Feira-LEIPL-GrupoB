@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.POJOS;
+package org.es.leipl.tercafeira.grupob.pojos;
 
 import java.util.Date;
 

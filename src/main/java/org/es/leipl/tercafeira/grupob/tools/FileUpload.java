@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.Tools;
+package org.es.leipl.tercafeira.grupob.tools;
 
 import org.apache.commons.io.FileUtils;
 

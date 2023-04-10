@@ -1,10 +1,7 @@
-package org.es.leipl.tercafeira.grupob.Tools;
+package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
-import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.ParserException;
-import net.fortuna.ical4j.model.Calendar;
 import org.apache.commons.io.FilenameUtils;
-import org.es.leipl.tercafeira.grupob.POJOS.Bloco;
+import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
@@ -12,9 +9,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.es.leipl.tercafeira.grupob.POJOS.Horario;
+import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 
 public class ImportFiles {

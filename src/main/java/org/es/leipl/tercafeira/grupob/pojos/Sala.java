@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.POJOS;
+package org.es.leipl.tercafeira.grupob.pojos;
 
 public class Sala {
     private String designacao;
