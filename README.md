@@ -40,6 +40,4 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Fazer checkout para branch criada
 - Fazer alterações ao código
 - Fazer commit/push
-- Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), voltar a fazer checkout para o nosso branch e fazer merge da master (assim, ficamos com o nosso branch já atualizado). Para o caso de haver conflitos, resolver manualmente.
-- Criar Pull Request (no site do git existe uma barra "Pull Requests", ao clicar vamos ver um botão "New Pull Request". Teremos que seleccionar duas branchs, sendo que a da esquerda vai ser a master, e a da direita a branch que queremos inserir na master. É boa prática user o Pull Request pois podemos enviar o link para o resto dos participantes a fim de receber feedback caso necessário).
-- No final, aceitar Pull Request e apagar branch usada.
+- Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), e fazer merge. Seleccionar a branch que estavamos a trabalhar e aceitar. Poderão aparecer conflitos, que terão que ser resolvidos manualmente. Depois do merge estar completo, apagar a branch criada anteriormente.
