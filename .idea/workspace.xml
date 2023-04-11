@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
     </list>
@@ -66,6 +66,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -123,7 +124,10 @@
       <workItem from="1681149960173" duration="2798000" />
       <workItem from="1681152840729" duration="38000" />
       <workItem from="1681152958840" duration="3000" />
-      <workItem from="1681157321558" duration="3627000" />
+      <workItem from="1681157321558" duration="4292000" />
+      <workItem from="1681165916347" duration="1425000" />
+      <workItem from="1681168176310" duration="172000" />
+      <workItem from="1681168408022" duration="44000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -181,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681159796676</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
+      <created>1681161006753</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681161006753</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +255,8 @@
     <MESSAGE value="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS" />
     <MESSAGE value="- Tools Package:&#10;* Bloco.java:&#10;..... Adicionado metodo interno para converter POJO em java" />
     <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
+    <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -271,7 +283,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>96</line>
+          <line>101</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>

@@ -94,6 +94,11 @@ public class ImportFiles {
                     Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
                     String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
                     int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
+
+                    if (curso == null || UC == null || turno == null || turma == null || diaSem == null) {
+                        continue; // skip to the next line
+                    }
+
                     Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
                     blocosList.add(novoBloco);
                 }
