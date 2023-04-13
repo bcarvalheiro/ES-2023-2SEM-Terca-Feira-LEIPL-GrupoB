@@ -19,7 +19,7 @@ public class GUI {
 
         // create two JButton objects
         JButton button1 = new JButton("Upload Local");
-        JButton button2 = new JButton("Upload Remoto");
+        JButton button2 = new JButton("Download Remoto");
 
         button1.setBounds(100,100,150,40);
         button2.setBounds(300,100,150,40);
@@ -34,7 +34,7 @@ public class GUI {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FileUpload(frame).uploadUrl();
+                new FileUpload(frame).downloadUrl();
             }
         });
 
