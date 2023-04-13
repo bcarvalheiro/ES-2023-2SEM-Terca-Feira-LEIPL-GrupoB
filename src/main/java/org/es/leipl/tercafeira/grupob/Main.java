@@ -9,6 +9,10 @@ import java.io.IOException;
 
 import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
 
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.0
+ */
 public class Main {
     public static void main(String[] args) throws IOException, ParserException {
         Horario horario = CSVImport("Horario.csv");

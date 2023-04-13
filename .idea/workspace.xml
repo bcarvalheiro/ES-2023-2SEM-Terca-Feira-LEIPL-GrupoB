@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Aula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Aula.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Bloco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Bloco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Curso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Curso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/DiaSemana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/DiaSemana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Horario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Sala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Sala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/UC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/UC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/services/CSVLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/services/CSVLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +75,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;coverage&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -124,6 +134,7 @@
       <workItem from="1681152840729" duration="38000" />
       <workItem from="1681152958840" duration="3000" />
       <workItem from="1681157321558" duration="3627000" />
+      <workItem from="1681297645458" duration="10875000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -214,26 +225,9 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="loadFile" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="090b2de8-332b-4166-83ce-deddcb3f76d6" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>

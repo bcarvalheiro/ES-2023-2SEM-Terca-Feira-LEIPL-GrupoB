@@ -3,6 +3,10 @@ package org.es.leipl.tercafeira.grupob.pojos;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.0
+ */
 public class Curso {
     private List<UC> ucList = new LinkedList<>();
     private String nome;

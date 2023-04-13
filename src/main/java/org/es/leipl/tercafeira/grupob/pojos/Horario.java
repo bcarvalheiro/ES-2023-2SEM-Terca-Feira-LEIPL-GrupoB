@@ -2,8 +2,18 @@ package org.es.leipl.tercafeira.grupob.pojos;
 
 import java.util.LinkedList;
 import java.util.List;
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.0
+ */
 
+/**
+ * Java Object for representation of a student schedule
+ */
 public class Horario {
+    /**
+     * aulasList is the list of all classes in a student schedule
+     */
     private List<Bloco> aulasList = new LinkedList<>();
 
     public Horario (List<Bloco> aulasList) {
@@ -19,6 +29,10 @@ public class Horario {
     }
 
 
+    /**
+     * @return a string representation of the object.
+     * In general, the toString method returns a string that "textually represents" this object.
+     */
     @Override
     public String toString() {
         String result = "Horário: \n";
