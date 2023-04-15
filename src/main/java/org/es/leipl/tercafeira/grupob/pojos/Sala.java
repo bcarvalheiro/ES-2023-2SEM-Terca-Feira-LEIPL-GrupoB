@@ -43,9 +43,25 @@ public class Sala {
         try{
             return Integer.parseInt(lotacao);
         }catch(NumberFormatException e) {
-            System.out.println("lotacao is not parsable" + e);
+            System.out.println("lotacao is not parsable ");
             return -1;
         }
+    }
+
+    public String getDesignacao() {
+        return designacao;
+    }
+
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
+    }
+
+    public int getLotacao() {
+        return lotacao;
+    }
+
+    public void setLotacao(int lotacao) {
+        this.lotacao = lotacao;
     }
 
     /**

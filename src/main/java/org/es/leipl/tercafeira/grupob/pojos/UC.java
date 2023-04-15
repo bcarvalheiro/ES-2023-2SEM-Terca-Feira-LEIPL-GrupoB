@@ -26,14 +26,14 @@ public class UC {
     public UC (String nome, Turno turno) {
         if (isNull(nome, turno)) {
             System.out.println("UC not created, at least one argument is null");
-            return;
         }
-        if (nome.trim().isEmpty()) {
+        else if (nome.trim().isEmpty()) {
             System.out.println("UC not created, nome is empty");
-            return;
         }
-        this.nome = nome;
-        turnosList.add(turno);
+        else {
+            this.nome = nome;
+            turnosList.add(turno);
+        }
     }
 
     /**
@@ -65,6 +65,22 @@ public class UC {
      */
     public void addTurnos(List<Turno> turnosList) {
         this.turnosList.addAll(turnosList);
+    }
+
+    public List<Turno> getTurnosList() {
+        return turnosList;
+    }
+
+    public void setTurnosList(List<Turno> turnosList) {
+        this.turnosList = turnosList;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**

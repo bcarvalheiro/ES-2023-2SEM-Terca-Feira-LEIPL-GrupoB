@@ -1,5 +1,6 @@
 package org.es.leipl.tercafeira.grupob.pojos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,12 +17,12 @@ public class Turno {
     /**
      * List of all classes that are taking this specific class
      */
-    private List<String> turmasList;
+    private List<String> turmasList = new ArrayList<>();
 
     /**
      * List of all courses that are taking this specific class
      */
-    private List<Curso> cursosList;
+    private List<String> cursosList = new ArrayList<>();
 
     /**
      * Name of this shift of the class
@@ -33,18 +34,20 @@ public class Turno {
      */
     private int numeroInscritos;
 
-    public Turno (String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+    public Turno (String designacao, List<String> turmasList, String numeroInscritos, List<String> cursosList) {
         if (isNull(designacao, turmasList, numeroInscritos, cursosList)) {
             System.out.println("Turno not created, at least one argument is null");
-            return;
         }
-        if (isEmpty(designacao, turmasList, numeroInscritos, cursosList)) {
+        else if (isEmpty(designacao, turmasList, numeroInscritos, cursosList)) {
             System.out.println("Turno not created, at least one argument is empty");
         }
-        this.designacao = designacao;
-        this.turmasList = turmasList;
-        this.numeroInscritos = parseNumeroInscritos(numeroInscritos);
-        this.cursosList = cursosList;
+        else {
+            this.designacao = designacao;
+            this.turmasList = turmasList;
+            this.numeroInscritos = parseNumeroInscritos(numeroInscritos);
+            this.cursosList = cursosList;
+        }
+
     }
 
 
@@ -60,7 +63,7 @@ public class Turno {
      * @return true if any of the params is null
      */
 
-    private boolean isNull (String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+    private boolean isNull (String designacao, List<String> turmasList, String numeroInscritos, List<String> cursosList) {
         return designacao == null || turmasList == null || numeroInscritos == null || cursosList == null;
     }
 
@@ -75,7 +78,7 @@ public class Turno {
      * @return true if any of the params is null
      */
 
-    private boolean isEmpty(String designacao, List<String> turmasList, String numeroInscritos, List<Curso> cursosList) {
+    private boolean isEmpty(String designacao, List<String> turmasList, String numeroInscritos, List<String> cursosList) {
         return designacao.trim().isEmpty() || turmasList.isEmpty() || numeroInscritos.trim().isEmpty() || cursosList.isEmpty();
     }
 
@@ -120,7 +123,7 @@ public class Turno {
         this.turmasList.addAll(turmasList);
     }
 
-    public List<Curso> getcursosList() {
+    public List<String> getcursosList() {
         return cursosList;
     }
 
@@ -129,7 +132,7 @@ public class Turno {
      *
      * @param curso
      */
-    public void addCurso(Curso curso) {
+    public void addCurso(String curso) {
 
         this.cursosList.add(curso);
     }
@@ -139,7 +142,7 @@ public class Turno {
      *
      * @param cursosList
      */
-    public void addCursosList(List<Curso> cursosList) {
+    public void addCursosList(List<String> cursosList) {
 
         this.cursosList.addAll(cursosList);
     }
@@ -175,6 +178,14 @@ public class Turno {
     public void setNumeroInscritos(int numeroInscritos) {
         if (numeroInscritos >= 0)
             this.numeroInscritos = numeroInscritos;
+    }
+
+    public void setTurmasList(List<String> turmasList) {
+        this.turmasList = turmasList;
+    }
+
+    public void setCursosList(List<String> cursosList) {
+        this.cursosList = cursosList;
     }
 
     /**

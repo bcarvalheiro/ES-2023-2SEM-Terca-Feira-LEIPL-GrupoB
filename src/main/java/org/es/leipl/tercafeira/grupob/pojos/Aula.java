@@ -31,24 +31,24 @@ public class Aula {
     /**
      * Atribute hora_inicio is the hh:mm when the class starts
      */
-    private Date hora_inicio;
+    private Date horaInicio;
 
     /**
      * Atribute hora_fim the hh:mm when the class ends
      */
-    private Date hora_fim;
+    private Date horaFim;
 
     /**
      * Atribute dia is the day of the class
      */
     private Date dia;
 
-    public Aula(Sala sala, UC uc, Turno turno, Date hora_inicio, Date hora_fim, Date dia) {
+    public Aula(Sala sala, UC uc, Turno turno, Date horaInicio, Date horaFim, Date dia) {
         this.sala = sala;
         this.uc = uc;
         this.turno = turno;
-        this.hora_inicio = hora_inicio;
-        this.hora_fim = hora_fim;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
         this.dia = dia;
     }
 
@@ -87,33 +87,33 @@ public class Aula {
     /**
      * @return the hh:mm when the class begins
      */
-    public Date getHora_inicio() {
-        return hora_inicio;
+    public Date getHoraInicio() {
+        return horaInicio;
     }
 
     /**
      * Sets the hh:mm when the class begins
      *
-     * @param hora_inicio
+     * @param horaInicio
      */
-    public void setHora_inicio(Date hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
     /**
      * @return the hh:mm when the class ends
      */
-    public Date getHora_fim() {
-        return hora_fim;
+    public Date getHoraFim() {
+        return horaFim;
     }
 
     /**
      * Sets the hh:mm when the class ends
      *
-     * @param hora_fim
+     * @param horaFim
      */
-    public void setHora_fim(Date hora_fim) {
-        this.hora_fim = hora_fim;
+    public void setHoraFim(Date horaFim) {
+        this.horaFim = horaFim;
     }
 
     /**
@@ -154,7 +154,7 @@ public class Aula {
      */
     @Override
     public String toString() {
-        String result = "Aula de " + uc + " em " + dia + " das " + hora_inicio + " às " + hora_fim + "horas:";
+        String result = "Aula de " + uc + " em " + dia + " das " + horaInicio + " às " + horaFim + "horas:";
         result += "Sala: " + sala + "\n";
         result += turno;
         return result;
