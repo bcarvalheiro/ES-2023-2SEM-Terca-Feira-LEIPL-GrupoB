@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +19,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -49,30 +51,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Aulas/ES/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/Tools&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Aulas/ES/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/Tools",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "xpath.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bruno\ES_SchedulePlanner" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.es.leipl.tercafeira.grupob.Tools" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -128,6 +139,10 @@
       <workItem from="1681165916347" duration="1425000" />
       <workItem from="1681168176310" duration="172000" />
       <workItem from="1681168408022" duration="44000" />
+      <workItem from="1681241102511" duration="4674000" />
+      <workItem from="1681246342748" duration="320000" />
+      <workItem from="1681407996366" duration="971000" />
+      <workItem from="1681411238739" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -192,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681161006753</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
+      <created>1681241385183</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681241385183</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,14 +278,15 @@
     <MESSAGE value="- Tools Package:&#10;* Bloco.java:&#10;..... Adicionado metodo interno para converter POJO em java" />
     <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
     <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
+    <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>27</line>
+          <line>28</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -283,7 +306,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>101</line>
+          <line>105</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
