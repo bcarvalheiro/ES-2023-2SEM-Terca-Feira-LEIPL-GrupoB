@@ -4,13 +4,9 @@ import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,11 +14,20 @@ import java.net.URL;
 
 public class FileUpload {
     JFrame parent;
+
+    /**
+     * Creates a new Instance of FileUpload
+     * @param parent - the parent JFrame
+     */
     public FileUpload(JFrame parent) {
         this.parent = parent;
     }
 
-    public void uploadLocal() {
+    /**
+     * Openas a file chooser in order to select a local CSV file and returns it
+     * @return The File selected on the file chooser
+     */
+    public File uploadLocal() {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle("Escolha o ficheiro para fazer upload");
         jfc.setAcceptAllFileFilterUsed(false);
@@ -38,40 +43,44 @@ public class FileUpload {
 
             File archiveFile = new File(System.getProperty("user.dir") + "/arquivo/Horario.csv");
 
-            try{
+            try {
                 FileUtils.copyFile(selectedFile,archiveFile);
             } catch (IOException e) {
-                System.err.format("IOException: ", e);
+                System.err.println("IOException: " + e.getMessage());
             }
+            System.out.println("File uploaded -> "+ selectedFile);
+            return selectedFile;
         }
+        return null;
     }
 
-    public void uploadUrl() {
+    /**
+     * Creates a text box where the user can insert a CSV Url and a button to download it
+     */
+    public void downloadUrl() {
         JTextField urlField;
         JFrame frame = new JFrame("CSV Downloader");
 
-        // Create URL input panel
         JPanel urlPanel = new JPanel(new FlowLayout());
         urlField = new JTextField(30);
         urlPanel.add(urlField);
 
         JButton downloadButton = new JButton("Download");
-        downloadButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                downloadCSV(urlField);
-            }
-        });
+        downloadButton.addActionListener(e -> downloadCSV(urlField));
+
         urlPanel.add(downloadButton);
         frame.getContentPane().add(urlPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLocation(frame.getX() - 200, frame.getY());
         frame.pack();
         frame.setVisible(true);
-
-
     }
 
+    /**
+     * Downloads the CSV file from the url
+     * @param urlField - The url of the CSV file
+     */
     private void downloadCSV(JTextField urlField) {
         String url = urlField.getText().trim();
 
@@ -113,6 +122,5 @@ public class FileUpload {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error downloading CSV file: " + e.getMessage());
         }
-
     }
 }
