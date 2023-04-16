@@ -4,22 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="POJOS JAVADOCS">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/AulaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/POJOTestRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/POJOTestSuite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/SalaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/TurnoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/UCTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Aula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Aula.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Curso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/DiaSemana.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Sala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Sala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/UC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/UC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
+        <option value="JUnit5 Test Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -56,9 +71,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Aulas/ES/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/Tools",
@@ -70,8 +87,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "xpath.settings",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -83,16 +99,16 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.es.leipl.tercafeira.grupob.Tools" />
+      <recent name="org.es.leipl.tercafeira.grupob.pojos" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="FileUpload" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.Tools.FileUpload" />
+  <component name="RunManager" selected="Application.POJOTestRunner">
+    <configuration name="POJOTestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.pojos.POJOTestRunner" />
       <module name="ES_SchedulePlanner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.Tools.*" />
+          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.pojos.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,23 +116,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.Main" />
+    <configuration name="TurnoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ES_SchedulePlanner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.*" />
+          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.pojos.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="org.es.leipl.tercafeira.grupob.pojos" />
+      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.pojos.TurnoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TurnoTest.createTurnoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ES_SchedulePlanner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.pojos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.es.leipl.tercafeira.grupob.pojos" />
+      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.pojos.TurnoTest" />
+      <option name="METHOD_NAME" value="createTurnoTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TurnoTest.emptyTurnoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ES_SchedulePlanner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.pojos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.es.leipl.tercafeira.grupob.pojos" />
+      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.pojos.TurnoTest" />
+      <option name="METHOD_NAME" value="emptyTurnoTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UCTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ES_SchedulePlanner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.es.leipl.tercafeira.grupob.pojos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.es.leipl.tercafeira.grupob.pojos" />
+      <option name="MAIN_CLASS_NAME" value="org.es.leipl.tercafeira.grupob.pojos.UCTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.FileUpload" />
+        <item itemvalue="Application.POJOTestRunner" />
+        <item itemvalue="JUnit.TurnoTest" />
+        <item itemvalue="JUnit.TurnoTest.createTurnoTest" />
+        <item itemvalue="JUnit.TurnoTest.emptyTurnoTest" />
+        <item itemvalue="JUnit.UCTest" />
       </list>
     </recent_temporary>
   </component>
@@ -135,14 +203,11 @@
       <workItem from="1681149960173" duration="2798000" />
       <workItem from="1681152840729" duration="38000" />
       <workItem from="1681152958840" duration="3000" />
-      <workItem from="1681157321558" duration="4292000" />
-      <workItem from="1681165916347" duration="1425000" />
-      <workItem from="1681168176310" duration="172000" />
-      <workItem from="1681168408022" duration="44000" />
-      <workItem from="1681241102511" duration="4674000" />
-      <workItem from="1681246342748" duration="320000" />
-      <workItem from="1681407996366" duration="971000" />
-      <workItem from="1681411238739" duration="300000" />
+      <workItem from="1681157321558" duration="3627000" />
+      <workItem from="1681297645458" duration="11045000" />
+      <workItem from="1681396955647" duration="44000" />
+      <workItem from="1681408214963" duration="815000" />
+      <workItem from="1681572598830" duration="14696000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -200,21 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681159796676</updated>
     </task>
-    <task id="LOCAL-00009" summary="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
-      <created>1681161006753</created>
+    <task id="LOCAL-00009" summary="POJOS JAVADOCS">
+      <created>1681396901661</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1681161006753</updated>
+      <updated>1681396901661</updated>
     </task>
-    <task id="LOCAL-00010" summary="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori.">
-      <created>1681241385183</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1681241385183</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,26 +305,9 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="loadFile" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="090b2de8-332b-4166-83ce-deddcb3f76d6" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -277,16 +318,15 @@
     <MESSAGE value="- Tools Package:&#10;* ImportFiles.java :&#10;--- Funçõess:&#10;..... checkExtensions (Função para ver a extensão do ficheiro)&#10;..... Função para transformar CSV em JSON, sem criação de POJOS&#10;..... Função para transofrmar CSV em JSON, utilizando POJOS" />
     <MESSAGE value="- Tools Package:&#10;* Bloco.java:&#10;..... Adicionado metodo interno para converter POJO em java" />
     <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
-    <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Eliminada função comentada&#10;.... Eliminada função fora do sprint&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
-    <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Tool Package:&#10;*ImportFile.Java&#10;.... Rejeitar leitura de CSV inválida&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
+    <MESSAGE value="POJOS JAVADOCS" />
+    <option name="LAST_COMMIT_MESSAGE" value="POJOS JAVADOCS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>28</line>
+          <line>27</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -306,10 +346,62 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Tools/ImportFiles.java</url>
-          <line>105</line>
+          <line>96</line>
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/UCTest.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/POJOTestRunner.java</url>
+          <line>8</line>
+          <properties class="org.es.leipl.tercafeira.grupob.pojos.POJOTestRunner" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/UCTest.java</url>
+          <line>25</line>
+          <properties class="org.es.leipl.tercafeira.grupob.pojos.UCTest" method="withoutNomeAndTurnoTest">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnoAddTest.ic" NAME="UCTest.ucTurnoAddTest Coverage Results" MODIFIED="1681582883611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681585540653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest.ic" NAME="UCTest Coverage Results" MODIFIED="1681583246041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$TurnoTest.ic" NAME="TurnoTest Coverage Results" MODIFIED="1681584907843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnosListAddTest.ic" NAME="UCTest.ucTurnosListAddTest Coverage Results" MODIFIED="1681583231190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$Main.ic" NAME="Main Coverage Results" MODIFIED="1681579355721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest.ic" NAME="SalaTest Coverage Results" MODIFIED="1681578444466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest_setLotacaoTest.ic" NAME="SalaTest.setLotacaoTest Coverage Results" MODIFIED="1681579624622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestSuite.ic" NAME="POJOTestSuite Coverage Results" MODIFIED="1681579665327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
   </component>
 </project>

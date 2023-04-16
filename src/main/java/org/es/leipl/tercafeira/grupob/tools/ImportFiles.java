@@ -1,10 +1,7 @@
-package org.es.leipl.tercafeira.grupob.Tools;
-
+package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.io.FilenameUtils;
-import org.es.leipl.tercafeira.grupob.POJOS.Bloco;
-
+import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
@@ -12,26 +9,23 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.es.leipl.tercafeira.grupob.POJOS.Horario;
+import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 
 public class ImportFiles {
     /**
      * Checks the file extension
-     *
      * @param file
      * @return
      */
-    private static String checkExtention(File file) {
+    private static String checkExtention(File file){
         String extention = FilenameUtils.getExtension(file.getAbsolutePath());
         return extention;
     }
 
     /**
      * Saves a JSON object to a file named "output.json" in the current directory.
-     *
      * @param jsonList
      */
     public static void saveJSONtoFile(JSONArray jsonList) {
@@ -50,14 +44,14 @@ public class ImportFiles {
      * Reads a CSV file from path and converts it to a JSON object,
      * using the first row of the CSV file as the keys for the JSON object.
      * This methods doesn't uses POJO's
-     *
      * @param file the path to the CSV file to be converted
+     *
      */
-    public static JSONArray CSVtoJSon(String file) throws CsvValidationException, IOException {
+    public static JSONArray CSVtoJSon(String file){
         Horario horario = CSVImport(file);
         JSONArray jsonList = new JSONArray();
-        for (Bloco aula : horario.getAulasList()) {
-            jsonList.add(aula.toJson());
+        for(Bloco aula : horario.getAulasList()){
+           jsonList.add(aula.toJson());
         }
         return jsonList;
     }
@@ -71,22 +65,20 @@ public class ImportFiles {
      * @return a JSON object representing the course schedule for the given period
      * @throws IOException if there is an error reading the CSV file
      */
-    public static Horario CSVImport(String file) throws CsvValidationException, IOException {
+    public static Horario CSVImport(String file){
         File f = new File(file);
         List<Bloco> blocosList = new LinkedList<>();
-        if (checkExtention(f).equals("csv") || checkExtention(f).equals("CSV") || checkExtention(f).equals("txt")) {
+        if(checkExtention(f).equals("csv") || checkExtention(f).equals("CSV") || checkExtention(f).equals("txt")){
             CSVReader reader = null;
-            //Parse CSV para o CSVReader
-            reader = new CSVReader(new FileReader(f));
-            reader.readNext();
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                try {
-                    if (nextLine.length < 8) {
-                        continue;
-                    }
+            try{
+                //Parse CSV para o CSVReader
+                reader = new CSVReader(new FileReader(f));
+                String[] jsonProperties = reader.readNext();
+                String[] nextLine;
+                while((nextLine = reader.readNext()) != null){
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
                     SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+                    //Pode ser mais que um Curso
                     String curso = nextLine[0];
                     String UC = nextLine[1];
                     String turno = nextLine[2];
@@ -98,22 +90,16 @@ public class ImportFiles {
                     Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
                     String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
                     int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
-
-                    if (curso == null || UC == null || turno == null || turma == null || diaSem == null) {
-                        continue; // skip to the next line
-                    }
-
                     Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
                     blocosList.add(novoBloco);
-                } catch (Exception e) {
-                    System.out.println("Error parsing CSV file");
-                    e.printStackTrace();
-                    continue;
                 }
+            } catch (Exception e){
+                e.printStackTrace();
             }
-        } else {
+        } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
+        System.out.println(blocosList.toString() + blocosList.size());
         Horario horario = new Horario(blocosList);
         return horario;
     }

@@ -2,25 +2,24 @@ package org.es.leipl.tercafeira.grupob;
 
 import com.opencsv.exceptions.CsvValidationException;
 import net.fortuna.ical4j.data.ParserException;
-import org.es.leipl.tercafeira.grupob.POJOS.Bloco;
-import org.es.leipl.tercafeira.grupob.POJOS.Horario;
-import org.es.leipl.tercafeira.grupob.Tools.FileUpload;
-import org.es.leipl.tercafeira.grupob.Tools.ImportFiles;
+import org.es.leipl.tercafeira.grupob.pojos.Horario;
+import org.es.leipl.tercafeira.grupob.tools.gui.GUI;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.io.IOException;
-import java.util.Scanner;
 
-import static org.es.leipl.tercafeira.grupob.Tools.ImportFiles.*;
+import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
 
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.0
+ */
 public class Main {
     public static void main(String[] args) throws IOException, ParserException, CsvValidationException {
         Horario horario = CSVImport("Horario.csv");
         JSONArray json = CSVtoJSon("Horario.csv");
         //System.out.println(json);
         saveJSONtoFile(json);
-
-
+        GUI.createGUI();
     }
 }
