@@ -41,3 +41,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Fazer alterações ao código
 - Fazer commit/push
 - Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), e fazer merge. Seleccionar a branch que estavamos a trabalhar e aceitar. Poderão aparecer conflitos, que terão que ser resolvidos manualmente. Depois do merge estar completo, apagar a branch criada anteriormente.
+
+## Dificuldades encontradas
+- Utilizamos o PowerUP do Trello BurndownDown by Corello e passado uma semana recebemos uma notificação para pagar a licença do software. Assim tivemos que a meio do Sprint 1 alterar o nosso Burndown Chart o que teve efeitos na apresentação do mesmo.
+- Como tinhamos que alterar o BurnDown Chart, aproveitamos para alterar o quadro do sprint 1 porque o mesmo tinha sido criado pela conta pessoal de um elemento do grupo. 
