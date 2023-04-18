@@ -40,12 +40,12 @@ public class AulaTest {
         emptyAula.setDia(date);
 
         assertAll("aula",
-                () -> assertEquals(sala, aula.getSala()),
-                () -> assertEquals(uc, aula.getUc()),
-                () -> assertEquals(turno, aula.getTurno()),
-                () -> assertEquals(date, aula.getHoraInicio()),
-                () -> assertEquals(date, aula.getHoraFim()),
-                () -> assertEquals(date, aula.getDia())
+                () -> assertEquals(sala, emptyAula.getSala()),
+                () -> assertEquals(uc, emptyAula.getUc()),
+                () -> assertEquals(turno, emptyAula.getTurno()),
+                () -> assertEquals(date, emptyAula.getHoraInicio()),
+                () -> assertEquals(date, emptyAula.getHoraFim()),
+                () -> assertEquals(date, emptyAula.getDia())
         );
     }
 

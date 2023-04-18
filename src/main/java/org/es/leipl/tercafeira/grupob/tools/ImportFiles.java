@@ -78,6 +78,7 @@ public class ImportFiles {
                 while((nextLine = reader.readNext()) != null){
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
                     SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+
                     //Pode ser mais que um Curso
                     String curso = nextLine[0];
                     String UC = nextLine[1];

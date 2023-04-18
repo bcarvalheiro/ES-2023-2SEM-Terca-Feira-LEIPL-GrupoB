@@ -5,6 +5,7 @@ import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.gui.GUI;
 import org.json.simple.JSONArray;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
@@ -15,10 +16,10 @@ import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException, ParserException {
-        Horario horario = CSVImport("Horario.csv");
-        JSONArray json = CSVtoJSon("Horario.csv");
-        System.out.println(json);
-        saveJSONtoFile(json);
-        GUI.createGUI();
+             GUI.createGUI();
+            //Horario horario = CSVImport("arquivo/Horario.csv");
+            JSONArray json = CSVtoJSon("arquivo/Horario.csv");
+            System.out.println(json);
+            saveJSONtoFile(json);
     }
 }
