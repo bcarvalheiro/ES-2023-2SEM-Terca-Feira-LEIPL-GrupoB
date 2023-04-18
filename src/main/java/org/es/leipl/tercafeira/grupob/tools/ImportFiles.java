@@ -56,6 +56,14 @@ public class ImportFiles {
         return jsonList;
     }
 
+    public static JSONArray Horario2Json(Horario horario){
+        JSONArray jsonList = new JSONArray();
+        for(Bloco aula : horario.getAulasList()){
+            jsonList.add(aula.toJson());
+        }
+        return jsonList;
+    }
+
 
     /**
      * Parses a CSV file containing information about academic courses, and creates a list of POJOs (Plain Old Java Objects)
@@ -75,31 +83,46 @@ public class ImportFiles {
                 reader = new CSVReader(new FileReader(f));
                 String[] jsonProperties = reader.readNext();
                 String[] nextLine;
+                int lineNumber = 0;
                 while((nextLine = reader.readNext()) != null){
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-                    //Pode ser mais que um Curso
-                    String curso = nextLine[0];
-                    String UC = nextLine[1];
-                    String turno = nextLine[2];
-                    String turma = nextLine[3];
-                    int inscritos = Integer.parseInt(nextLine[4]);
-                    String diaSem = nextLine[5];
-                    Date horaIni = dateFormat2.parse(nextLine[6]);
-                    Date horaFim = dateFormat2.parse(nextLine[7]);
-                    Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
-                    String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
-                    int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
-                    Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
-                    blocosList.add(novoBloco);
+                    lineNumber++;
+                    try{
+                        if (nextLine.length < 8) {
+                           throw new Exception();
+                        }
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+                        //Pode ser mais que um Curso
+                        String curso = nextLine[0];
+                        String UC = nextLine[1];
+                        String turno = nextLine[2];
+                        String turma = nextLine[3];
+                        int inscritos = Integer.parseInt(nextLine[4]);
+                        String diaSem = nextLine[5];
+                        Date horaIni = dateFormat2.parse(nextLine[6]);
+                        Date horaFim = dateFormat2.parse(nextLine[7]);
+                        Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
+                        String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
+                        int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
+                        if (curso == null || UC == null || turno == null || turma == null || diaSem == null) {
+                            continue; // skip to the next line
+                        }
+                        Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
+                        blocosList.add(novoBloco);
+                    }catch (Exception e){
+                        System.out.println("Error parsing CSV file on line : " + lineNumber + "");
+                        //e.printStackTrace();
+                        continue;
+                    }
                 }
             } catch (Exception e){
+                System.out.println("Error reading CSV file");
                 e.printStackTrace();
             }
         } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
-        System.out.println(blocosList.toString() + blocosList.size());
+        //System.out.println(blocosList.toString() + blocosList.size());
         Horario horario = new Horario(blocosList);
         return horario;
     }

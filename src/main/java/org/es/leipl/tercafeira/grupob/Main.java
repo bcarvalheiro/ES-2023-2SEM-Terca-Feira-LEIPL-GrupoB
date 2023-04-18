@@ -16,10 +16,10 @@ import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException, ParserException, CsvValidationException {
-        Horario horario = CSVImport("Horario.csv");
-        JSONArray json = CSVtoJSon("Horario.csv");
+        //Horario horario = CSVImport("Horario.csv");
+        //JSONArray json = CSVtoJSon("Horario.csv");
         //System.out.println(json);
-        saveJSONtoFile(json);
+        //saveJSONtoFile(json);
         GUI.createGUI();
     }
 }
