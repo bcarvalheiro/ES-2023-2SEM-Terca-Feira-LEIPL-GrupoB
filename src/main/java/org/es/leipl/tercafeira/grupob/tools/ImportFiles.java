@@ -80,6 +80,7 @@ public class ImportFiles {
             CSVReader reader = null;
             try{
                 //Parse CSV para o CSVReader
+
                 reader = new CSVReader(new FileReader(f));
                 String[] jsonProperties = reader.readNext();
                 String[] nextLine;
