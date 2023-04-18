@@ -42,7 +42,6 @@ public class ImportFiles {
         if (result == JFileChooser.APPROVE_OPTION) {
             filePath = fileChooser.getSelectedFile().getPath();
             System.out.println("File path: " + filePath);
-            // Do something with the file path, like save a file to it
         }
         if (filePath != "" && filePath != null) {
             try {
