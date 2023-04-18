@@ -1,6 +1,7 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
 import org.apache.commons.io.FileUtils;
+import org.es.leipl.tercafeira.grupob.pojos.Horario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ import java.net.URL;
 
 public class FileUpload {
     JFrame parent;
+    private static Horario horario;
     public FileUpload(JFrame parent) {
         this.parent = parent;
     }
@@ -28,16 +30,17 @@ public class FileUpload {
         jfc.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV ou JSON", "csv", "JSON");
         jfc.addChoosableFileFilter(filter);
-
         int returnValue = jfc.showOpenDialog(parent);
-
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jfc.getSelectedFile();
             System.out.println(selectedFile.getAbsolutePath());
             System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
-
             File archiveFile = new File(System.getProperty("user.dir") + "/arquivo/Horario.csv");
-
+            try{
+                horario = ImportFiles.CSVImport(selectedFile.getAbsolutePath());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             try{
                 FileUtils.copyFile(selectedFile,archiveFile);
             } catch (IOException e) {
@@ -114,5 +117,9 @@ public class FileUpload {
             JOptionPane.showMessageDialog(null, "Error downloading CSV file: " + e.getMessage());
         }
 
+    }
+
+    public static Horario getHorario(){
+        return horario;
     }
 }
