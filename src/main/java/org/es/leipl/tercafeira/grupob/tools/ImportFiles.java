@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
+import javax.swing.JFileChooser;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 
@@ -29,14 +29,31 @@ public class ImportFiles {
      * @param jsonList
      */
     public static void saveJSONtoFile(JSONArray jsonList) {
-        try {
-            FileWriter fw = new FileWriter("output.json");
-            fw.write(jsonList.toJSONString());
-            fw.close();
-            System.out.println("JSON successfully saved");
-        } catch (IOException e) {
-            System.out.println("Error saving JSON");
-            e.printStackTrace();
+        //Create a new file chooser object
+        JFileChooser fileChooser = new JFileChooser();
+        //Set the file chooser to allow file selection and show the "Save" dialog
+        fileChooser.setDialogTitle("Save file");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setApproveButtonText("Save");
+        // Show the file chooser dialog and wait for the user to choose a directory and file name
+        int result = fileChooser.showSaveDialog(null);
+        String filePath = "";
+        // If the user selects a directory and file name, get the path and do something with it
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filePath = fileChooser.getSelectedFile().getPath();
+            System.out.println("File path: " + filePath);
+            // Do something with the file path, like save a file to it
+        }
+        if (filePath != "" && filePath != null) {
+            try {
+                FileWriter fw = new FileWriter(filePath + ".json");
+                fw.write(jsonList.toJSONString());
+                fw.close();
+                System.out.println("JSON successfully saved");
+            } catch (IOException e) {
+                System.out.println("Error saving JSON");
+                e.printStackTrace();
+            }
         }
     }
 

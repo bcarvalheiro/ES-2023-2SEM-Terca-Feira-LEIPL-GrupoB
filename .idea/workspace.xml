@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/FileUpload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/ImportFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/tools/ImportFilesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/tools/ImportFilesTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,31 +366,31 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnosListAddTest.ic" NAME="UCTest.ucTurnosListAddTest Coverage Results" MODIFIED="1681583231190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnoAddTest.ic" NAME="UCTest.ucTurnoAddTest Coverage Results" MODIFIED="1681582883611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest_setLotacaoTest.ic" NAME="SalaTest.setLotacaoTest Coverage Results" MODIFIED="1681579624622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnosListAddTest.ic" NAME="UCTest.ucTurnosListAddTest Coverage Results" MODIFIED="1681583231190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest.ic" NAME="SalaTest Coverage Results" MODIFIED="1681578444466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest.ic" NAME="UCTest Coverage Results" MODIFIED="1681583246041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$Main.ic" NAME="Main Coverage Results" MODIFIED="1681579355721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnoAddTest.ic" NAME="UCTest.ucTurnoAddTest Coverage Results" MODIFIED="1681582883611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest_setLotacaoTest.ic" NAME="SalaTest.setLotacaoTest Coverage Results" MODIFIED="1681579624622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest.ic" NAME="UCTest Coverage Results" MODIFIED="1681583246041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$TurnoTest.ic" NAME="TurnoTest Coverage Results" MODIFIED="1681584907843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestSuite.ic" NAME="POJOTestSuite Coverage Results" MODIFIED="1681579665327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681585540653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$TurnoTest.ic" NAME="TurnoTest Coverage Results" MODIFIED="1681584907843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
   </component>

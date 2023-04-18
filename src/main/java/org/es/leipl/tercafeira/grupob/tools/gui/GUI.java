@@ -36,6 +36,9 @@ public class GUI {
                 FileUpload fu = new FileUpload(frame);
                 fu.uploadLocal();
                 horario = fu.getHorario();
+                if(horario!=null){
+                    JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 

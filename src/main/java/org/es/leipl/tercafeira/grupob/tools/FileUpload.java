@@ -30,22 +30,17 @@ public class FileUpload {
         jfc.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV ou JSON", "csv", "JSON");
         jfc.addChoosableFileFilter(filter);
-
         int returnValue = jfc.showOpenDialog(parent);
-
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jfc.getSelectedFile();
             System.out.println(selectedFile.getAbsolutePath());
             System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
-
             File archiveFile = new File(System.getProperty("user.dir") + "/arquivo/Horario.csv");
             try{
                 horario = ImportFiles.CSVImport(selectedFile.getAbsolutePath());
-                JOptionPane.showMessageDialog(parent, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e){
                 e.printStackTrace();
             }
-
             try{
                 FileUtils.copyFile(selectedFile,archiveFile);
             } catch (IOException e) {

@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ImportFilesTest {
 
 
+
     @Test
     @DisplayName("Tests save a JSON to file")
     void saveJSONtoFile() {
@@ -21,6 +22,7 @@ class ImportFilesTest {
         ImportFiles.saveJSONtoFile(jsonArray);
 
         File file = new File("output.json");
+        //em vez disto, usar o file 1 de fora
         assertTrue(file.exists());
         assertTrue(file.isFile());
         assertTrue(file.length() > 0 );
