@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
+import javax.swing.JFileChooser;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 
@@ -29,14 +29,30 @@ public class ImportFiles {
      * @param jsonList
      */
     public static void saveJSONtoFile(JSONArray jsonList) {
-        try {
-            FileWriter fw = new FileWriter("output.json");
-            fw.write(jsonList.toJSONString());
-            fw.close();
-            System.out.println("JSON successfully saved");
-        } catch (IOException e) {
-            System.out.println("Error saving JSON");
-            e.printStackTrace();
+        //Create a new file chooser object
+        JFileChooser fileChooser = new JFileChooser();
+        //Set the file chooser to allow file selection and show the "Save" dialog
+        fileChooser.setDialogTitle("Save file");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setApproveButtonText("Save");
+        // Show the file chooser dialog and wait for the user to choose a directory and file name
+        int result = fileChooser.showSaveDialog(null);
+        String filePath = "";
+        // If the user selects a directory and file name, get the path and do something with it
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filePath = fileChooser.getSelectedFile().getPath();
+            System.out.println("File path: " + filePath);
+        }
+        if (filePath != "" && filePath != null) {
+            try {
+                FileWriter fw = new FileWriter(filePath + ".json");
+                fw.write(jsonList.toJSONString());
+                fw.close();
+                System.out.println("JSON successfully saved");
+            } catch (IOException e) {
+                System.out.println("Error saving JSON");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -52,6 +68,14 @@ public class ImportFiles {
         JSONArray jsonList = new JSONArray();
         for(Bloco aula : horario.getAulasList()){
            jsonList.add(aula.toJson());
+        }
+        return jsonList;
+    }
+
+    public static JSONArray Horario2Json(Horario horario){
+        JSONArray jsonList = new JSONArray();
+        for(Bloco aula : horario.getAulasList()){
+            jsonList.add(aula.toJson());
         }
         return jsonList;
     }
@@ -72,34 +96,50 @@ public class ImportFiles {
             CSVReader reader = null;
             try{
                 //Parse CSV para o CSVReader
+
                 reader = new CSVReader(new FileReader(f));
                 String[] jsonProperties = reader.readNext();
                 String[] nextLine;
+                int lineNumber = 0;
                 while((nextLine = reader.readNext()) != null){
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-                    //Pode ser mais que um Curso
-                    String curso = nextLine[0];
-                    String UC = nextLine[1];
-                    String turno = nextLine[2];
-                    String turma = nextLine[3];
-                    int inscritos = Integer.parseInt(nextLine[4]);
-                    String diaSem = nextLine[5];
-                    Date horaIni = dateFormat2.parse(nextLine[6]);
-                    Date horaFim = dateFormat2.parse(nextLine[7]);
-                    Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
-                    String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
-                    int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
-                    Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
-                    blocosList.add(novoBloco);
+                    lineNumber++;
+                    try{
+                        if (nextLine.length < 8) {
+                           throw new Exception();
+                        }
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+                        //Pode ser mais que um Curso
+                        String curso = nextLine[0];
+                        String UC = nextLine[1];
+                        String turno = nextLine[2];
+                        String turma = nextLine[3];
+                        int inscritos = Integer.parseInt(nextLine[4]);
+                        String diaSem = nextLine[5];
+                        Date horaIni = dateFormat2.parse(nextLine[6]);
+                        Date horaFim = dateFormat2.parse(nextLine[7]);
+                        Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
+                        String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
+                        int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
+                        if (curso == null || UC == null || turno == null || turma == null || diaSem == null) {
+                            continue; // skip to the next line
+                        }
+                        Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
+                        blocosList.add(novoBloco);
+                    }catch (Exception e){
+                        System.out.println("Error parsing CSV file on line : " + lineNumber + "");
+                        //e.printStackTrace();
+                        continue;
+                    }
                 }
             } catch (Exception e){
+                System.out.println("Error reading CSV file");
                 e.printStackTrace();
             }
         } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
-        System.out.println(blocosList.toString() + blocosList.size());
+        //System.out.println(blocosList.toString() + blocosList.size());
         Horario horario = new Horario(blocosList);
         return horario;
     }
