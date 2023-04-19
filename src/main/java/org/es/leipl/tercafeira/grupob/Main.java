@@ -2,25 +2,17 @@ package org.es.leipl.tercafeira.grupob;
 
 import com.opencsv.exceptions.CsvValidationException;
 import net.fortuna.ical4j.data.ParserException;
-import org.es.leipl.tercafeira.grupob.pojos.Horario;
-import org.es.leipl.tercafeira.grupob.tools.gui.CalendarProgram;
 import org.es.leipl.tercafeira.grupob.tools.gui.GUI;
 import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.Calendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.CalendarEvent;
 import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.DayCalendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.WeekCalendar;
-import org.json.simple.JSONArray;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
-
-import static org.es.leipl.tercafeira.grupob.tools.ImportFiles.*;
 
 /**
  * @author GRUPO_B_LEI_PL
