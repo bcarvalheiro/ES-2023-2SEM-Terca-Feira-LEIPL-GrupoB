@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- SonarCloud COnnection:&#10;.github/workflow/build.yml built&#10;added to pom">
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="- Stable to Master">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/pojos/Turno.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +27,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="loadFile" />
   </component>
   <component name="Git.Settings">
     <branch-grouping />
@@ -72,7 +77,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;sonarlint&quot;,
@@ -173,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.POJOTestRunner" />
-        <item itemvalue="JUnit.TurnoTest" />
-        <item itemvalue="JUnit.TurnoTest.createTurnoTest" />
         <item itemvalue="JUnit.TurnoTest.emptyTurnoTest" />
+        <item itemvalue="JUnit.TurnoTest.createTurnoTest" />
+        <item itemvalue="JUnit.TurnoTest" />
+        <item itemvalue="Application.POJOTestRunner" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -204,6 +209,9 @@
       <workItem from="1681837474644" duration="641000" />
       <workItem from="1681839240701" duration="1778000" />
       <workItem from="1681844215708" duration="435000" />
+      <workItem from="1681845696492" duration="24000" />
+      <workItem from="1681846627410" duration="1202000" />
+      <workItem from="1681918557017" duration="1046000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -395,6 +403,9 @@
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnoAddTest.ic" NAME="UCTest.ucTurnoAddTest Coverage Results" MODIFIED="1681582883611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ES_SchedulePlanner$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681845508744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnosListAddTest.ic" NAME="UCTest.ucTurnosListAddTest Coverage Results" MODIFIED="1681583231190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
@@ -405,6 +416,9 @@
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$Main.ic" NAME="Main Coverage Results" MODIFIED="1681579355721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_SchedulePlanner$Main.ic" NAME="Main Coverage Results" MODIFIED="1681845532097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest_setLotacaoTest.ic" NAME="SalaTest.setLotacaoTest Coverage Results" MODIFIED="1681579624622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

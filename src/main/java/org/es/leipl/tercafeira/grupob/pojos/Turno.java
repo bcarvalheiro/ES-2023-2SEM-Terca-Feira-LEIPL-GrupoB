@@ -47,7 +47,6 @@ public class Turno {
             this.numeroInscritos = parseNumeroInscritos(numeroInscritos);
             this.cursosList = cursosList;
         }
-
     }
 
 
