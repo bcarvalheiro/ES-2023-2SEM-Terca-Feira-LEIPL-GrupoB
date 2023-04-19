@@ -23,11 +23,6 @@ public class AulaTest {
 
     Date date = new Date(System.currentTimeMillis());
 
-
-
-    private final Aula aula = new Aula(sala, uc, turno, new Date(System.currentTimeMillis()),
-            new Date((System.currentTimeMillis() + (10 * 60 * 1000))), new Date());
-
     private final Aula emptyAula = new Aula(null, null, null, null, null, null);
     @Test
     @DisplayName("aula getters and setters")
