@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar;
+package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

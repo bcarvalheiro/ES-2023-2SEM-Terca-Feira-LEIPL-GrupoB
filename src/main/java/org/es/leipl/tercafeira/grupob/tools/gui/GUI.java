@@ -5,9 +5,9 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.WeekCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
