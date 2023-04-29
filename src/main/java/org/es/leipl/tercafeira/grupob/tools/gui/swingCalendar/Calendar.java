@@ -24,15 +24,15 @@ public abstract class Calendar extends JComponent {
     protected static final int MIN_HEIGHT = 300;
 
     protected static final int HEADER_HEIGHT = 30;
-    protected static final int TIME_COL_WIDTH = 100;
+    protected static final int TIME_COL_WIDTH = 50;
 
     // An estimate of the width of a single character (not exact but good
     // enough)
-    private static final int FONT_LETTER_PIXEL_WIDTH = 7;
+    public static final int FONT_LETTER_PIXEL_WIDTH = 5;
     private ArrayList<CalendarEvent> events;
     private double timeScale;
-    private double dayWidth;
-    private Graphics2D g2;
+    public double dayWidth;
+    public Graphics2D g2;
 
     private EventListenerList listenerList = new EventListenerList();
 
@@ -175,7 +175,7 @@ public abstract class Calendar extends JComponent {
     // Gives x val of left most pixel for day col
     protected abstract double dayToPixel(DayOfWeek dayOfWeek);
 
-    private double timeToPixel(LocalTime time) {
+    public double timeToPixel(LocalTime time) {
         return ((time.toSecondOfDay() - START_TIME.toSecondOfDay()) * timeScale) + HEADER_HEIGHT;
     }
 
@@ -223,7 +223,7 @@ public abstract class Calendar extends JComponent {
 
     protected abstract DayOfWeek getEndDay();
 
-    private void drawDayHeadings() {
+    public void drawDayHeadings() {
         int y = 20;
         int x;
         LocalDate day;
@@ -239,7 +239,7 @@ public abstract class Calendar extends JComponent {
         }
     }
 
-    private void drawGrid() {
+    public void drawGrid() {
         // Save the original colour
         final Color ORIG_COLOUR = g2.getColor();
 
@@ -274,7 +274,7 @@ public abstract class Calendar extends JComponent {
         g2.setColor(ORIG_COLOUR);
     }
 
-    private void drawTodayShade() {
+    public void drawTodayShade() {
         LocalDate today = LocalDate.now();
 
         // Check that date range being viewed is current date range
@@ -292,7 +292,7 @@ public abstract class Calendar extends JComponent {
         g2.setColor(origColor);
     }
 
-    private void drawCurrentTimeLine() {
+    public void drawCurrentTimeLine() {
         LocalDate today = LocalDate.now();
 
         // Check that date range being viewed is current date range

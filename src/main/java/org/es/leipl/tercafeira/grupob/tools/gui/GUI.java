@@ -9,16 +9,14 @@ import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class GUI {
@@ -84,7 +82,7 @@ public class GUI {
                     calendario.setLocation(x, y);
                     // make the JFrame object visible
                     calendario.setVisible(true);
-                    Calendar calendar = new WeekCalendar(calendarEvents);
+                    Calendar calendar = new MonthCalendar(calendarEvents);
                     LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horario.getAulasList();
                     //Posso substituir por setEvents(ArrayList<Events>...) mas tenho de ver
                     //pcausa dos dataTypes
