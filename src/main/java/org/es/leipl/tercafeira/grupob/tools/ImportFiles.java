@@ -5,6 +5,8 @@ import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -95,33 +97,36 @@ public class ImportFiles {
         if(checkExtention(f).equals("csv") || checkExtention(f).equals("CSV") || checkExtention(f).equals("txt")){
             CSVReader reader = null;
             try{
-                //Parse CSV para o CSVReader
-
                 reader = new CSVReader(new FileReader(f));
                 String[] jsonProperties = reader.readNext();
                 String[] nextLine;
                 int lineNumber = 0;
                 while((nextLine = reader.readNext()) != null){
                     lineNumber++;
-                    try{
+                    try {
                         if (nextLine.length < 8) {
-                           throw new Exception();
+                            throw new Exception();
                         }
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
-                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-                        //Pode ser mais que um Curso
                         String curso = nextLine[0];
                         String UC = nextLine[1];
                         String turno = nextLine[2];
                         String turma = nextLine[3];
                         int inscritos = Integer.parseInt(nextLine[4]);
                         String diaSem = nextLine[5];
-                        Date horaIni = dateFormat2.parse(nextLine[6]);
-                        Date horaFim = dateFormat2.parse(nextLine[7]);
-                        Date data = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? dateFormat1.parse(nextLine[8]) : new Date(0);
+                        String[] horaIni_arr = nextLine[6].split(":");
+                        String[] horaFim_arr = nextLine[7].split(":");
+                        LocalTime horaIni = LocalTime.of(Integer.valueOf(horaIni_arr[0]), Integer.valueOf(horaIni_arr[1]),
+                                Integer.valueOf(horaIni_arr[2]));
+                        LocalTime horaFim = LocalTime.of(Integer.valueOf(horaFim_arr[0]), Integer.valueOf(horaFim_arr[1]),
+                                Integer.valueOf(horaFim_arr[2]));
+                        String[] data_arr = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? nextLine[8].split("/") : new String[0];
+                        LocalDate data = null;
+                        if (data_arr.length == 3) {
+                            data = LocalDate.of(Integer.valueOf(data_arr[2]), Integer.valueOf(data_arr[1]), Integer.valueOf(data_arr[0]));
+                        }
                         String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
                         int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
-                        if (curso == null || UC == null || turno == null || turma == null || diaSem == null) {
+                        if (curso == null || UC == null || turno == null || turma == null || diaSem == null || data == null) {
                             continue; // skip to the next line
                         }
                         Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
