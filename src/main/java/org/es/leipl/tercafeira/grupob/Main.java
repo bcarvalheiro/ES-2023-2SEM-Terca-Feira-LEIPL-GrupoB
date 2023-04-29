@@ -4,6 +4,8 @@ import com.opencsv.exceptions.CsvValidationException;
 import net.fortuna.ical4j.data.ParserException;
 import org.es.leipl.tercafeira.grupob.tools.gui.GUI;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 /**
@@ -14,6 +16,7 @@ public class Main {
     public static void main(String[] args) throws IOException, ParserException, CsvValidationException {
         GUI.createGUI();
         //GUI.addEvent(LocalDate.now(), LocalTime.now(), LocalTime.now().plusHours(2), "Teste teste");
+       // System.out.println(GUI.getCalendarEvents());
         GUI.showGUI();
     }
 }

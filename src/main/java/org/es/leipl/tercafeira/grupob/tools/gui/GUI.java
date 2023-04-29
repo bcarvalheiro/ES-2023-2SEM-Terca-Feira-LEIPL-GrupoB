@@ -16,6 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -24,6 +26,11 @@ import java.util.LinkedList;
 
 public class GUI {
     private static Horario horario;
+
+    public static ArrayList<CalendarEvent> getCalendarEvents() {
+        return calendarEvents;
+    }
+
     private static ArrayList<CalendarEvent> calendarEvents = new ArrayList<>();
     private static JFrame frame;
     private static JPanel calendarPanel;
@@ -70,7 +77,11 @@ public class GUI {
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
                     calendarPanel.add(new WeekCalendar(calendarEvents));
-                    loadEventsToCalendar();
+                    try {
+                        loadEventsToCalendar();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -86,8 +97,40 @@ public class GUI {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
-                    calendarPanel.add(new DayCalendar(calendarEvents));
-                    loadEventsToCalendar();
+                    DayCalendar dayCalendar = new DayCalendar(calendarEvents);
+                    calendarPanel.add(dayCalendar);
+                    try {
+                        loadEventsToCalendar();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    JLabel nextDay = new JLabel("Next Day");
+                    /**
+                     * This method adds an ActionListener to the nextDay button. When the button is clicked,
+                     * the calendar panel is move to the day after today and the events are loaded onto the DayCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    nextDay.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            dayCalendar.nextDay();
+                        }
+                    });
+                    JLabel prevDay = new JLabel("Previous Day");
+                    /**
+                     * This method adds an ActionListener to the prevDay button. When the button is clicked,
+                     * the calendar is moved to the previous day and the events are loaded onto the DayCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    prevDay.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            dayCalendar.prevDay();
+                        }
+                    });
+                    calendarPanel.add(nextDay,BorderLayout.EAST);
+                    calendarPanel.add(prevDay,BorderLayout.WEST);
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -105,7 +148,11 @@ public class GUI {
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
                     //calendarPanel.add(new MonthlyCalendar(calendarEvents));
-                    loadEventsToCalendar();
+                    try {
+                        loadEventsToCalendar();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -178,6 +225,7 @@ public class GUI {
             frame.add(button3);
             frame.add(calendarPanel);
 
+
             // set the layout of the JFrame object
             frame.setLayout(new BorderLayout());
 
@@ -213,14 +261,17 @@ public class GUI {
      @param bloco the Bloco object to use as the basis for the new event
      @throws NullPointerException if bloco is null
      */
-    public static void addEvent(Bloco bloco){
+    public static void addEvent(Bloco bloco) throws Exception {
         if (bloco == null) {
             throw new NullPointerException("Bloco can't be null");
         }
         LocalDate data = bloco.getData();
         LocalTime end = bloco.getHoraFim();
         LocalTime start = bloco.getHoraIni();
-        String text = bloco.getUc() + "\n" + bloco.getSala();
+        String text = bloco.getUc() + " " + bloco.getSala();
+        if(start.getHour() > 22 || start.getHour() < 8 || end.getHour() > 22 || end.getHour() < 8){
+            throw new Exception("Invalid start or end time");
+        }
         CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
         calendarEvents.add(calendarEvent);
     }
@@ -231,7 +282,7 @@ public class GUI {
      *
      * @throws NullPointerException if 'horario' is null
      */
-    private static void loadEventsToCalendar() throws NullPointerException{
+    private static void loadEventsToCalendar() throws Exception {
         if (horario == null) {
             System.out.println("The 'horario' object is null. No events will be added to the calendar.");
             return;
