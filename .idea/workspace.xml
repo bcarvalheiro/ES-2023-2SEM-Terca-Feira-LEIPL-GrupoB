@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Bug in JUnit test in AulaTest solved">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/CalendarProgram.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/Calendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/CalendarEmptyClickEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/CalendarEmptyClickListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/CalendarEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/CalendarEventClickEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/CalendarEventClickListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/DayCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/Week.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui/SwingCalendar/WeekCalendar.java" afterDir="false" />
+    <list default="true" id="00525d04-2aa5-41e1-bb6c-acc5ca67a004" name="Changes" comment="Working:&#10;- Upload local csv file and load to system&#10;- NOT TESTED BY ME: upload by URL and load to system&#10;- Iterate throught week and day calendar &#10;- Automaticatly adds events from Horario to Calendar &#10;TO-DO:&#10;- Work on the Event label&#10;- Monthly Calendar&#10;- Check URL upload&#10;THINKING:&#10;- Dont we need JSON load?">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/AulaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/AulaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +30,7 @@
     <branch-grouping />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="changeCalendarView" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,35 +54,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "calendar__testing",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/home/bitos/IdeaProjects/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.49881235",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;calendar__testing&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bitos/IdeaProjects/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.49881235&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/gui" />
@@ -218,6 +206,8 @@
       <workItem from="1681897216794" duration="113000" />
       <workItem from="1681897336529" duration="16000" />
       <workItem from="1681897359255" duration="11453000" />
+      <workItem from="1682698143359" duration="441000" />
+      <workItem from="1682707894848" duration="328000" />
     </task>
     <task id="LOCAL-00001" summary="first_Commit: Project Started">
       <created>1680439956120</created>
@@ -282,7 +272,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681396901661</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- AutoLoad Calendar After importing it">
+      <created>1682767169448</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682767169448</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Working:&#10;- Upload local csv file and load to system&#10;- NOT TESTED BY ME: upload by URL and load to system&#10;- Iterate throught week and day calendar &#10;- Automaticatly adds events from Horario to Calendar &#10;TO-DO:&#10;- Work on the Event label&#10;- Monthly Calendar&#10;- Check URL upload&#10;THINKING:&#10;- Dont we need JSON load?">
+      <created>1682783817876</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682783817876</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +319,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/calendar_testing" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -329,7 +345,9 @@
     <MESSAGE value="- Tools Package:&#10;* Bloco.java:&#10;..... Adicionado metodo interno para converter POJO em java" />
     <MESSAGE value="- Tool Package:&#10;*ImportFile.Java&#10;.... Funções separadas para ficar mais legivel o código e separado&#10;.... Utilização de JSONArray para facilitar a leitura e escrita&#10;*Bloco.java&#10;.... Função de toJson implementada&#10;*Horario.java&#10;.... POJO recebe uma lista de blocos em vez de aulas&#10;TO-DO:&#10;Os blocos serão aulas à posteriori." />
     <MESSAGE value="POJOS JAVADOCS" />
-    <option name="LAST_COMMIT_MESSAGE" value="POJOS JAVADOCS" />
+    <MESSAGE value="- AutoLoad Calendar After importing it" />
+    <MESSAGE value="Working:&#10;- Upload local csv file and load to system&#10;- NOT TESTED BY ME: upload by URL and load to system&#10;- Iterate throught week and day calendar &#10;- Automaticatly adds events from Horario to Calendar &#10;TO-DO:&#10;- Work on the Event label&#10;- Monthly Calendar&#10;- Check URL upload&#10;THINKING:&#10;- Dont we need JSON load?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working:&#10;- Upload local csv file and load to system&#10;- NOT TESTED BY ME: upload by URL and load to system&#10;- Iterate throught week and day calendar &#10;- Automaticatly adds events from Horario to Calendar &#10;TO-DO:&#10;- Work on the Event label&#10;- Monthly Calendar&#10;- Check URL upload&#10;THINKING:&#10;- Dont we need JSON load?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -364,6 +382,11 @@
           <line>14</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/es/leipl/tercafeira/grupob/tools/ImportFiles.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/org/es/leipl/tercafeira/grupob/pojos/POJOTestRunner.java</url>
           <line>8</line>
@@ -389,28 +412,34 @@
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnoAddTest.ic" NAME="UCTest.ucTurnoAddTest Coverage Results" MODIFIED="1681582883611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681899095850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest.ic" NAME="UCTest Coverage Results" MODIFIED="1681583246041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$TurnoTest.ic" NAME="TurnoTest Coverage Results" MODIFIED="1681584907843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ES_SchedulePlanner$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681845508744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest_ucTurnosListAddTest.ic" NAME="UCTest.ucTurnosListAddTest Coverage Results" MODIFIED="1681583231190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest.ic" NAME="SalaTest Coverage Results" MODIFIED="1681578444466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$UCTest.ic" NAME="UCTest Coverage Results" MODIFIED="1681583246041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$Main.ic" NAME="Main Coverage Results" MODIFIED="1681579355721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest.ic" NAME="SalaTest Coverage Results" MODIFIED="1681578444466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    <SUITE FILE_PATH="coverage/ES_SchedulePlanner$Main.ic" NAME="Main Coverage Results" MODIFIED="1681845532097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$SalaTest_setLotacaoTest.ic" NAME="SalaTest.setLotacaoTest Coverage Results" MODIFIED="1681579624622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$TurnoTest.ic" NAME="TurnoTest Coverage Results" MODIFIED="1681584907843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestSuite.ic" NAME="POJOTestSuite Coverage Results" MODIFIED="1681579665327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ES_2023_2SEM_Terca_Feira_LEIPL_GrupoB$POJOTestRunner.ic" NAME="POJOTestRunner Coverage Results" MODIFIED="1681585540653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.es.leipl.tercafeira.grupob.pojos.*</FILTER>
     </SUITE>
   </component>
