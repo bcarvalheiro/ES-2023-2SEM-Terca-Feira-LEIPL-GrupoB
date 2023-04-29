@@ -44,7 +44,7 @@ public class GUI {
 
             frame = new JFrame();
 
-            int frameX = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth() - 480;
+            int frameX = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 
             calendarPanel = new JPanel();
             calendarPanel.setPreferredSize(new Dimension(1820, 980));
@@ -55,12 +55,12 @@ public class GUI {
             JButton weeklyView = new JButton("Weekly View");
             JButton monthlyView = new JButton("Monthly View");
 
-            monthlyView.setBounds(frameX,10,150,40);
+            monthlyView.setBounds(frameX-160,10,150,40);
             weeklyView.setBounds(frameX-310,10,150,40);
-            dailyView.setBounds(frameX-470,10,150,40);
+            dailyView.setBounds(frameX-460,10,150,40);
 
             /**
-             * This method adds an ActionListener to the weeklyView radio button. When the button is selected,
+             * This method adds an ActionListener to the weeklyView button. When the button is selected,
              * the calendar panel is cleared and the events are loaded onto the WeekCalendar. The panel is then
              * revalidated and repainted to display the updated calendar.
              */
@@ -81,7 +81,7 @@ public class GUI {
             });
 
             /**
-             * This method adds an ActionListener to the dailyView radio button. When the button is selected,
+             * This method adds an ActionListener to the dailyView button. When the button is selected,
              * the calendar panel is cleared and the events are loaded onto the DayCalendar. The panel is then
              * revalidated and repainted to display the updated calendar.
              */
@@ -121,8 +121,8 @@ public class GUI {
                             dayCalendar.prevDay();
                         }
                     });
-                    calendarPanel.add(nextDay,BorderLayout.EAST);
-                    calendarPanel.add(prevDay,BorderLayout.WEST);
+//                    calendarPanel.add(nextDay,BorderLayout.EAST);
+//                    calendarPanel.add(prevDay,BorderLayout.WEST);
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -130,7 +130,7 @@ public class GUI {
             });
 
             /**
-             * This method adds an ActionListener to the monthlyView radio button. When the button is selected,
+             * This method adds an ActionListener to the monthlyView button. When the button is selected,
              * the calendar panel is cleared and the events are loaded onto the MonthlyCalendar. The panel is then
              * revalidated and repainted to display the updated calendar.
              */
@@ -171,14 +171,6 @@ public class GUI {
                     fu.uploadLocal();
                     horario = fu.getHorario();
                     if(horario!=null){
-                        frame.add(monthlyView);
-                        frame.add(weeklyView);
-                        frame.add(dailyView);
-
-                        // repaint the frame
-                        frame.invalidate();
-                        frame.validate();
-                        frame.repaint();
                         JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
@@ -213,6 +205,10 @@ public class GUI {
             frame.add(button1);
             frame.add(button2);
             frame.add(button3);
+
+            frame.add(monthlyView);
+            frame.add(weeklyView);
+            frame.add(dailyView);
             frame.add(calendarPanel);
 
 
