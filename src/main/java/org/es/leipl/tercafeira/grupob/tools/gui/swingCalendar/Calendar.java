@@ -75,12 +75,12 @@ public abstract class Calendar extends JComponent {
     private boolean checkCalendarEventClick(Point p) {
         double x0, x1, y0, y1;
         for (CalendarEvent event : events) {
-            if (!dateInRange(event.getDate())) continue;
+            if (!dateInRange(event.getBloco().getData())) continue;
 
-            x0 = dayToPixel(event.getDate().getDayOfWeek());
-            y0 = timeToPixel(event.getStart());
-            x1 = dayToPixel(event.getDate().getDayOfWeek()) + dayWidth;
-            y1 = timeToPixel(event.getEnd());
+            x0 = dayToPixel(event.getBloco().getData().getDayOfWeek());
+            y0 = timeToPixel(event.getBloco().getHoraIni());
+            x1 = dayToPixel(event.getBloco().getData().getDayOfWeek()) + dayWidth;
+            y1 = timeToPixel(event.getBloco().getHoraFim());
 
             if (p.getX() >= x0 && p.getX() <= x1 && p.getY() >= y0 && p.getY() <= y1) {
                 fireCalendarEventClick(event);
@@ -326,12 +326,12 @@ public abstract class Calendar extends JComponent {
         double y0;
 
         for (CalendarEvent event : events) {
-            if (!dateInRange(event.getDate())) continue;
+            if (!dateInRange(event.getBloco().getData())) continue;
 
-            x = dayToPixel(event.getDate().getDayOfWeek());
-            y0 = timeToPixel(event.getStart());
+            x = dayToPixel(event.getBloco().getData().getDayOfWeek());
+            y0 = timeToPixel(event.getBloco().getHoraIni());
 
-            Rectangle2D rect = new Rectangle2D.Double(x, y0, dayWidth, (timeToPixel(event.getEnd()) - timeToPixel(event.getStart())));
+            Rectangle2D rect = new Rectangle2D.Double(x, y0, dayWidth, (timeToPixel(event.getBloco().getHoraFim()) - timeToPixel(event.getBloco().getHoraIni())));
             Color origColor = g2.getColor();
             g2.setColor(event.getColor());
             g2.fill(rect);
@@ -348,13 +348,13 @@ public abstract class Calendar extends JComponent {
             Font newFont = origFont.deriveFont(Font.BOLD, fontSize);
             g2.setFont(newFont);
 
-            g2.drawString(event.getStart() + " - " + event.getEnd(), (int) x + 5, (int) y0 + 11);
+            g2.drawString(event.getBloco().getHoraIni() + " - " + event.getBloco().getHoraFim(), (int) x + 5, (int) y0 + 11);
 
             // Unbolden
             g2.setFont(origFont.deriveFont(fontSize));
 
             // Draw the event's text
-            g2.drawString(event.getText(), (int) x + 5, (int) y0 + 23);
+            g2.drawString(event.getBloco().getUc(), (int) x + 5, (int) y0 + 23);
 
             // Reset font
             g2.setFont(origFont);

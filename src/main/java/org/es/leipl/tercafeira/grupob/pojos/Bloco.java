@@ -118,27 +118,27 @@ public class Bloco {
         this.diaSemana = diaSemana;
     }
 
-    public Date getHoraIni() {
+    public LocalTime getHoraIni() {
         return horaIni;
     }
 
-    public void setHoraIni(Date horaIni) {
+    public void setHoraIni(LocalTime horaIni) {
         this.horaIni = horaIni;
     }
 
-    public Date getHoraFim() {
+    public LocalTime getHoraFim() {
         return horaFim;
     }
 
-    public void setHoraFim(Date horaFim) {
+    public void setHoraFim(LocalTime horaFim) {
         this.horaFim = horaFim;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

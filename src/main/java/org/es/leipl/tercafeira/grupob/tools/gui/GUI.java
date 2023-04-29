@@ -130,15 +130,6 @@ public class GUI {
         calendarEvents.add(calendarEvent);
     }
 
-    public static void addEvent(Bloco bloco){
-        LocalDate data = bloco.getData();
-        LocalTime end = bloco.getHoraFim();
-        LocalTime start = bloco.getHoraIni();
-        String text = bloco.getUc() + "\n" + bloco.getSala();
-        CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
-        calendarEvents.add(calendarEvent);
-    }
-
     public static void showGUI() {
         frame.setVisible(true);
     }
