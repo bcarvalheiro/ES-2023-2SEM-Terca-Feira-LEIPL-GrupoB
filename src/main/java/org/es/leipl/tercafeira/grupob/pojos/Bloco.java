@@ -162,10 +162,12 @@ public class Bloco {
         if (curso == null || curso.isEmpty()) {
             return "";
         }
+        if (curso.size() == 1)
+            return curso.get(0);
 
         StringBuilder sb = new StringBuilder();
         for (String c : curso) {
-            sb.append(c.toUpperCase()).append(", ");
+            sb.append(c.toUpperCase().trim()).append(", ");
         }
 
         sb.setLength(sb.length() - 2);
@@ -177,10 +179,12 @@ public class Bloco {
         if (turma == null || turma.isEmpty()) {
             return "";
         }
+        if (turma.size() == 1)
+            return turma.get(0);
 
         StringBuilder sb = new StringBuilder();
         for (String t : this.turma) {
-            sb.append(t.toUpperCase()).append(", ");
+            sb.append(t.toUpperCase().trim()).append(", ");
         }
 
         sb.setLength(sb.length() - 2);
@@ -219,6 +223,14 @@ public class Bloco {
         this.data = data;
         this.sala = sala;
         this.lotacao = lotacao;
+    }
+
+    public void addTurma(String turma) {
+        this.turma.add(turma);
+    }
+
+    public void addCurso(String curso) {
+        this.curso.add(curso);
     }
 
     /**

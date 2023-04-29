@@ -348,13 +348,13 @@ public abstract class Calendar extends JComponent {
             Font newFont = origFont.deriveFont(Font.BOLD, fontSize);
             g2.setFont(newFont);
 
-            g2.drawString(event.getBloco().getHoraIni() + " - " + event.getBloco().getHoraFim(), (int) x + 5, (int) y0 + 11);
+            g2.drawString(event.getBloco().getUc(), (int) x + 5, (int) y0 + 11);
 
             // Unbolden
             g2.setFont(origFont.deriveFont(fontSize));
 
             // Draw the event's text
-            g2.drawString(event.getBloco().getUc(), (int) x + 5, (int) y0 + 23);
+            g2.drawString("Turmas: " + event.getBloco().getTurmasToString(), (int) x + 5, (int) y0 + 23);
 
             // Reset font
             g2.setFont(origFont);

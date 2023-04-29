@@ -27,9 +27,9 @@ public final class CalendarUtils {
      * @param event - A calendar event
      * @return - A String to be used on a CSV file
      */
-    public String calendarEventToString(CalendarEvent event) {
+    private String calendarEventToString(CalendarEvent event) {
         Bloco bloco = event.getBloco();
-        return bloco.getCursosToString() + ","
+        return bloco.getCursosToString()
                 + "," + bloco.getUc()
                 + "," + bloco.getTurno()
                 + "," + bloco.getTurmasToString()
