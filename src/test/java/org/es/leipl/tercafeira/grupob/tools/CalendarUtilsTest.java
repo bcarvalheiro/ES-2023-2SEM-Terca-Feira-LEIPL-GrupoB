@@ -1,12 +1,7 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
-import org.es.leipl.tercafeira.grupob.pojos.Horario;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarUtils;
-import org.json.JSONObject;
-import org.json.simple.JSONArray;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CsvUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,24 +11,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalendarUtilsTest {
 
-    CalendarUtils calendarUtils = CalendarUtils.getInstance();
+    CsvUtils calendarUtils = CsvUtils.getInstance();
 
     @Test
-    @DisplayName("Tests saving a list of calendarEvent to a csv file")
-    void testCalendarEventToCsv() throws IOException {
+    @DisplayName("Tests saving a list of Bloco to a csv file")
+    void testBlocosToCsv() throws IOException {
         Bloco bloco = new Bloco("LEI, IGE", "DIAM", "01789TP01", "MEA1", 30, "Sex", LocalTime.of(18, 0, 0, 0), LocalTime.of(19, 30, 0, 0), LocalDate.of(2023, 05, 05), "AA2.25", 34);
         Bloco bloco2 = new Bloco("LEI", "ES", "01789TP01", "MEA1, MEA2", 30, "Qui", LocalTime.of(18, 0, 0, 0), LocalTime.of(19, 30, 0, 0), LocalDate.of(2023, 05, 05), "AA2.25", 34);
 
         File file = new File("output.csv");
-        calendarUtils.calendarEventsToCsvFile(Arrays.asList(bloco, bloco2), file.getPath());
+        calendarUtils.blocosToCsvFile(Arrays.asList(bloco, bloco2), file.getPath());
         assertTrue(file.exists());
         assertTrue(file.isFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
