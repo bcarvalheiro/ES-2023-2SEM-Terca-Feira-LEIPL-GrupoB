@@ -29,7 +29,6 @@ class CalendarUtilsTest {
     @Test
     @DisplayName("Tests saving a list of calendarEvent to a csv file")
     void testCalendarEventToCsv() throws IOException {
-        List<CalendarEvent> events = new ArrayList<>();
         Bloco bloco = new Bloco("LEI, IGE", "DIAM", "01789TP01", "MEA1", 30, "Sex", LocalTime.of(18, 0, 0, 0), LocalTime.of(19, 30, 0, 0), LocalDate.of(2023, 05, 05), "AA2.25", 34);
         Bloco bloco2 = new Bloco("LEI", "ES", "01789TP01", "MEA1, MEA2", 30, "Qui", LocalTime.of(18, 0, 0, 0), LocalTime.of(19, 30, 0, 0), LocalDate.of(2023, 05, 05), "AA2.25", 34);
 
