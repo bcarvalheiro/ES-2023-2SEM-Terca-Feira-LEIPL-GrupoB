@@ -2,6 +2,7 @@ package org.es.leipl.tercafeira.grupob.tools.gui;
 
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
+import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
@@ -17,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 
 public class GUI {
     private static Horario horario;
@@ -37,7 +40,6 @@ public class GUI {
             button2.setBounds(200,50,150,40);
             button3.setBounds(350,50,150,40);
             button4.setBounds(500,50,150,40);
-
 
             button1.addActionListener(new ActionListener() {
                 @Override
@@ -76,19 +78,22 @@ public class GUI {
                     JFrame calendario = new JFrame();
                     calendario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     calendario.setSize(800, 600);
-
                     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                     int x = (screenSize.width - calendario.getWidth()) / 2;
                     int y = (screenSize.height - calendario.getHeight()) / 2;
                     calendario.setLocation(x, y);
-
                     // make the JFrame object visible
                     calendario.setVisible(true);
                     Calendar calendar = new WeekCalendar(calendarEvents);
+                    LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horario.getAulasList();
+                    //Posso substituir por setEvents(ArrayList<Events>...) mas tenho de ver
+                    //pcausa dos dataTypes
+                    for(Bloco b : blocoList){
+                        addEvent(b);
+                    }
                     //Calendar calendar = new DayCalendar(calendarEvents);
                     calendario.add(calendar);
                     calendario.setVisible(true);
-
                 }
             });
             // add the buttons to the JFrame object
@@ -122,6 +127,15 @@ public class GUI {
     //add Calendar events
     public static void addEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
         CalendarEvent calendarEvent = new CalendarEvent(date, start, end, text, Color.PINK);
+        calendarEvents.add(calendarEvent);
+    }
+
+    public static void addEvent(Bloco bloco){
+        LocalDate data = bloco.getData();
+        LocalTime end = bloco.getHoraFim();
+        LocalTime start = bloco.getHoraIni();
+        String text = bloco.getUc() + "\n" + bloco.getSala();
+        CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
         calendarEvents.add(calendarEvent);
     }
 
