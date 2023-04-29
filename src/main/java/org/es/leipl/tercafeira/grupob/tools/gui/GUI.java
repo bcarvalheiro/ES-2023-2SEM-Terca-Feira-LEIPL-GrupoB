@@ -6,10 +6,10 @@ import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.DayCalendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar.WeekCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
@@ -21,7 +21,6 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class GUI {
@@ -164,7 +163,12 @@ public class GUI {
             JButton button1 = new JButton("Upload Local");
             JButton button2 = new JButton("Upload Remoto");
             JButton button3 = new JButton("Convert to JSON");
+            JButton button4 = new JButton("Mostrar Calendário");
 
+            button1.setBounds(50,50,150,40);
+            button2.setBounds(200,50,150,40);
+            button3.setBounds(350,50,150,40);
+            button4.setBounds(500,50,150,40);
 
             button1.setBounds(50,0,150,40);
             button2.setBounds(200,0,150,40);
@@ -215,10 +219,35 @@ public class GUI {
                         JSONArray json = ImportFiles.Horario2Json(horario);
                         ImportFiles.saveJSONtoFile(json);
                         JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
                     }
                 }
             });
 
+            button4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JFrame calendario = new JFrame();
+                    calendario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    calendario.setSize(800, 600);
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    int x = (screenSize.width - calendario.getWidth()) / 2;
+                    int y = (screenSize.height - calendario.getHeight()) / 2;
+                    calendario.setLocation(x, y);
+                    // make the JFrame object visible
+                    calendario.setVisible(true);
+                    Calendar calendar = new WeekCalendar(calendarEvents);
+                    LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horario.getAulasList();
+                    //Posso substituir por setEvents(ArrayList<Events>...) mas tenho de ver
+                    //pcausa dos dataTypes
+                    for(Bloco b : blocoList){
+                        addEvent(b);
+                    }
+                    //Calendar calendar = new DayCalendar(calendarEvents);
+                    calendario.add(calendar);
+                    calendario.setVisible(true);
+                }
+            });
             // add the buttons to the JFrame object
             frame.add(button1);
             frame.add(button2);
@@ -261,7 +290,7 @@ public class GUI {
      @param bloco the Bloco object to use as the basis for the new event
      @throws NullPointerException if bloco is null
      */
-    public static void addEvent(Bloco bloco) throws Exception {
+    public static void addEvent(Bloco bloco) {
         if (bloco == null) {
             throw new NullPointerException("Bloco can't be null");
         }
@@ -269,11 +298,10 @@ public class GUI {
         LocalTime end = bloco.getHoraFim();
         LocalTime start = bloco.getHoraIni();
         String text = bloco.getUc() + " " + bloco.getSala();
-        if(start.getHour() > 22 || start.getHour() < 8 || end.getHour() > 22 || end.getHour() < 8){
-            throw new Exception("Invalid start or end time");
+        if(!(start.getHour() > 22 || start.getHour() < 8 || end.getHour() > 22 || end.getHour() < 8)) {
+            CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
+            calendarEvents.add(calendarEvent);
         }
-        CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
-        calendarEvents.add(calendarEvent);
     }
 
     /**

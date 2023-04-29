@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,86 +17,193 @@ public class Bloco {
     /**
      * List of all courses that are taking this specific class
      */
-    List<String> curso;
+    private List<String> curso;
 
     /**
      * Atribute uc is the subject of the class
      */
-    String uc;
+    private String uc;
 
     /**
      * Name of the class shift that agregates everyone
      * that is taking a particular class
      */
-    String turno;
+    private String turno;
 
     /**
      * List of all classes that are taking this specific class
      */
-    List<String> turma;
+    private List<String> turma;
 
     /**
      * Number of all students enrolled in this shift of the class
      */
-    int inscritos;
+    private int inscritos;
 
     /**
      * The day of the week that the class takes place
      */
-    String diaSemana;
+    private String diaSemana;
 
     /**
      * Atribute hora_inicio is the hh:mm when the class starts
      */
-    LocalTime horaIni;
+    private LocalTime horaIni;
 
     /**
      * Atribute hora_fim the hh:mm when the class ends
      */
-    LocalTime horaFim;
+    private LocalTime horaFim;
 
     /**
      * Atribute data is the day of the class
      */
-    LocalDate data;
+    private LocalDate data;
 
     /**
      * Atribute sala is the classroom where the class will take place
      */
-    String sala;
+    private String sala;
 
     /**
      * Atribute lotacao is the classroom student capacity
      */
-    int lotacao;
+    private int lotacao;
+
+    public List<String> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(List<String> curso) {
+        this.curso = curso;
+    }
 
     public String getUc() {
         return uc;
+    }
+
+    public void setUc(String uc) {
+        this.uc = uc;
     }
 
     public String getTurno() {
         return turno;
     }
 
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    public List<String> getTurma() {
+        return turma;
+    }
+
+    public void setTurma(List<String> turma) {
+        this.turma = turma;
+    }
+
     public int getInscritos() {
         return inscritos;
+    }
+
+    public void setInscritos(int inscritos) {
+        this.inscritos = inscritos;
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
     }
 
     public LocalTime getHoraIni() {
         return horaIni;
     }
 
+    public void setHoraIni(LocalTime horaIni) {
+        this.horaIni = horaIni;
+    }
+
     public LocalTime getHoraFim() {
         return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 
     public LocalDate getData() {
         return data;
     }
 
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     public String getSala() {
         return sala;
     }
+
+    public void setSala(String sala) {
+        this.sala = sala;
+    }
+
+    public int getLotacao() {
+        return lotacao;
+    }
+
+    public void setLotacao(int lotacao) {
+        this.lotacao = lotacao;
+    }
+
+    public String getCursosToString() {
+        if (curso == null || curso.isEmpty()) {
+            return "";
+        }
+        if (curso.size() == 1)
+            return curso.get(0);
+
+        StringBuilder sb = new StringBuilder();
+        for (String c : curso) {
+            sb.append(c.toUpperCase().trim()).append(", ");
+        }
+
+        sb.setLength(sb.length() - 2);
+
+        return "\"" + sb + "\"";
+    }
+
+    public String getTurmasToString() {
+        if (turma == null || turma.isEmpty()) {
+            return "";
+        }
+        if (turma.size() == 1)
+            return turma.get(0);
+
+        StringBuilder sb = new StringBuilder();
+        for (String t : this.turma) {
+            sb.append(t.toUpperCase().trim()).append(", ");
+        }
+
+        sb.setLength(sb.length() - 2);
+
+        return "\"" + sb + "\"";
+    }
+
+    public String getDataToString() {
+        return data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear();
+    }
+
+    public String getHoraIniToString() {
+        return horaIni.getHour() + ":" + horaIni.getMinute() + ":" + horaIni.getSecond();
+    }
+
+    public String getHoraFimToString() {
+        return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
+    }
+
 
     public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
@@ -115,6 +223,14 @@ public class Bloco {
         this.data = data;
         this.sala = sala;
         this.lotacao = lotacao;
+    }
+
+    public void addTurma(String turma) {
+        this.turma.add(turma);
+    }
+
+    public void addCurso(String curso) {
+        this.curso.add(curso);
     }
 
     /**

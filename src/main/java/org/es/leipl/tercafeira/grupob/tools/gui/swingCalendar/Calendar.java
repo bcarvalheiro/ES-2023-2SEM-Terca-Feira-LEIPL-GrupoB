@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.tools.gui.SwingCalendar;
+package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -348,7 +348,7 @@ public abstract class Calendar extends JComponent {
             Font newFont = origFont.deriveFont(Font.BOLD, fontSize);
             g2.setFont(newFont);
 
-            g2.drawString(event.getStart() + " - " + event.getEnd(), (int) x + 5, (int) y0 + 11);
+            g2.drawString(event.getDate().toString(), (int) x + 5, (int) y0 + 11);
 
             // Unbolden
             g2.setFont(origFont.deriveFont(fontSize));
