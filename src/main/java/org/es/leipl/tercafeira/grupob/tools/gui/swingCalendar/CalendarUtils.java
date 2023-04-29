@@ -9,7 +9,7 @@ import java.util.List;
 public final class CalendarUtils {
 
     private static CalendarUtils INSTANCE;
-    private static final String HEADER = "Data da aula,Hora início da aula,Hora fim da aula,Unidade Curricular";
+    private static final String HEADER = "Curso,Unidade Curricular,Turno,Turma,Inscritos no turno,Dia da semana,Hora início da aula,Hora fim da aula,Data da aula,Sala atribuída à aula,Lotação da sala";
 
     private CalendarUtils() {}
 
@@ -29,7 +29,18 @@ public final class CalendarUtils {
      */
     public String calendarEventToString(CalendarEvent event) {
         Bloco bloco = event.getBloco();
-        return event.getDate() + "," + event.getStart() + "," + event.getEnd() + "," + event.getText();
+        return bloco.getCursosToString() + ","
+                + "," + bloco.getUc()
+                + "," + bloco.getTurno()
+                + "," + bloco.getTurmasToString()
+                + "," + bloco.getInscritos()
+                + "," + bloco.getDiaSemana()
+                + "," + bloco.getHoraIniToString()
+                + "," + bloco.getHoraFimToString()
+                + "," + bloco.getDataToString()
+                + "," + bloco.getSala()
+                + "," + bloco.getLotacao()
+                ;
     }
 
     /**

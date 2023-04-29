@@ -158,6 +158,49 @@ public class Bloco {
         this.lotacao = lotacao;
     }
 
+    public String getCursosToString() {
+        if (curso == null || curso.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String c : curso) {
+            sb.append(c.toUpperCase()).append(", ");
+        }
+
+        sb.setLength(sb.length() - 2);
+
+        return "\"" + sb + "\"";
+    }
+
+    public String getTurmasToString() {
+        if (turma == null || turma.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String t : this.turma) {
+            sb.append(t.toUpperCase()).append(", ");
+        }
+
+        sb.setLength(sb.length() - 2);
+
+        return "\"" + sb + "\"";
+    }
+
+    public String getDataToString() {
+        return data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear();
+    }
+
+    public String getHoraIniToString() {
+        return horaIni.getHour() + ":" + horaIni.getMinute() + ":" + horaIni.getSecond();
+    }
+
+    public String getHoraFimToString() {
+        return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
+    }
+
+
     public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
         for(String s: curso.split(",")){
