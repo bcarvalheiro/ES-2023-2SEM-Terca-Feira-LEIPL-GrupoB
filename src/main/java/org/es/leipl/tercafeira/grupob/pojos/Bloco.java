@@ -2,6 +2,8 @@ package org.es.leipl.tercafeira.grupob.pojos;
 
 import org.json.simple.JSONObject;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,17 +48,17 @@ public class Bloco {
     /**
      * Atribute hora_inicio is the hh:mm when the class starts
      */
-    private Date horaIni;
+    private LocalTime horaIni;
 
     /**
      * Atribute hora_fim the hh:mm when the class ends
      */
-    private Date horaFim;
+    private LocalTime horaFim;
 
     /**
      * Atribute data is the day of the class
      */
-    private Date data;
+    private LocalDate data;
 
     /**
      * Atribute sala is the classroom where the class will take place
@@ -156,7 +158,7 @@ public class Bloco {
         this.lotacao = lotacao;
     }
 
-    public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, Date horaIni, Date horaFim, Date data, String sala, int lotacao) {
+    public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
         for(String s: curso.split(",")){
             this.curso.add(s);
