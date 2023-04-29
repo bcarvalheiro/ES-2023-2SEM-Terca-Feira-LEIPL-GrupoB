@@ -76,7 +76,6 @@ public class CalendarEvent {
         if (!date.equals(that.date)) return false;
         if (!start.equals(that.start)) return false;
         return end.equals(that.end);
-
     }
 
     @Override

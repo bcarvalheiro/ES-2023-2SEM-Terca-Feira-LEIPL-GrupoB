@@ -3,11 +3,8 @@ import com.opencsv.CSVReader;
 import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import java.io.*;
-import java.net.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -27,8 +24,10 @@ public class ImportFiles {
     }
 
     /**
-     * Saves a JSON object to a file named "output.json" in the current directory.
-     * @param jsonList
+     *Saves a JSONArray to a file. Opens a file chooser dialog to select a directory and file name to save the file.
+     *If the user selects a file, the method writes the contents of the JSONArray to the file.
+     *If an IOException occurs while writing to the file, the method prints a stack trace and outputs an error message to the console.
+     @param jsonList the JSONArray to be saved to a file
      */
     public static void saveJSONtoFile(JSONArray jsonList) {
         //Create a new file chooser object
@@ -74,7 +73,17 @@ public class ImportFiles {
         return jsonList;
     }
 
+    /**
+     * Converts a given Horario object to a JSONArray.
+     *
+     * @param horario The Horario object to be converted.
+     * @return A JSONArray containing the converted Horario object.
+     * @throws IllegalArgumentException if the given Horario object is null.
+     */
     public static JSONArray Horario2Json(Horario horario){
+        if (horario == null) {
+            throw new IllegalArgumentException("Horario object cannot be null.");
+        }
         JSONArray jsonList = new JSONArray();
         for(Bloco aula : horario.getAulasList()){
             jsonList.add(aula.toJson());
@@ -144,13 +153,7 @@ public class ImportFiles {
         } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
-        //System.out.println(blocosList.toString() + blocosList.size());
         Horario horario = new Horario(blocosList);
         return horario;
-    }
-
-    private static void getFromURL(String filePath) throws IOException {
-        URL calendarURL = new URL(filePath);
-        URLConnection calendarConn = calendarURL.openConnection();
     }
 }
