@@ -9,7 +9,10 @@ import org.junit.runners.Suite;
         SalaTest.class,
         UCTest.class,
         TurnoTest.class,
-        AulaTest.class
+        AulaTest.class,
+        BlocoTest.class,
+        HorarioTest.class
+
 
 })
 
