@@ -74,7 +74,7 @@ public class MonthCalendar extends Calendar {
 
         for (int i = getStartDayInt(); i <= getEndDayInt(); i++) {
 
-            day = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(),i);
+            day = LocalDate.of(month.getYear(), month.getMonth(),i);
             dayOfWeek = day.getDayOfWeek();
 
             String text = dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.ENGLISH) + " " + day.getDayOfMonth() + "/" + day.getMonthValue();
@@ -98,7 +98,7 @@ public class MonthCalendar extends Calendar {
         // Draw vertical grid lines
         double x;
         for (int i = getStartDayInt(); i <= getEndDayInt(); i++) {
-            day = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(),i);
+            day = LocalDate.of(month.getYear(), month.getMonth(),i);
             dayOfWeek = day.getDayOfWeek();
 
             x = dayToPixelMonth(i);

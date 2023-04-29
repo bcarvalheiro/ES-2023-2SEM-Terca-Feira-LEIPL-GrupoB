@@ -67,8 +67,8 @@ public class GUI {
             JButton next = new JButton("Next");
             JButton previous = new JButton("Previous");
 
-            next.setBounds(620,10,150,40);
-            previous.setBounds(770,10,150,40);
+            previous.setBounds(620,10,150,40);
+            next.setBounds(770,10,150,40);
 
             next.setVisible(false);
             previous.setVisible(false);

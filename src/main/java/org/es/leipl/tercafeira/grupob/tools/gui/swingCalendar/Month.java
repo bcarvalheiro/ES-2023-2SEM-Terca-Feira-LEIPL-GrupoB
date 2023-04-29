@@ -10,6 +10,8 @@ public class Month {
     private ArrayList<LocalDate> days;
     private LocalDate firstday;
     private LocalDate lastday;
+    private int month;
+    private int year;
 
     // Gets week variables from any date (can be within week)
     public Month(LocalDate date) {
@@ -17,6 +19,8 @@ public class Month {
         firstday = getStartOfMonth(date);
         days.add(firstday);
         lastday = firstday.with(TemporalAdjusters.lastDayOfMonth());
+        month = date.getMonthValue();
+        year = date.getYear();
 
         for (int i = 1; i < lastday.getDayOfMonth(); i++) {
             days.add(firstday.plusDays(i));
@@ -50,6 +54,14 @@ public class Month {
 
     public String toString() {
         return "Month of the " + getDay(DayOfWeek.MONDAY);
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public static void main(String[] args) {
