@@ -45,11 +45,12 @@ public class GUI {
             frame = new JFrame();
 
             int frameX = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+            int frameY = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
             calendarPanel = new JPanel();
-            calendarPanel.setPreferredSize(new Dimension(1820, 980));
+            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-70));
             calendarPanel.setLayout(new BorderLayout());
-            calendarPanel.setBounds(0,70,1920,1080);
+            calendarPanel.setBounds(0,70,frameX,frameY-70);
 
             JButton dailyView = new JButton("Daily View");
             JButton weeklyView = new JButton("Weekly View");
@@ -58,6 +59,19 @@ public class GUI {
             monthlyView.setBounds(frameX-160,10,150,40);
             weeklyView.setBounds(frameX-310,10,150,40);
             dailyView.setBounds(frameX-460,10,150,40);
+
+            monthlyView.setVisible(false);
+            weeklyView.setVisible(false);
+            dailyView.setVisible(false);
+
+            JButton next = new JButton("Next");
+            JButton previous = new JButton("Previous");
+
+            next.setBounds(620,10,150,40);
+            previous.setBounds(770,10,150,40);
+
+            next.setVisible(false);
+            previous.setVisible(false);
 
             /**
              * This method adds an ActionListener to the weeklyView button. When the button is selected,
@@ -68,12 +82,35 @@ public class GUI {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
-                    calendarPanel.add(new WeekCalendar(calendarEvents));
+                    WeekCalendar weekCalendar = new WeekCalendar(calendarEvents);
+                    calendarPanel.add(weekCalendar);
                     try {
                         loadEventsToCalendar();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
+                    /**
+                     * This method adds an ActionListener to the nextWeek button. When the button is clicked,
+                     * the calendar panel is move to the week after today and the events are loaded onto the WeekCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    next.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            weekCalendar.nextWeek();
+                        }
+                    });
+                    /**
+                     * This method adds an ActionListener to the prevWeek button. When the button is clicked,
+                     * the calendar is moved to the previous week and the events are loaded onto the WeekCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    previous.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            weekCalendar.prevWeek();
+                        }
+                    });
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -97,32 +134,28 @@ public class GUI {
                         throw new RuntimeException(ex);
                     }
 
-                    JLabel nextDay = new JLabel("Next Day");
                     /**
                      * This method adds an ActionListener to the nextDay button. When the button is clicked,
                      * the calendar panel is move to the day after today and the events are loaded onto the DayCalendar. The panel is then
                      * revalidated and repainted to display the updated calendar.
                      */
-                    nextDay.addMouseListener(new MouseAdapter(){
+                    next.addMouseListener(new MouseAdapter(){
                         @Override
                         public void mouseClicked(MouseEvent e){
                             dayCalendar.nextDay();
                         }
                     });
-                    JLabel prevDay = new JLabel("Previous Day");
                     /**
                      * This method adds an ActionListener to the prevDay button. When the button is clicked,
                      * the calendar is moved to the previous day and the events are loaded onto the DayCalendar. The panel is then
                      * revalidated and repainted to display the updated calendar.
                      */
-                    prevDay.addMouseListener(new MouseAdapter(){
+                    previous.addMouseListener(new MouseAdapter(){
                         @Override
                         public void mouseClicked(MouseEvent e){
                             dayCalendar.prevDay();
                         }
                     });
-//                    calendarPanel.add(nextDay,BorderLayout.EAST);
-//                    calendarPanel.add(prevDay,BorderLayout.WEST);
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -138,12 +171,36 @@ public class GUI {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
-                    calendarPanel.add(new MonthCalendar(calendarEvents));
+                    MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
+                    calendarPanel.add(monthCalendar);
                     try {
                         loadEventsToCalendar();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
+                    /**
+                     * This method adds an ActionListener to the nextMonth button. When the button is clicked,
+                     * the calendar panel is move to the Month after today and the events are loaded onto the MonthCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    next.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            monthCalendar.nextMonth();
+                        }
+                    });
+                    /**
+                     * This method adds an ActionListener to the prevDay button. When the button is clicked,
+                     * the calendar is moved to the previous month and the events are loaded onto the MonthCalendar. The panel is then
+                     * revalidated and repainted to display the updated calendar.
+                     */
+                    previous.addMouseListener(new MouseAdapter(){
+                        @Override
+                        public void mouseClicked(MouseEvent e){
+                            monthCalendar.prevMonth();
+                        }
+                    });
+
                     calendarPanel.revalidate();
                     frame.repaint();
                     calendarPanel.repaint();
@@ -170,7 +227,12 @@ public class GUI {
                     FileUpload fu = new FileUpload(frame);
                     fu.uploadLocal();
                     horario = fu.getHorario();
-                    if(horario!=null){
+                    if(!horario.getAulasList().isEmpty()){
+                        monthlyView.setVisible(true);
+                        weeklyView.setVisible(true);
+                        dailyView.setVisible(true);
+                        next.setVisible(true);
+                        previous.setVisible(true);
                         JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
@@ -209,8 +271,11 @@ public class GUI {
             frame.add(monthlyView);
             frame.add(weeklyView);
             frame.add(dailyView);
-            frame.add(calendarPanel);
 
+            frame.add(next);
+            frame.add(previous);
+
+            frame.add(calendarPanel);
 
             // set the layout of the JFrame object
             frame.setLayout(new BorderLayout());

@@ -41,11 +41,11 @@ public class Month {
     }
 
     public Month nextMonth() {
-        return new Month(lastday.plusDays(1));
+        return new Month(firstday.plusMonths(1));
     }
 
     public Month prevMonth() {
-        return new Month(firstday.minusDays(1));
+        return new Month(firstday.minusMonths(1));
     }
 
     public String toString() {
