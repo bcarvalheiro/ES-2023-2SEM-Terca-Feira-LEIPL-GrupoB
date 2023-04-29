@@ -1,5 +1,7 @@
 package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
 
+import org.es.leipl.tercafeira.grupob.pojos.Bloco;
+
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,58 +10,28 @@ public class CalendarEvent {
 
     private static final Color DEFAULT_COLOR = Color.PINK;
 
-    private LocalDate date;
-    private LocalTime start;
-    private LocalTime end;
-    private String text;
+    private Bloco bloco;
     private Color color;
 
-    public CalendarEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
-        this(date, start, end, text, DEFAULT_COLOR);
+    public CalendarEvent(Bloco bloco) {
+        this(bloco, DEFAULT_COLOR);
     }
 
-    public CalendarEvent(LocalDate date, LocalTime start, LocalTime end, String text, Color color) {
-        this.date = date;
-        this.start = start;
-        this.end = end;
-        this.text = text;
+    public CalendarEvent(Bloco bloco, Color color) {
+        this.bloco = bloco;
         this.color = color;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Bloco getBloco() {
+        return bloco;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getStart() {
-        return start;
-    }
-
-    public void setStart(LocalTime start) {
-        this.start = start;
-    }
-
-    public LocalTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalTime end) {
-        this.end = end;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public void setBloco(Bloco bloco) {
+        this.bloco = bloco;
     }
 
     public String toString() {
-        return getDate() + " " + getStart() + "-" + getEnd() + ". " + getText();
+        return bloco.toString();
     }
 
     public Color getColor() {
@@ -73,17 +45,13 @@ public class CalendarEvent {
 
         CalendarEvent that = (CalendarEvent) o;
 
-        if (!date.equals(that.date)) return false;
-        if (!start.equals(that.start)) return false;
-        return end.equals(that.end);
+        if (!bloco.toString().equals(that.bloco.toString())) return false;
+        return true;
 
     }
 
     @Override
     public int hashCode() {
-        int result = date.hashCode();
-        result = 31 * result + start.hashCode();
-        result = 31 * result + end.hashCode();
-        return result;
+        return bloco.hashCode();
     }
 }

@@ -2,6 +2,7 @@ package org.es.leipl.tercafeira.grupob.tools.gui;
 
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
+import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
@@ -120,8 +121,8 @@ public class GUI {
     }
 
     //add Calendar events
-    public static void addEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
-        CalendarEvent calendarEvent = new CalendarEvent(date, start, end, text, Color.PINK);
+    public static void addEvent(Bloco bloco) {
+        CalendarEvent calendarEvent = new CalendarEvent(bloco, Color.PINK);
         calendarEvents.add(calendarEvent);
     }
 

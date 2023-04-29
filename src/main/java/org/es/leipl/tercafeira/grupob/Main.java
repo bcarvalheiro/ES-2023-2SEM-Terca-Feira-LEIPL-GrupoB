@@ -22,7 +22,7 @@ public class Main {
         //System.out.println(json);
         //saveJSONtoFile(json);
         GUI.createGUI();
-        GUI.addEvent(LocalDate.now(), LocalTime.now(), LocalTime.now().plusHours(2), "Teste teste");
+        //GUI.addEvent(LocalDate.now(), LocalTime.now(), LocalTime.now().plusHours(2), "Teste teste");
         GUI.showGUI();
     }
 }
