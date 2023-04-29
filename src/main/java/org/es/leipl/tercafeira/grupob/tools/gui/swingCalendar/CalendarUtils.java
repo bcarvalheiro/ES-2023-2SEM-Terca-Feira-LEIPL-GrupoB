@@ -24,11 +24,10 @@ public final class CalendarUtils {
 
     /**
      * Converts one calendar event to a String to be used on a CSV file
-     * @param event - A calendar event
+     * @param bloco - A calendar event
      * @return - A String to be used on a CSV file
      */
-    /*private String calendarEventToString(CalendarEvent event) {
-        Bloco bloco = event.getBloco();
+    private String calendarEventToString(Bloco bloco) {
         return bloco.getCursosToString()
                 + "," + bloco.getUc()
                 + "," + bloco.getTurno()
@@ -43,24 +42,24 @@ public final class CalendarUtils {
                 ;
     }
 
-    *//**
+    /**
      * Converts a list of calendar events to a CSV file
-     * @param events - The list of the calendar events
+     * @param blocos - The list of the calendar events
      * @param filePath - The path to save the file
      * @throws IOException - When the path doesn't exist
      * @throws IllegalArgumentException - When at least one of the parameters is null
-     *//*
-    public void calendarEventsToCsvFile(List<CalendarEvent> events, String filePath) throws IOException, IllegalArgumentException {
-        if ( events == null || filePath == null || filePath.isEmpty())
+     */
+    public void calendarEventsToCsvFile(List<Bloco> blocos, String filePath) throws IOException, IllegalArgumentException {
+        if ( blocos == null || filePath == null || filePath.isEmpty())
             throw new IllegalArgumentException();
         FileWriter csvWriter = new FileWriter(filePath);
         csvWriter.append(HEADER);
-        for (CalendarEvent event : events) {
+        for (Bloco bloco : blocos) {
             csvWriter.append("\n");
-            csvWriter.append(calendarEventToString(event));
+            csvWriter.append(calendarEventToString(bloco));
         }
         csvWriter.flush();
         csvWriter.close();
     }
-*/
+
 }
