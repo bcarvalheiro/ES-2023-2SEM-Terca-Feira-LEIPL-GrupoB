@@ -3,6 +3,7 @@ package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
 import org.es.leipl.tercafeira.grupob.pojos.Aula;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
+import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
 import org.json.simple.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ImportFilesTest {
+public class ImportFilesTest {
 
 
 
@@ -58,7 +59,6 @@ class ImportFilesTest {
     @Test
     @DisplayName("Tests importing a CSV file")
     void CSVImport() {
-
         Horario horario = ImportFiles.CSVImport("C:\\Users\\HP\\IdeaProjects\\ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB\\src\\main\\resources\\horario-exemplo.csv");
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(0, horario.getAulasList().size());

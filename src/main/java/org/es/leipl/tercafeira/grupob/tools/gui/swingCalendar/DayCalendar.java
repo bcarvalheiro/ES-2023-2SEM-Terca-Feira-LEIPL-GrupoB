@@ -13,6 +13,11 @@ public class DayCalendar extends Calendar {
         calDate = LocalDate.now();
     }
 
+    public DayCalendar(ArrayList<CalendarEvent> events, LocalDate date) {
+        super(events);
+        calDate = date;
+    }
+
     @Override
     protected boolean dateInRange(LocalDate date) {
         return calDate.equals(date);

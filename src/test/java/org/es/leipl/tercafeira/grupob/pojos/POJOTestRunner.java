@@ -1,5 +1,6 @@
 package org.es.leipl.tercafeira.grupob.pojos;
 
+import org.es.leipl.tercafeira.grupob.pojos.POJOTestSuite;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
