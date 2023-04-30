@@ -1,13 +1,13 @@
-package org.es.leipl.tercafeira.grupob.pojos;
+package org.es.leipl.tercafeira.grupob.tools;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class POJOTestRunner {
+public class toolsTestRunner {
 
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(POJOTestSuite.class);
+        Result result = JUnitCore.runClasses(toolsTestSuite.class);
         for(Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }

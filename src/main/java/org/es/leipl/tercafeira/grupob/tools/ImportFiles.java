@@ -29,7 +29,7 @@ public class ImportFiles {
      *If an IOException occurs while writing to the file, the method prints a stack trace and outputs an error message to the console.
      @param jsonList the JSONArray to be saved to a file
      */
-    public static void saveJSONtoFile(JSONArray jsonList) {
+    public static String saveJSONtoFile(JSONArray jsonList) {
         //Create a new file chooser object
         JFileChooser fileChooser = new JFileChooser();
         //Set the file chooser to allow file selection and show the "Save" dialog
@@ -55,6 +55,7 @@ public class ImportFiles {
                 e.printStackTrace();
             }
         }
+        return filePath;
     }
 
     /**
@@ -143,18 +144,17 @@ public class ImportFiles {
                         blocosList.add(novoBloco);
                     }catch (Exception e){
                         System.out.println("Error parsing CSV file on line : " + lineNumber + "");
-                        //e.printStackTrace();
                         continue;
                     }
                 }
             } catch (Exception e){
                 System.out.println("Error reading CSV file");
-                e.printStackTrace();
             }
         } else{
             System.out.println("File is not a CSV, can't convert to JSON");
         }
         Horario horario = new Horario(blocosList);
+
         return horario;
     }
 }
