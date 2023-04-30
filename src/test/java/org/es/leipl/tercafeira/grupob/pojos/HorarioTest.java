@@ -10,6 +10,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * The HorarioTest class is responsible for testing the Horario class, which represents a student's schedule of classes.
+ * It is responsible for verifying if the methods implemented in the Horario class work correctly.
+ */
+
 public class HorarioTest {
 
     Bloco b1 = new Bloco("ME","Teoria dos Jogos e dos Contratos","01789TP01","MEA1",30,"Seg",LocalTime.of(13,00,00),LocalTime.of(14,30,00),LocalDate.of(2022,11,21),"AA2.25",34);
@@ -18,6 +23,12 @@ public class HorarioTest {
 
     Horario h = new Horario(aulasList);
 
+
+    /**
+     * This method tests the toString() method of the Horario class.
+     * It adds two blocks to the aulasList and compares the expected string with the actual result of calling the toString() method of the Horario instance.
+     *
+     */
     @Test
     public void testToString() {
 
@@ -29,6 +40,11 @@ public class HorarioTest {
         assertEquals(expected, h.toString());
     }
 
+    /**
+     * This method tests the getAulasList() method of the Horario class.
+     * It adds two blocks to the aulasList and compares the expected aulasList with the actual result of calling the getAulasList() method of the Horario instance.
+     *
+     */
     @Test
     public void getAulasList() {
 
