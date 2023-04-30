@@ -1,5 +1,6 @@
 package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
 
+
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 public abstract class Calendar extends JComponent {
@@ -332,29 +334,73 @@ public abstract class Calendar extends JComponent {
             y0 = timeToPixel(event.getStart());
 
             Rectangle2D rect = new Rectangle2D.Double(x, y0, dayWidth, (timeToPixel(event.getEnd()) - timeToPixel(event.getStart())));
+            x=rect.getMinX();
+            y0=rect.getMinY();
+            Font origFont = g2.getFont();
+            float fontSize = origFont.getSize() - 1.6F;
+
             Color origColor = g2.getColor();
             g2.setColor(event.getColor());
             g2.fill(rect);
             g2.setColor(origColor);
 
-            // Draw time header
+            //Going to parse the event to display.
+            String[] eventText = event.getText().split(";");
+            String uc = eventText[0];
+            String sala = eventText[1];
+            String cursos = eventText[2];
+            String turmas = eventText[3];
 
-            // Store the current font state
-            Font origFont = g2.getFont();
 
-            final float fontSize = origFont.getSize() - 1.6F;
 
             // Create a new font with same properties but bold
             Font newFont = origFont.deriveFont(Font.BOLD, fontSize);
-            g2.setFont(newFont);
 
-            g2.drawString(event.getDate().toString(), (int) x + 5, (int) y0 + 11);
+            //To fit the bounds
+            int xText = (int) ((x + fontSize) - 5 );
+            int yText = (int) (y0 + fontSize) ;
 
             // Unbolden
             g2.setFont(origFont.deriveFont(fontSize));
 
-            // Draw the event's text
-            g2.drawString(event.getText(), (int) x + 5, (int) y0 + 23);
+            // Draw the event's UC
+            FontMetrics fm = g2.getFontMetrics();
+            int stringWidth = fm.stringWidth(uc);
+            int stringHeight = fm.getHeight();
+            System.out.println("stringwidth : " + stringWidth  + " dayWidth : " + dayWidth);
+            if(stringWidth > dayWidth){
+                String[] uc_parts = uc.split(" ");
+                uc = "";
+                for(String s : uc_parts){
+                    String regex = "\\b(de|da|dos|do|e|das)\\b";
+                    if(s.matches(regex)){
+                        continue;
+                    }//I want to add a popUp to this string i'm adding.
+                    if(s.matches("^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")){
+                        uc+=s;
+                        continue;
+                    }
+                    uc += String.valueOf(s.charAt(0)).toUpperCase();
+
+                }
+            }
+            //even tought is big to fit the rect (...)
+            if(fm.stringWidth(uc) > dayWidth){
+                uc = "...";
+            }
+            g2.drawString(uc, xText, yText);
+            yText = yText + stringHeight;
+            g2.drawString("Sala: " + sala, xText, (yText));
+            yText = yText + stringHeight;
+            if(fm.stringWidth("Cursos: " + cursos) > dayWidth){
+                cursos = "(...)";
+            }
+            g2.drawString("Cursos: " + cursos, xText, (yText));
+            yText = yText + stringHeight;
+            if(fm.stringWidth("turmas: " + turmas) > dayWidth){
+                turmas = "(...)";
+            }
+            g2.drawString("Turmas: " + turmas, xText, (yText));
 
             // Reset font
             g2.setFont(origFont);
