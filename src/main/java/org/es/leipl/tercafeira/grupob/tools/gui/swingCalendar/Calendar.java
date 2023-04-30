@@ -1,6 +1,5 @@
 package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
 
-
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
@@ -15,7 +14,6 @@ import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 
 public abstract class Calendar extends JComponent {
@@ -351,14 +349,14 @@ public abstract class Calendar extends JComponent {
             String cursos = eventText[2];
             String turmas = eventText[3];
 
+            int xText = (int) x+5;
+            int yText = (int) y0 +11;
+            // Store the current font state
 
 
             // Create a new font with same properties but bold
             Font newFont = origFont.deriveFont(Font.BOLD, fontSize);
-
-            //To fit the bounds
-            int xText = (int) ((x + fontSize) - 5 );
-            int yText = (int) (y0 + fontSize) ;
+            g2.setFont(newFont);
 
             // Unbolden
             g2.setFont(origFont.deriveFont(fontSize));
@@ -369,20 +367,20 @@ public abstract class Calendar extends JComponent {
             int stringHeight = fm.getHeight();
             System.out.println("stringwidth : " + stringWidth  + " dayWidth : " + dayWidth);
             if(stringWidth > dayWidth){
-                String[] uc_parts = uc.split(" ");
+               String[] uc_parts = uc.split(" ");
                 uc = "";
-                for(String s : uc_parts){
-                    String regex = "\\b(de|da|dos|do|e|das)\\b";
-                    if(s.matches(regex)){
-                        continue;
-                    }//I want to add a popUp to this string i'm adding.
-                    if(s.matches("^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")){
-                        uc+=s;
-                        continue;
-                    }
-                    uc += String.valueOf(s.charAt(0)).toUpperCase();
+               for(String s : uc_parts){
+                   String regex = "\\b(de|da|dos|do|e|das)\\b";
+                   if(s.matches(regex)){
+                       continue;
+                   }//I want to add a popUp to this string i'm adding.
+                   if(s.matches("^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")){
+                       uc+=s;
+                       continue;
+                   }
+                   uc += String.valueOf(s.charAt(0)).toUpperCase();
 
-                }
+               }
             }
             //even tought is big to fit the rect (...)
             if(fm.stringWidth(uc) > dayWidth){

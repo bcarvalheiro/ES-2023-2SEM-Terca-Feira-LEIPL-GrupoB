@@ -268,6 +268,7 @@ public class GUI {
             frame.add(button2);
             frame.add(button3);
 
+
             frame.add(monthlyView);
             frame.add(weeklyView);
             frame.add(dailyView);
@@ -315,7 +316,7 @@ public class GUI {
         LocalDate data = bloco.getData();
         LocalTime end = bloco.getHoraFim();
         LocalTime start = bloco.getHoraIni();
-        String text = bloco.getUc() + " " + bloco.getSala();
+        String text = bloco.getUc() + ";" + bloco.getSala() + ";" + bloco.getCursosToString() + ";" + bloco.getTurmasToString();
         if(!(start.getHour() > 22 || start.getHour() < 8 || end.getHour() > 22 || end.getHour() < 8)) {
             CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
             calendarEvents.add(calendarEvent);
@@ -334,8 +335,6 @@ public class GUI {
             return;
         }
         LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horario.getAulasList();
-        //Posso substituir por setEvents(ArrayList<Events>...) mas tenho de ver
-        //pcausa dos dataTypes
         for(Bloco b : blocoList){
             addEvent(b);
         }

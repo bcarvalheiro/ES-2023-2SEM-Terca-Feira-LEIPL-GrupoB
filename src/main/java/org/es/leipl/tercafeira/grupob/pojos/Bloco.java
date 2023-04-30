@@ -114,9 +114,9 @@ public class Bloco {
         return diaSemana;
     }
 
-    public void setDiaSemana(String diaSemana) {
-        this.diaSemana = diaSemana;
-    }
+//    public void setDiaSemana(String diaSemana) {
+//        this.diaSemana = diaSemana;
+//    }
 
     public LocalTime getHoraIni() {
         return horaIni;
