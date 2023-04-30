@@ -48,9 +48,9 @@ public class GUI {
             int frameY = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
             calendarPanel = new JPanel();
-            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-70));
+            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-150));
             calendarPanel.setLayout(new BorderLayout());
-            calendarPanel.setBounds(0,70,frameX,frameY-70);
+            calendarPanel.setBounds(0,70,frameX,frameY-150);
 
             JButton dailyView = new JButton("Daily View");
             JButton weeklyView = new JButton("Weekly View");
