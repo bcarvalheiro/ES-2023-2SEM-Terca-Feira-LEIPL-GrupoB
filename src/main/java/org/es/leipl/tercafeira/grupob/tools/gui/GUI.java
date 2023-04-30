@@ -125,40 +125,7 @@ public class GUI {
             dailyView.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    calendarPanel.removeAll();
-                    DayCalendar dayCalendar = new DayCalendar(calendarEvents);
-                    calendarPanel.add(dayCalendar);
-                    try {
-                        loadEventsToCalendar();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-
-                    /**
-                     * This method adds an ActionListener to the nextDay button. When the button is clicked,
-                     * the calendar panel is move to the day after today and the events are loaded onto the DayCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    next.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            dayCalendar.nextDay();
-                        }
-                    });
-                    /**
-                     * This method adds an ActionListener to the prevDay button. When the button is clicked,
-                     * the calendar is moved to the previous day and the events are loaded onto the DayCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    previous.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            dayCalendar.prevDay();
-                        }
-                    });
-                    calendarPanel.revalidate();
-                    frame.repaint();
-                    calendarPanel.repaint();
+                    switchToDayView(LocalDate.now(),next,previous);
                 }
             });
 
@@ -172,6 +139,7 @@ public class GUI {
                 public void actionPerformed(ActionEvent e) {
                     calendarPanel.removeAll();
                     MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
+                    monthCalendar.addCalendarEventClickListener( t  -> switchToDayView(t.getCalendarEvent().getDate(), next,previous));
                     calendarPanel.add(monthCalendar);
                     try {
                         loadEventsToCalendar();
@@ -339,6 +307,45 @@ public class GUI {
             addEvent(b);
         }
     }
+
+    private static void switchToDayView(LocalDate toDate, JButton next, JButton previous){
+        calendarPanel.removeAll();
+        DayCalendar dayCalendar = new DayCalendar(calendarEvents, toDate);
+        calendarPanel.add(dayCalendar);
+        try {
+            loadEventsToCalendar();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+
+        /**
+         * This method adds an ActionListener to the nextDay button. When the button is clicked,
+         * the calendar panel is move to the day after today and the events are loaded onto the DayCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        next.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dayCalendar.nextDay();
+            }
+        });
+        /**
+         * This method adds an ActionListener to the prevDay button. When the button is clicked,
+         * the calendar is moved to the previous day and the events are loaded onto the DayCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        previous.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dayCalendar.prevDay();
+            }
+        });
+        calendarPanel.revalidate();
+        frame.repaint();
+        calendarPanel.repaint();
+    }
+
+
 
     public static void showGUI() {
         frame.setVisible(true);

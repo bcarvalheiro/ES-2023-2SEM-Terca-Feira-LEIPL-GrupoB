@@ -4,24 +4,22 @@ import com.opencsv.CSVReader;
 import org.es.leipl.tercafeira.grupob.pojos.Aula;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ImportFilesTest {
-
-
+public class ImportFilesTest {
 
     @Test
     @DisplayName("Tests save a JSON to file")
     void saveJSONtoFile() {
         JSONArray jsonArray = new JSONArray();
         jsonArray.add("test");
-        ImportFiles.saveJSONtoFile(jsonArray);
+        String filePath = ImportFiles.saveJSONtoFile(jsonArray);
 
-        File file = new File("output.json");
+        File file = new File(filePath);
         //em vez disto, usar o file 1 de fora
         assertTrue(file.exists());
         assertTrue(file.isFile());
@@ -32,7 +30,7 @@ class ImportFilesTest {
     @DisplayName("Tests converting a CSV file to JSON")
     void CSVtoJSon() {
 
-        File file = new File("src/test/resources/test.csv");
+        File file = new File("horario.csv");
         JSONArray jsonArray = ImportFiles.CSVtoJSon(file.getAbsolutePath());
 
         //verifica se é capaz de retornar um objeto JSON não nulo e não vazio.
@@ -59,8 +57,8 @@ class ImportFilesTest {
     @DisplayName("Tests importing a CSV file")
     void CSVImport() {
 
-        Horario horario = ImportFiles.CSVImport("C:\\Users\\HP\\IdeaProjects\\ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB\\src\\main\\resources\\horario-exemplo.csv");
+        Horario horario = ImportFiles.CSVImport("Horario.csv");
         assertNotNull(horario, "Horario object should not be null");
-        assertEquals(0, horario.getAulasList().size());
+        assertEquals(26001, horario.getAulasList().size());
     }
 }

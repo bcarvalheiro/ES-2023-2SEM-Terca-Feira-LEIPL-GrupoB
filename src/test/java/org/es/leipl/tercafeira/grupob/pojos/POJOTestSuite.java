@@ -1,5 +1,7 @@
 package org.es.leipl.tercafeira.grupob.pojos;
 
+import org.es.leipl.tercafeira.grupob.pojos.*;
+import org.es.leipl.tercafeira.grupob.tools.ImportFilesTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -11,7 +13,8 @@ import org.junit.runners.Suite;
         TurnoTest.class,
         AulaTest.class,
         BlocoTest.class,
-        HorarioTest.class
+        HorarioTest.class,
+        ImportFilesTest.class
 
 
 })

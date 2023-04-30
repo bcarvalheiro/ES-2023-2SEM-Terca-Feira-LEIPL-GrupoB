@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CsvUtilsTest {
+public class CsvUtilsTest {
 
     CsvUtils calendarUtils = CsvUtils.getInstance();
 
