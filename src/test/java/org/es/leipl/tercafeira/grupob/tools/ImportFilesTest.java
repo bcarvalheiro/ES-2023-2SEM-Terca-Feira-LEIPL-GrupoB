@@ -35,7 +35,6 @@ public class ImportFilesTest {
      Converts a CSV file to a JSON array, where each object in the array represents a row in the CSV file.
      Each field in the CSV file becomes a key-value pair in the corresponding JSON object.
      The first row of the CSV file is assumed to contain the header, which becomes the keys of the JSON objects.
-     @param filePath the path of the CSV file to be converted
      @return a JSON array representing the CSV data
      */
     @Test
