@@ -15,10 +15,19 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class contains unit tests for the `CsvUtils` class. It tests the functionality of
+ * saving a list of `Bloco` objects to a CSV file.
+ */
 public class CsvUtilsTest {
 
     CsvUtils calendarUtils = CsvUtils.getInstance();
-
+    /**
+     * Tests the functionality of the `blocosToCsvFile()` method by checking if a list of `Bloco`
+     * objects can be saved to a CSV file with the expected format.
+     *
+     * @throws IOException if an I/O error occurs while creating or writing to the CSV file
+     */
     @Test
     @DisplayName("Tests saving a list of Bloco to a csv file")
     void testBlocosToCsv() throws IOException {

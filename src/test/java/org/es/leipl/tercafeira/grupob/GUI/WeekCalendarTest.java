@@ -10,7 +10,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ The WeekCalendarTest class is used to test the WeekCalendar class, which displays a weekly calendar view and allows users to
+ add and interact with calendar events.
+ */
 public class WeekCalendarTest {
+
+    /**
+     The weekCalendarTest method creates a new JFrame and initializes a list of CalendarEvents to be displayed on the WeekCalendar.
+     It then creates a new WeekCalendar object, adds listeners to the calendar events and empty calendar spaces, and creates buttons
+     to navigate to different weeks and months. Finally, it adds the WeekCalendar and buttons to the JFrame and displays it.
+     */
     public static void weekCalendarTest() {
         JFrame frm = new JFrame();
 

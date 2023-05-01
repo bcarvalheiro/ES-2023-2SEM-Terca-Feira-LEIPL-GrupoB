@@ -5,6 +5,11 @@ import org.es.leipl.tercafeira.grupob.tools.ImportFilesTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+/**
+ This class represents the test suite for the POJO classes. It uses JUnit's @RunWith annotation to indicate that it
+ is a suite, and @Suite.SuiteClasses annotation to specify the test classes to be included in the suite.
+ */
+
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
@@ -18,7 +23,9 @@ import org.junit.runners.Suite;
 
 
 })
-
+/**
+ This class only serves as a container for the @SuiteClasses annotation and therefore has no implementation.
+*/
 public class POJOTestSuite {
 
 

@@ -10,7 +10,24 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * A class that provides a method to test the functionality of the DayCalendar() class.
+ *
+ * The method creates an instance of DayCalendar, adds several CalendarEvent to it,
+ * adds event listeners to the events and to empty parts of the calendar, and displays the calendar
+ * in a JFrame along with controls to navigate to the next and previous days, and to go back to today.
+ *
+ * The purpose of this class is to serve as an example of how to use the DayCalendar class
+ * and to demonstrate some of its features.
+ */
 public class DayCalendarTest {
+
+    /**
+     This method tests the DayCalendar class by creating an instance of it and adding events to it. It also
+     adds listeners to the events and to empty parts of the calendar. The method displays the calendar and
+     controls to navigate to the next and previous days, and to go back to today. The calendar is displayed
+     in a JFrame.
+     */
     public static void dayCalendarTest() {
         JFrame frm = new JFrame();
 
