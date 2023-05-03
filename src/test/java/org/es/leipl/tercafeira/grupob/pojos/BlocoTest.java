@@ -1,10 +1,12 @@
 package org.es.leipl.tercafeira.grupob.pojos;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.LinkedList;
 import static org.junit.Assert.*;
 
 /**
@@ -39,7 +41,8 @@ public class BlocoTest {
     @Test
     public void testToString() {
 
-        String expected = "Bloco: [LEI, MEI] POO TP1 30 Segunda " + "13:00:00" + " " + "14:30:00" + " " + "02/12/2022" + " " + " Sala 1 40\n";
+        //"Bloco: " + curso + " " + uc + " " + turno + " " + inscritos + " " + diaSemana + " " + horaIni + " " + horaFim + " " + data + " " + sala + " " + lotacao + "\n";
+        String expected = "Bloco: " + "[LEI, MEI]" + " " + "POO" + " " + "TP1" + " " + 30 + " " + "Segunda" + " " + "13:00" + " " + "14:30" + " " + "2022-12-02" + " " + "Sala 1" + " " + 40 + "\n";
         String actual = bloco.toString();
 
         assertEquals(expected, actual);
@@ -58,7 +61,7 @@ public class BlocoTest {
     @Test
     public void toJson() {
 
-        String expected = "{\"Lotação da sala\":40,\"Inscritos no turno\":30,\"Sala atribuída à aula\":\"Sala 1\",\"Hora início da aula\":\"08:30\",\"Unidade Curricular\":\"POO\",\"Hora fim da aula\":\"10:00\",\"Data da aula\":\"2023-04-24\",\"Turma\":[\"A\"],\"Turno\":\"TP1\",\"Curso\":[\"LEI\",\"MEI\"],\"Dia da semana\":\"Segunda\"}";
+        String expected = "{\"Inscritos no turno\":30,\"Hora início da aula\":13:00,\"Lotação da sala\":40,\"Turma\":[\"A\"],\"Turno\":\"TP1\",\"Hora fim da aula\":14:30,\"Curso\":[\"LEI\",\"MEI\"],\"Unidade Curricular\":\"POO\",\"Dia da semana\":\"Segunda\",\"Data da aula\":2022-12-02,\"Sala atribuída à aula\":\"Sala 1\"}";
         String actual = bloco.toJson().toJSONString();
 
         assertEquals(expected, actual);
@@ -70,6 +73,15 @@ public class BlocoTest {
      Checks if the UC returned by the method is according to the expected one,
      which is the value passed as argument in the constructor.
      */
+
+    @Test
+    public void testGetCurso() {
+        String[] string_excepte = {"LEI", "MEI"};
+        List<String> excepted = Arrays.asList(string_excepte);
+        Bloco bloco = new Bloco("LEI,MEI", "POO", "TP1", "A", 30, "Segunda", LocalTime.of(13, 00, 00), LocalTime.of(14, 30, 00), LocalDate.of(2022, 12, 02), "Sala 1", 40);
+        assertEquals(excepted, bloco.getCurso());
+    }
+
     @Test
     public void testGetUC() {
         Bloco bloco = new Bloco("LEI,MEI", "POO", "TP1", "A", 30, "Segunda", LocalTime.of(13, 00, 00), LocalTime.of(14, 30, 00), LocalDate.of(2022, 12, 02), "Sala 1", 40);
@@ -94,8 +106,10 @@ public class BlocoTest {
      */
     @Test
     public void testGetTurma() {
+        String a = "A";
+        List<String> excepted = Arrays.asList(a);
         Bloco bloco = new Bloco("LEI,MEI", "POO", "TP1", "A", 30, "Segunda", LocalTime.of(13, 00, 00), LocalTime.of(14, 30, 00), LocalDate.of(2022, 12, 02), "Sala 1", 40);
-        assertEquals("A", bloco.getTurma());
+        assertEquals(excepted, bloco.getTurma());
     }
 
     /**

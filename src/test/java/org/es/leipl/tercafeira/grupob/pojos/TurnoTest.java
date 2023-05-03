@@ -1,6 +1,6 @@
 package org.es.leipl.tercafeira.grupob.pojos;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;

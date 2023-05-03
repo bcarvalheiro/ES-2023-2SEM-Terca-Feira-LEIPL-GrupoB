@@ -29,7 +29,7 @@ public class ImportFiles {
      *If an IOException occurs while writing to the file, the method prints a stack trace and outputs an error message to the console.
      @param jsonList the JSONArray to be saved to a file
      */
-    public static String saveJSONtoFile(JSONArray jsonList) {
+    public static String saveJSONtoFile(JSONArray jsonList) throws IOException {
         //Create a new file chooser object
         JFileChooser fileChooser = new JFileChooser();
         //Set the file chooser to allow file selection and show the "Save" dialog
@@ -44,15 +44,18 @@ public class ImportFiles {
             filePath = fileChooser.getSelectedFile().getPath();
             System.out.println("File path: " + filePath);
         }
-        if (filePath != "" && filePath != null) {
+        if (filePath.equals("")  && filePath != null) {
+            FileWriter fw = null;
             try {
-                FileWriter fw = new FileWriter(filePath + ".json");
+                fw = new FileWriter(filePath + ".json");
                 fw.write(jsonList.toJSONString());
-                fw.close();
+
                 System.out.println("JSON successfully saved");
             } catch (IOException e) {
                 System.out.println("Error saving JSON");
                 e.printStackTrace();
+            } finally {
+                fw.close();
             }
         }
         return filePath;
@@ -108,7 +111,7 @@ public class ImportFiles {
             CSVReader reader = null;
             try{
                 reader = new CSVReader(new FileReader(f));
-                String[] jsonProperties = reader.readNext();
+                reader.readNext();
                 String[] nextLine;
                 int lineNumber = 0;
                 while((nextLine = reader.readNext()) != null){

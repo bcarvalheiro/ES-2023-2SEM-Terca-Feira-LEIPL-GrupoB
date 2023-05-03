@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.File;
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ImportFilesTest {
@@ -19,7 +21,7 @@ public class ImportFilesTest {
      */
     @Test
     @DisplayName("Tests save a JSON to file")
-    void saveJSONtoFile() {
+    void saveJSONtoFile() throws IOException {
         JSONArray jsonArray = new JSONArray();
         jsonArray.add("test");
         String filePath = ImportFiles.saveJSONtoFile(jsonArray);
