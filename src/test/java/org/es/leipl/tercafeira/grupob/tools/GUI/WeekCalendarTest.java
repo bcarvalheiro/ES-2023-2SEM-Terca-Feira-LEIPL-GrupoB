@@ -1,8 +1,10 @@
-package org.es.leipl.tercafeira.grupob.GUI;
+package org.es.leipl.tercafeira.grupob.tools.GUI;
 
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
+import org.junit.jupiter.api.Test;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +12,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class DayCalendarTest {
-    public static void dayCalendarTest() {
+public class WeekCalendarTest {
+    @Test
+    public static void weekCalendarTest() {
         JFrame frm = new JFrame();
 
         ArrayList<CalendarEvent> events = new ArrayList<>();
@@ -23,7 +26,7 @@ public class DayCalendarTest {
         events.add(new CalendarEvent(LocalDate.of(2016, 11, 18), LocalTime.of(9, 30), LocalTime.of(10, 00), "Test 18/11 9:30-10:00"));
         events.add(new CalendarEvent(LocalDate.of(2016, 11, 18), LocalTime.of(16, 00), LocalTime.of(16, 45), "Test 18/11 16:00-16:45"));
 
-        DayCalendar cal = new DayCalendar(events);
+        WeekCalendar cal = new WeekCalendar(events);
 
         cal.addCalendarEventClickListener(e -> System.out.println(e.getCalendarEvent()));
         cal.addCalendarEmptyClickListener(e -> {
@@ -34,16 +37,24 @@ public class DayCalendarTest {
         JButton goToTodayBtn = new JButton("Today");
         goToTodayBtn.addActionListener(e -> cal.goToToday());
 
-        JButton nextDayBtn = new JButton(">");
-        nextDayBtn.addActionListener(e -> cal.nextDay());
+        JButton nextWeekBtn = new JButton(">");
+        nextWeekBtn.addActionListener(e -> cal.nextWeek());
 
-        JButton prevDayBtn = new JButton("<");
-        prevDayBtn.addActionListener(e -> cal.prevDay());
+        JButton prevWeekBtn = new JButton("<");
+        prevWeekBtn.addActionListener(e -> cal.prevWeek());
+
+        JButton nextMonthBtn = new JButton(">>");
+        nextMonthBtn.addActionListener(e -> cal.nextMonth());
+
+        JButton prevMonthBtn = new JButton("<<");
+        prevMonthBtn.addActionListener(e -> cal.prevMonth());
 
         JPanel weekControls = new JPanel();
-        weekControls.add(prevDayBtn);
+        weekControls.add(prevMonthBtn);
+        weekControls.add(prevWeekBtn);
         weekControls.add(goToTodayBtn);
-        weekControls.add(nextDayBtn);
+        weekControls.add(nextWeekBtn);
+        weekControls.add(nextMonthBtn);
 
         frm.add(weekControls, BorderLayout.NORTH);
 
