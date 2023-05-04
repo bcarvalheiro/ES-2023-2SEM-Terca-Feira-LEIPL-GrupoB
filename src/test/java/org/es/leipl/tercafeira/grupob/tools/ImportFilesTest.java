@@ -73,8 +73,22 @@ public class ImportFilesTest {
     @DisplayName("Tests importing a CSV file")
     void csvImport() {
 
-        Horario horario = ImportFiles.csvImport("Horario.csv");
+        Horario horario = ImportFiles.csvImport("TestCsv.csv");
         assertNotNull(horario, "Horario object should not be null");
-        assertEquals(26001, horario.getAulasList().size());
+        assertEquals(26003, horario.getAulasList().size());
+    }
+
+    /**
+     * Test method to verify that the CSVImport method is able to import a json file and return a non-null Horario object.
+     * The method also checks that the number of Aulas objects in the Horario object returned by the jsonImport method
+     * matches the expected value.
+     */
+    @Test
+    @DisplayName("Tests importing a JSON file")
+    void jsonImport() {
+
+        Horario horario = ImportFiles.jsonImport("TestJson.json");
+        assertNotNull(horario, "Horario object should not be null");
+        assertEquals(26003, horario.getAulasList().size());
     }
 }
