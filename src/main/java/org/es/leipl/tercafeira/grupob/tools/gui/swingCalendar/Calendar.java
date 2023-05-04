@@ -365,7 +365,7 @@ public abstract class Calendar extends JComponent {
             FontMetrics fm = g2.getFontMetrics();
             int stringWidth = fm.stringWidth(uc);
             int stringHeight = fm.getHeight();
-            System.out.println("stringwidth : " + stringWidth  + " dayWidth : " + dayWidth);
+//            System.out.println("stringwidth : " + stringWidth  + " dayWidth : " + dayWidth);
             if(stringWidth > dayWidth){
                String[] uc_parts = uc.split(" ");
                 uc = "";

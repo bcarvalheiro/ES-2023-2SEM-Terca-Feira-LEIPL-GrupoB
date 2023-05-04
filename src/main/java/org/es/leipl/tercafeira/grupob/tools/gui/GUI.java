@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class GUI {
     private static Horario horario;
@@ -85,6 +86,9 @@ public class GUI {
                     calendarPanel.removeAll();
                     WeekCalendar weekCalendar = new WeekCalendar(calendarEvents);
                     calendarPanel.add(weekCalendar);
+
+                    weekCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+
                     try {
                         loadEventsToCalendar();
                     } catch (Exception ex) {
@@ -142,6 +146,10 @@ public class GUI {
                     MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
                     monthCalendar.addCalendarEventClickListener( t  -> switchToDayView(t.getCalendarEvent().getDate(), next,previous));
                     calendarPanel.add(monthCalendar);
+
+                    monthCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+                    ;
+
                     try {
                         loadEventsToCalendar();
                     } catch (Exception ex) {
@@ -317,6 +325,9 @@ public class GUI {
         calendarPanel.removeAll();
         DayCalendar dayCalendar = new DayCalendar(calendarEvents, toDate);
         calendarPanel.add(dayCalendar);
+
+        dayCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+
         try {
             loadEventsToCalendar();
         } catch (Exception ex) {
@@ -354,5 +365,20 @@ public class GUI {
 
     public static void showGUI() {
         frame.setVisible(true);
+    }
+
+    public static void addClass(CalendarEvent aula) {
+        String[] aulastring = aula.getText().split(";");
+        String aulatext = aulastring[0];
+        int escolha = JOptionPane.showConfirmDialog(frame, "Adicionar aula " + aulatext + " ao horário?");
+
+        if (escolha == JOptionPane.YES_OPTION) {
+            List<Bloco> aulas = horario.getAulasList();
+            for (Bloco uc : aulas) {
+                if(uc.getUc() == aulatext) {
+                    System.out.println(uc.getUc());
+                }
+            }
+        }
     }
 }
