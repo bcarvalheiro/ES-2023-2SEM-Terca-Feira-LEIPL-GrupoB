@@ -1,16 +1,14 @@
 package org.es.leipl.tercafeira.grupob.tools.gui;
 
-import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
@@ -170,11 +168,11 @@ public class GUI {
              If no schedule data is available, displays an error message.
              @param e the ActionEvent object representing the user's button click
              */
-            bConvertJ.addActionListener(new ActionListener() {
+            saveJ.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (horarioDisplay != null){
-                        JSONArray json = ImportFiles.Horario2Json(horarioDisplay);
+                        JSONArray json = ImportFiles.horario2Json(horarioDisplay);
                         try {
                             JFileChooser fileChooser = new JFileChooser();
                             fileChooser.setDialogTitle("Save file");
@@ -450,15 +448,15 @@ public class GUI {
         frame.setVisible(true);
     }
 
-   public static void setVisible() {
-       monthlyView.setVisible(true);
-       weeklyView.setVisible(true);
-       dailyView.setVisible(true);
-       next.setVisible(true);
-       today.setVisible(true);
-       previous.setVisible(true);
-       saveJ.setVisible(true);
-   }
+    public static void setVisible() {
+        monthlyView.setVisible(true);
+        weeklyView.setVisible(true);
+        dailyView.setVisible(true);
+        next.setVisible(true);
+        today.setVisible(true);
+        previous.setVisible(true);
+        saveJ.setVisible(true);
+    }
     public static void treatClass(CalendarEvent aula) {
         if(!viewP)
             addClass(aula);
