@@ -1,16 +1,14 @@
 package org.es.leipl.tercafeira.grupob.tools.gui;
 
-import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
@@ -28,11 +26,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GUI {
-    private static Horario horario;
+    private static Horario horarioDisplay;
     private static Horario horarioPessoal;
+    private static Horario horarioUpload;
     private static JButton next;
     private static JButton previous;
     private static JButton today;
+    private static JButton monthlyView;
+    private static JButton weeklyView;
+    private static JButton dailyView;
+    private static JButton saveJ;
+    private static String pessoalH = "Horario Pessoal";
+    private static String fullH = "Horario Completo";
+    private static Boolean viewP = false;
 
     public static ArrayList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
@@ -56,24 +62,26 @@ public class GUI {
 
             JButton bUploadL = new JButton("Upload Local");
             JButton buploadR = new JButton("Upload Remoto");
-            JButton bConvertJ = new JButton("Convert to JSON");
+            JButton switchHorario = new JButton(pessoalH);
 
             bUploadL.setBounds(10,10,150,40);
             buploadR.setBounds(160,10,150,40);
-            bConvertJ.setBounds(310,10,150,40);
+            switchHorario.setBounds(310,10,150,40);
 
-            JButton dailyView = new JButton("Daily View");
-            JButton weeklyView = new JButton("Weekly View");
-            JButton monthlyView = new JButton("Monthly View");
+            saveJ = new JButton("Gravar em JSON");
+            dailyView = new JButton("Daily View");
+            weeklyView = new JButton("Weekly View");
+            monthlyView = new JButton("Monthly View");
 
             monthlyView.setBounds(frameX-160,10,150,40);
             weeklyView.setBounds(frameX-310,10,150,40);
             dailyView.setBounds(frameX-460,10,150,40);
+            saveJ.setBounds(460,10,150,40);
 
             monthlyView.setVisible(false);
             weeklyView.setVisible(false);
             dailyView.setVisible(false);
-            bConvertJ.setVisible(false);
+            saveJ.setVisible(false);
 
             next = new JButton("Next");
             today = new JButton("Today");
@@ -94,7 +102,8 @@ public class GUI {
 
             frame.add(bUploadL);
             frame.add(buploadR);
-            frame.add(bConvertJ);
+            frame.add(saveJ);
+            frame.add(switchHorario);
 
             frame.add(monthlyView);
             frame.add(weeklyView);
@@ -123,20 +132,16 @@ public class GUI {
             bUploadL.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    horario = null;
+                    horarioUpload = null;
                     FileUpload fu = new FileUpload(frame);
                     fu.uploadLocal();
-                    horario = fu.getHorario();
+                    horarioUpload = fu.getHorario();
+                    horarioDisplay = horarioUpload;
 
-                    if(!(horario == null) && (!horario.getAulasList().isEmpty())){
-                        monthlyView.setVisible(true);
-                        weeklyView.setVisible(true);
-                        dailyView.setVisible(true);
-                        next.setVisible(true);
-                        today.setVisible(true);
-                        previous.setVisible(true);
-                        bConvertJ.setVisible(true);
-                        JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
+                        setVisible();
+                        JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        switchToWeekView();
                     }
                 }
             });
@@ -144,20 +149,16 @@ public class GUI {
             buploadR.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    horario = null;
+                    horarioUpload = null;
                     FileUpload fu = new FileUpload(frame);
                     fu.uploadUrl();
-                    horario = fu.getHorario();
+                    horarioUpload = fu.getHorario();
+                    horarioDisplay = horarioUpload;
 
-                    if(!(horario == null) && (!horario.getAulasList().isEmpty())){
-                        monthlyView.setVisible(true);
-                        weeklyView.setVisible(true);
-                        dailyView.setVisible(true);
-                        next.setVisible(true);
-                        today.setVisible(true);
-                        previous.setVisible(true);
-                        bConvertJ.setVisible(true);
-                        JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
+                        setVisible();
+                        JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        switchToWeekView();
                     }
                 }
             });
@@ -167,11 +168,11 @@ public class GUI {
              If no schedule data is available, displays an error message.
              @param e the ActionEvent object representing the user's button click
              */
-            bConvertJ.addActionListener(new ActionListener() {
+            saveJ.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (horario != null){
-                        JSONArray json = ImportFiles.Horario2Json(horario);
+                    if (horarioDisplay != null){
+                        JSONArray json = ImportFiles.Horario2Json(horarioDisplay);
                         try {
                             JFileChooser fileChooser = new JFileChooser();
                             fileChooser.setDialogTitle("Save file");
@@ -190,6 +191,48 @@ public class GUI {
 
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
+                        }
+                    }
+                }
+            });
+
+            switchHorario.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int escolha;
+                    if (switchHorario.getText().equals(pessoalH)) {
+                        if(horarioPessoal == null) {
+                            escolha = JOptionPane.showConfirmDialog(frame, "Horario Pessoal vazio! Carregar horário?");
+                            if(escolha == JOptionPane.YES_OPTION) {
+                                FileUpload fu = new FileUpload(frame);
+                                fu.uploadLocal();
+                                horarioPessoal = fu.getHorario();
+                                horarioDisplay = horarioPessoal;
+
+                                if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
+                                    setVisible();
+                                    JOptionPane.showMessageDialog(frame, "Horario carregado!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                    switchHorario.setText(fullH);
+                                    viewP = true;
+                                    switchToWeekView();
+                                }
+                            }
+                        }
+                        else {
+                            switchHorario.setText(fullH);
+                            horarioDisplay = horarioPessoal;
+                            viewP = true;
+                            switchToWeekView();
+                        }
+                    }
+                    else {
+                        if(horarioUpload == null)
+                            JOptionPane.showMessageDialog(frame,"Tem de fazer upload de um horário primeiro!","Failure", JOptionPane.INFORMATION_MESSAGE);
+                        else {
+                            switchHorario.setText(pessoalH);
+                            horarioDisplay = horarioUpload;
+                            viewP = false;
+                            switchToWeekView();
                         }
                     }
                 }
@@ -264,11 +307,11 @@ public class GUI {
      * @throws NullPointerException if 'horario' is null
      */
     private static void loadEventsToCalendar() throws Exception {
-        if (horario == null) {
+        if (horarioDisplay == null) {
             System.out.println("The 'horario' object is null. No events will be added to the calendar.");
             return;
         }
-        LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horario.getAulasList();
+        LinkedList<Bloco> blocoList = (LinkedList<Bloco>) horarioDisplay.getAulasList();
         for(Bloco b : blocoList){
             addEvent(b);
         }
@@ -276,10 +319,11 @@ public class GUI {
 
     private static void switchToDayView(){
         calendarPanel.removeAll();
+        calendarEvents = new ArrayList<>();
         DayCalendar dayCalendar = new DayCalendar(calendarEvents, LocalDate.now());
         calendarPanel.add(dayCalendar);
 
-        dayCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        dayCalendar.addCalendarEventClickListener(c -> treatClass(c.getCalendarEvent()));
         today.addActionListener(e -> dayCalendar.goToToday());
 
         try {
@@ -317,10 +361,11 @@ public class GUI {
 
     private static void switchToWeekView(){
         calendarPanel.removeAll();
+        calendarEvents = new ArrayList<>();
         WeekCalendar weekCalendar = new WeekCalendar(calendarEvents);
         calendarPanel.add(weekCalendar);
 
-        weekCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        weekCalendar.addCalendarEventClickListener(c -> treatClass(c.getCalendarEvent()));
         today.addActionListener(e -> weekCalendar.goToToday());
 
         try {
@@ -357,10 +402,11 @@ public class GUI {
 
     private static void switchToMonthView(){
         calendarPanel.removeAll();
+        calendarEvents = new ArrayList<>();
         MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
         calendarPanel.add(monthCalendar);
 
-        monthCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        monthCalendar.addCalendarEventClickListener(c -> treatClass(c.getCalendarEvent()));
         today.addActionListener(e -> monthCalendar.goToToday());
         ;
 
@@ -402,22 +448,70 @@ public class GUI {
         frame.setVisible(true);
     }
 
+   public static void setVisible() {
+       monthlyView.setVisible(true);
+       weeklyView.setVisible(true);
+       dailyView.setVisible(true);
+       next.setVisible(true);
+       today.setVisible(true);
+       previous.setVisible(true);
+       saveJ.setVisible(true);
+   }
+    public static void treatClass(CalendarEvent aula) {
+        if(!viewP)
+            addClass(aula);
+        else
+            removeClass(aula);
+    }
+
     public static void addClass(CalendarEvent aula) {
-        System.out.println(aula);
+        List<Bloco> aExistentes = new LinkedList<>();
+        String message = "";;
         String[] aulastring = aula.getText().split(";");
         String aulatext = aulastring[0];
         int escolha = JOptionPane.showConfirmDialog(frame, "Adicionar aula " + aulatext + " ao horário?");
+        if (horarioPessoal != null)
+            aExistentes = horarioPessoal.getAulasList();
 
         if (escolha == JOptionPane.YES_OPTION) {
             horarioPessoal = new Horario();
             String turno = aulastring[4];
-            List<Bloco> aulas = horario.getAulasList();
+            List<Bloco> aulas = horarioUpload.getAulasList();
 
             for (Bloco uc : aulas) {
                 if(uc.getTurno().equals(turno)) {
-                    horarioPessoal.addAula(uc);
+                    if (aExistentes.contains(uc)) {
+                        message = "Aula já existe no horário!";
+                        break;
+                    }
+                    else{
+                        horarioPessoal.addAula(uc);
+                        message = "Aula adicionada ao horário!";
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(frame, message);
+        }
+    }
+
+    public static void removeClass(CalendarEvent aula) {
+        List<Bloco> toRemove = new LinkedList<>();
+        String[] aulastring = aula.getText().split(";");
+        String aulatext = aulastring[0];
+        int escolha = JOptionPane.showConfirmDialog(frame, "Remover aula " + aulatext + " do horário?");
+
+        if (escolha == JOptionPane.YES_OPTION) {
+            String turno = aulastring[4];
+            List<Bloco> aulas = horarioPessoal.getAulasList();
+
+            for (Bloco uc : aulas) {
+                if(uc.getTurno().equals(turno)) {
+                    toRemove.add(uc);
                 }
             }
         }
+        horarioPessoal.removeAulas(toRemove);
+        JOptionPane.showMessageDialog(frame, "Aula retirada do horário");
+        switchToWeekView();
     }
 }

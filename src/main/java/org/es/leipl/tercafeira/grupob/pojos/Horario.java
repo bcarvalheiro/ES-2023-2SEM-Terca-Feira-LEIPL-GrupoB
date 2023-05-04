@@ -35,6 +35,10 @@ public class Horario {
         aulasList.add(aula);
     }
 
+    public void removeAulas(List<Bloco> aulas) {
+        aulasList.removeAll(aulas);
+    }
+
     /**
      * @return a string representation of the object.
      * In general, the toString method returns a string that "textually represents" this object.
