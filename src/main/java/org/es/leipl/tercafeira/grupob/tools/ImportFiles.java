@@ -77,7 +77,7 @@ public class ImportFiles {
      * @return A JSONArray containing the converted Horario object.
      * @throws IllegalArgumentException if the given Horario object is null.
      */
-    public static JSONArray horario2Json(Horario horario){
+    public static JSONArray horario2Json(Horario horario) throws IllegalArgumentException {
         if (horario == null) {
             throw new IllegalArgumentException("Horario object cannot be null.");
         }
@@ -88,6 +88,11 @@ public class ImportFiles {
         return jsonList;
     }
 
+    /**
+     * Checks the extension of the file and calls the repective function
+     * @param file the path and name of the file
+     * @return a Horario object
+     */
     public static Horario importFile(String file) {
         File f = new File(file);
         System.out.println(checkExtension(f).toLowerCase());
@@ -105,8 +110,7 @@ public class ImportFiles {
      * representing the course schedule for a given period. The POJOs are then converted to a JSON object for further processing.
      *
      * @param file the path to the CSV file to be parsed
-     * @return a JSON object representing the course schedule for the given period
-     * @throws IOException if there is an error reading the CSV file
+     * @return a Horario object converted from the CSV File
      */
     public static Horario csvImport(String file){
         File f = new File(file);
@@ -164,6 +168,12 @@ public class ImportFiles {
         return horario;
     }
 
+    /**
+     * Parses a JSON file containing information about academic courses, and creates a list of POJOs (Plain Old Java Objects)
+     * representing the course schedule for a given period. The POJOs are then converted to a JSON object for further processing.
+     * @param file the path to the json file to be parsed
+     * @return a Horario object converted from the json file
+     */
     public static Horario jsonImport(String file) {
         try (InputStream is = Files.newInputStream(Paths.get(file));
              JsonReader reader = Json.createReader(is)) {
