@@ -142,6 +142,7 @@ public class GUI {
                         setVisible();
                         JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         switchToWeekView();
+                        sobrelotacao();
                     }
                 }
             });
@@ -159,6 +160,7 @@ public class GUI {
                         setVisible();
                         JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         switchToWeekView();
+                        sobrelotacao();
                     }
                 }
             });
@@ -408,7 +410,6 @@ public class GUI {
 
         monthCalendar.addCalendarEventClickListener(c -> treatClass(c.getCalendarEvent()));
         today.addActionListener(e -> monthCalendar.goToToday());
-        ;
 
         try {
             loadEventsToCalendar();
@@ -513,5 +514,37 @@ public class GUI {
         horarioPessoal.removeAulas(toRemove);
         JOptionPane.showMessageDialog(frame, "Aula retirada do horário");
         switchToWeekView();
+    }
+
+    public static void sobrelotacao() {
+        int sobrelotacaoCount = 0;
+        DefaultListModel sobrelotacaoList = new DefaultListModel();
+
+        for (Bloco uc : horarioDisplay.getAulasList()) {
+            if (uc.getInscritos() > uc.getLotacao()) {
+                sobrelotacaoCount++;
+                sobrelotacaoList.addElement(uc.getTurno() + " - "+ uc.getUc() + " " + uc.getData() + " (" + uc.getHoraIniToString() + " - " + uc.getHoraFimToString() + ")");
+            }
+        }
+
+        JList lista = new JList(sobrelotacaoList);
+        JScrollPane scrollpane = new JScrollPane(lista);
+        JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobrelotacao (Total: " + sobrelotacaoCount + "):",JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static void sobreposicao() {
+        int sobreposicaoCount = 0;
+        DefaultListModel sobreposicaoList = new DefaultListModel();
+
+        for (Bloco uc : horarioDisplay.getAulasList()) {
+            if (uc.getInscritos() > uc.getLotacao()) {
+                sobreposicaoCount++;
+                sobreposicaoList.addElement(uc.getTurno() + " - "+ uc.getUc() + " " + uc.getData() + " (" + uc.getHoraIniToString() + " - " + uc.getHoraFimToString() + ")");
+            }
+        }
+
+        JList lista = new JList(sobreposicaoList);
+        JScrollPane scrollpane = new JScrollPane(lista);
+        JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobreposicao (Total: " + sobreposicaoCount + "):",JOptionPane.WARNING_MESSAGE);
     }
 }

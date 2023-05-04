@@ -51,15 +51,17 @@ public class FileUpload {
     public void uploadUrl() {
         String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");
 
-        if(!url.isEmpty()) {
-            File download = downloadCSV(url);
-            if (!(download.length() == 0)) {
-                String extension = FilenameUtils.getExtension(download.getAbsolutePath());
+        if(url != null) {
+            if (!url.isEmpty()) {
+                File download = downloadCSV(url);
+                if (!(download.length() == 0)) {
+                    String extension = FilenameUtils.getExtension(download.getAbsolutePath());
 
-                try {
-                    horario = ImportFiles.importFile(download.getAbsolutePath());
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        horario = ImportFiles.importFile(download.getAbsolutePath());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
