@@ -2,12 +2,16 @@ package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
 import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
+
+import java.awt.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 
@@ -23,42 +27,34 @@ public class ImportFiles {
         return extention;
     }
 
+    public static void treatFile(String file) {
+        File f = new File(file);
+        String extension = checkExtention(f);
+
+        if(extension.equals("csv") || extension.equals("CSV") || extension.equals("txt")){
+            CSVImport(file);
+        }
+    }
+
     /**
      *Saves a JSONArray to a file. Opens a file chooser dialog to select a directory and file name to save the file.
      *If the user selects a file, the method writes the contents of the JSONArray to the file.
      *If an IOException occurs while writing to the file, the method prints a stack trace and outputs an error message to the console.
      @param jsonList the JSONArray to be saved to a file
      */
-    public static String saveJSONtoFile(JSONArray jsonList) throws IOException {
-        //Create a new file chooser object
-        JFileChooser fileChooser = new JFileChooser();
-        //Set the file chooser to allow file selection and show the "Save" dialog
-        fileChooser.setDialogTitle("Save file");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setApproveButtonText("Save");
-        // Show the file chooser dialog and wait for the user to choose a directory and file name
-        int result = fileChooser.showSaveDialog(null);
-        String filePath = "";
-        // If the user selects a directory and file name, get the path and do something with it
-        if (result == JFileChooser.APPROVE_OPTION) {
-            filePath = fileChooser.getSelectedFile().getPath();
-            System.out.println("File path: " + filePath);
-        }
-        if (filePath.equals("")  && filePath != null) {
-            FileWriter fw = null;
-            try {
-                fw = new FileWriter(filePath + ".json");
-                fw.write(jsonList.toJSONString());
+    public static void saveJSONtoFile(JSONArray jsonList, String filePath) throws IOException {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(filePath);
+            fw.write(jsonList.toJSONString());
 
-                System.out.println("JSON successfully saved");
-            } catch (IOException e) {
-                System.out.println("Error saving JSON");
-                e.printStackTrace();
-            } finally {
-                fw.close();
-            }
+            System.out.println("JSON successfully saved");
+        } catch (IOException e) {
+            System.out.println("Error saving JSON");
+            e.printStackTrace();
+        } finally {
+            fw.close();
         }
-        return filePath;
     }
 
     /**
@@ -72,7 +68,7 @@ public class ImportFiles {
         Horario horario = CSVImport(file);
         JSONArray jsonList = new JSONArray();
         for(Bloco aula : horario.getAulasList()){
-           jsonList.add(aula.toJson());
+            jsonList.add(aula.toJson());
         }
         return jsonList;
     }
@@ -140,7 +136,6 @@ public class ImportFiles {
                         String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
                         int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
                         if (curso == null || UC == null || turno == null || turma == null || diaSem == null || data == null) {
-                           //newww
                             throw new Exception("Empty fields");
                         }
                         Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);

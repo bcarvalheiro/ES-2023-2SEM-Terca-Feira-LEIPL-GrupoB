@@ -14,8 +14,11 @@ public class Horario {
     /**
      * aulasList is the list of all classes in a student schedule
      */
-    private List<Bloco> aulasList = new LinkedList<>();
+    private List<Bloco> aulasList;
 
+    public Horario () {
+        aulasList = new LinkedList<>();
+    };
     public Horario (List<Bloco> aulasList) {
         if (aulasList == null) {
             System.out.println("Horario not created, aulas list is null");
@@ -28,6 +31,9 @@ public class Horario {
         this.aulasList = aulasList;
     }
 
+    public void addAula(Bloco aula) {
+        aulasList.add(aula);
+    }
 
     /**
      * @return a string representation of the object.

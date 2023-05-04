@@ -1,6 +1,7 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 
 import javax.swing.*;
@@ -50,34 +51,23 @@ public class FileUpload {
     }
 
     public void uploadUrl() {
-        JTextField urlField;
-        JFrame frame = new JFrame("CSV Downloader");
+        String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");
 
-        // Create URL input panel
-        JPanel urlPanel = new JPanel(new FlowLayout());
-        urlField = new JTextField(30);
-        urlPanel.add(urlField);
+        if(!url.isEmpty()) {
+            File download = downloadCSV(url);
+            if (!(download.length() == 0)) {
+                String extension = FilenameUtils.getExtension(download.getAbsolutePath());
 
-        JButton downloadButton = new JButton("Download");
-        downloadButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                downloadCSV(urlField);
+                try {
+                    horario = ImportFiles.CSVImport(download.getAbsolutePath());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        });
-        urlPanel.add(downloadButton);
-        frame.getContentPane().add(urlPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setLocation(frame.getX() - 200, frame.getY());
-        frame.pack();
-        frame.setVisible(true);
-
-
+        }
     }
 
-    private void downloadCSV(JTextField urlField) {
-        String url = urlField.getText().trim();
-
+    private File downloadCSV(String url) {
         try {
             URL csvUrl = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) csvUrl.openConnection();
@@ -107,16 +97,20 @@ public class FileUpload {
                     inputStream.close();
 
                     JOptionPane.showMessageDialog(null, "CSV file downloaded successfully.");
+                    return archiveFile;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to download CSV file. Response code: " + responseCode);
+                return null;
             }
         } catch (MalformedURLException e) {
             JOptionPane.showMessageDialog(null, "Invalid URL: " + url);
+            return  null;
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error downloading CSV file: " + e.getMessage());
+            return null;
         }
-
+        return null;
     }
 
     public static Horario getHorario(){

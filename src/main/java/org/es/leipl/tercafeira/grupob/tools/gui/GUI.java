@@ -14,6 +14,7 @@ import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,10 @@ import java.util.List;
 
 public class GUI {
     private static Horario horario;
+    private static Horario horarioPessoal;
+    private static JButton next;
+    private static JButton previous;
+    private static JButton today;
 
     public static ArrayList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
@@ -49,10 +54,13 @@ public class GUI {
             int frameX = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
             int frameY = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-            calendarPanel = new JPanel();
-            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-150));
-            calendarPanel.setLayout(new BorderLayout());
-            calendarPanel.setBounds(0,70,frameX,frameY-150);
+            JButton bUploadL = new JButton("Upload Local");
+            JButton buploadR = new JButton("Upload Remoto");
+            JButton bConvertJ = new JButton("Convert to JSON");
+
+            bUploadL.setBounds(10,10,150,40);
+            buploadR.setBounds(160,10,150,40);
+            bConvertJ.setBounds(310,10,150,40);
 
             JButton dailyView = new JButton("Daily View");
             JButton weeklyView = new JButton("Weekly View");
@@ -65,60 +73,125 @@ public class GUI {
             monthlyView.setVisible(false);
             weeklyView.setVisible(false);
             dailyView.setVisible(false);
+            bConvertJ.setVisible(false);
 
-            JButton next = new JButton("Next");
-            JButton previous = new JButton("Previous");
+            next = new JButton("Next");
+            today = new JButton("Today");
+            previous = new JButton("Previous");
 
             previous.setBounds(620,10,150,40);
-            next.setBounds(770,10,150,40);
+            today.setBounds(770,10,150,40);
+            next.setBounds(920,10,150,40);
 
             next.setVisible(false);
+            today.setVisible(false);
             previous.setVisible(false);
 
+            calendarPanel = new JPanel();
+            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-150));
+            calendarPanel.setLayout(new BorderLayout());
+            calendarPanel.setBounds(0,70,frameX,frameY-150);
+
+            frame.add(bUploadL);
+            frame.add(buploadR);
+            frame.add(bConvertJ);
+
+            frame.add(monthlyView);
+            frame.add(weeklyView);
+            frame.add(dailyView);
+
+            frame.add(next);
+            frame.add(today);
+            frame.add(previous);
+
+            frame.add(calendarPanel);
+            frame.setLayout(new BorderLayout());
+
+            frame.setSize(1920 , 1080);
+            frame.setTitle("Upload de Horário");
+
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
             /**
-             * This method adds an ActionListener to the weeklyView button. When the button is selected,
-             * the calendar panel is cleared and the events are loaded onto the WeekCalendar. The panel is then
-             * revalidated and repainted to display the updated calendar.
+             * ActionListener for the "Upload Local" button. Opens a file chooser to select a file from the system.
+             * The file is then parsed and the schedule data is loaded into the program. The radio buttons are then added
+             * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
+             * @param the ActionEvent representing the user's button click
              */
-            weeklyView.addActionListener(new ActionListener() {
+            bUploadL.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    calendarPanel.removeAll();
-                    WeekCalendar weekCalendar = new WeekCalendar(calendarEvents);
-                    calendarPanel.add(weekCalendar);
+                    horario = null;
+                    FileUpload fu = new FileUpload(frame);
+                    fu.uploadLocal();
+                    horario = fu.getHorario();
 
-                    weekCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
-
-                    try {
-                        loadEventsToCalendar();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
+                    if(!(horario == null) && (!horario.getAulasList().isEmpty())){
+                        monthlyView.setVisible(true);
+                        weeklyView.setVisible(true);
+                        dailyView.setVisible(true);
+                        next.setVisible(true);
+                        today.setVisible(true);
+                        previous.setVisible(true);
+                        bConvertJ.setVisible(true);
+                        JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
-                    /**
-                     * This method adds an ActionListener to the nextWeek button. When the button is clicked,
-                     * the calendar panel is move to the week after today and the events are loaded onto the WeekCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    next.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            weekCalendar.nextWeek();
+                }
+            });
+
+            buploadR.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    horario = null;
+                    FileUpload fu = new FileUpload(frame);
+                    fu.uploadUrl();
+                    horario = fu.getHorario();
+
+                    if(!(horario == null) && (!horario.getAulasList().isEmpty())){
+                        monthlyView.setVisible(true);
+                        weeklyView.setVisible(true);
+                        dailyView.setVisible(true);
+                        next.setVisible(true);
+                        today.setVisible(true);
+                        previous.setVisible(true);
+                        bConvertJ.setVisible(true);
+                        JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            });
+
+            /**
+             ActionListener for the "Export JSON" button. Converts the current schedule data to a JSON file and saves it to the system.
+             If no schedule data is available, displays an error message.
+             @param e the ActionEvent object representing the user's button click
+             */
+            bConvertJ.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (horario != null){
+                        JSONArray json = ImportFiles.Horario2Json(horario);
+                        try {
+                            JFileChooser fileChooser = new JFileChooser();
+                            fileChooser.setDialogTitle("Save file");
+                            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "JSON");
+                            fileChooser.addChoosableFileFilter(filter);
+                            fileChooser.setApproveButtonText("Save");
+                            int result = fileChooser.showSaveDialog(frame);
+
+                            String filePath = "";
+                            if (result == JFileChooser.APPROVE_OPTION) {
+                                filePath = fileChooser.getSelectedFile().getPath() + ".json";
+                                System.out.println("File path: " + filePath);
+                                ImportFiles.saveJSONtoFile(json, filePath);
+                                JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            }
+
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
                         }
-                    });
-                    /**
-                     * This method adds an ActionListener to the prevWeek button. When the button is clicked,
-                     * the calendar is moved to the previous week and the events are loaded onto the WeekCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    previous.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            weekCalendar.prevWeek();
-                        }
-                    });
-                    calendarPanel.revalidate();
-                    frame.repaint();
-                    calendarPanel.repaint();
+                    }
                 }
             });
 
@@ -130,7 +203,19 @@ public class GUI {
             dailyView.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    switchToDayView(LocalDate.now(),next,previous);
+                    switchToDayView();
+                }
+            });
+
+            /**
+             * This method adds an ActionListener to the weeklyView button. When the button is selected,
+             * the calendar panel is cleared and the events are loaded onto the WeekCalendar. The panel is then
+             * revalidated and repainted to display the updated calendar.
+             */
+            weeklyView.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    switchToWeekView();
                 }
             });
 
@@ -142,145 +227,13 @@ public class GUI {
             monthlyView.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    calendarPanel.removeAll();
-                    MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
-                    monthCalendar.addCalendarEventClickListener( t  -> switchToDayView(t.getCalendarEvent().getDate(), next,previous));
-                    calendarPanel.add(monthCalendar);
-
-                    monthCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
-                    ;
-
-                    try {
-                        loadEventsToCalendar();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    /**
-                     * This method adds an ActionListener to the nextMonth button. When the button is clicked,
-                     * the calendar panel is move to the Month after today and the events are loaded onto the MonthCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    next.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            monthCalendar.nextMonth();
-                        }
-                    });
-                    /**
-                     * This method adds an ActionListener to the prevDay button. When the button is clicked,
-                     * the calendar is moved to the previous month and the events are loaded onto the MonthCalendar. The panel is then
-                     * revalidated and repainted to display the updated calendar.
-                     */
-                    previous.addMouseListener(new MouseAdapter(){
-                        @Override
-                        public void mouseClicked(MouseEvent e){
-                            monthCalendar.prevMonth();
-                        }
-                    });
-
-                    calendarPanel.revalidate();
-                    frame.repaint();
-                    calendarPanel.repaint();
+                    switchToMonthView();
                 }
             });
-
-            JButton button1 = new JButton("Upload Local");
-            JButton button2 = new JButton("Upload Remoto");
-            JButton button3 = new JButton("Convert to JSON");
-
-            button1.setBounds(10,10,150,40);
-            button2.setBounds(160,10,150,40);
-            button3.setBounds(310,10,150,40);
-
-            /**
-             * ActionListener for the "Upload Local" button. Opens a file chooser to select a file from the system.
-             * The file is then parsed and the schedule data is loaded into the program. The radio buttons are then added
-             * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
-             * @param the ActionEvent representing the user's button click
-             */
-            button1.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FileUpload fu = new FileUpload(frame);
-                    fu.uploadLocal();
-                    horario = fu.getHorario();
-                    if(!horario.getAulasList().isEmpty()){
-                        monthlyView.setVisible(true);
-                        weeklyView.setVisible(true);
-                        dailyView.setVisible(true);
-                        next.setVisible(true);
-                        previous.setVisible(true);
-                        JOptionPane.showMessageDialog(frame, "Upload Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-            });
-
-
-            button2.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new FileUpload(frame).uploadUrl();
-                }
-            });
-
-            /**
-             ActionListener for the "Export JSON" button. Converts the current schedule data to a JSON file and saves it to the system.
-             If no schedule data is available, displays an error message.
-             @param e the ActionEvent object representing the user's button click
-             */
-            button3.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (horario != null){
-                        JSONArray json = ImportFiles.Horario2Json(horario);
-                        try {
-                            ImportFiles.saveJSONtoFile(json);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-                    }
-                }
-            });
-
-            // add the buttons to the JFrame object
-            frame.add(button1);
-            frame.add(button2);
-            frame.add(button3);
-
-
-            frame.add(monthlyView);
-            frame.add(weeklyView);
-            frame.add(dailyView);
-
-            frame.add(next);
-            frame.add(previous);
-
-            frame.add(calendarPanel);
-
-            // set the layout of the JFrame object
-            frame.setLayout(new BorderLayout());
-
-            // set the preferred size of the JFrame object
-            frame.setSize(1920 , 1080);
-
-            // set the title of the JFrame object
-            frame.setTitle("Upload de Horário");
-
-            // set the default close operation of the JFrame object
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
-    }
-
-    //add Calendar events
-    public static void addEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
-        CalendarEvent calendarEvent = new CalendarEvent(date, start, end, text, Color.PINK);
-        calendarEvents.add(calendarEvent);
     }
 
     /**
@@ -297,7 +250,7 @@ public class GUI {
         LocalDate data = bloco.getData();
         LocalTime end = bloco.getHoraFim();
         LocalTime start = bloco.getHoraIni();
-        String text = bloco.getUc() + ";" + bloco.getSala() + ";" + bloco.getCursosToString() + ";" + bloco.getTurmasToString();
+        String text = bloco.getUc() + ";" + bloco.getSala() + ";" + bloco.getCursosToString() + ";" + bloco.getTurmasToString() + ";" + bloco.getTurno();
         if(!(start.getHour() > 22 || start.getHour() < 8 || end.getHour() > 22 || end.getHour() < 8)) {
             CalendarEvent calendarEvent = new CalendarEvent(data, start, end, text, Color.PINK);
             calendarEvents.add(calendarEvent);
@@ -321,12 +274,13 @@ public class GUI {
         }
     }
 
-    private static void switchToDayView(LocalDate toDate, JButton next, JButton previous){
+    private static void switchToDayView(){
         calendarPanel.removeAll();
-        DayCalendar dayCalendar = new DayCalendar(calendarEvents, toDate);
+        DayCalendar dayCalendar = new DayCalendar(calendarEvents, LocalDate.now());
         calendarPanel.add(dayCalendar);
 
         dayCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        today.addActionListener(e -> dayCalendar.goToToday());
 
         try {
             loadEventsToCalendar();
@@ -361,6 +315,87 @@ public class GUI {
         calendarPanel.repaint();
     }
 
+    private static void switchToWeekView(){
+        calendarPanel.removeAll();
+        WeekCalendar weekCalendar = new WeekCalendar(calendarEvents);
+        calendarPanel.add(weekCalendar);
+
+        weekCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        today.addActionListener(e -> weekCalendar.goToToday());
+
+        try {
+            loadEventsToCalendar();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        /**
+         * This method adds an ActionListener to the nextWeek button. When the button is clicked,
+         * the calendar panel is move to the week after today and the events are loaded onto the WeekCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        next.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                weekCalendar.nextWeek();
+            }
+        });
+        /**
+         * This method adds an ActionListener to the prevWeek button. When the button is clicked,
+         * the calendar is moved to the previous week and the events are loaded onto the WeekCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        previous.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                weekCalendar.prevWeek();
+            }
+        });
+        calendarPanel.revalidate();
+        frame.repaint();
+        calendarPanel.repaint();
+    }
+
+    private static void switchToMonthView(){
+        calendarPanel.removeAll();
+        MonthCalendar monthCalendar = new MonthCalendar(calendarEvents);
+        calendarPanel.add(monthCalendar);
+
+        monthCalendar.addCalendarEventClickListener(c -> addClass(c.getCalendarEvent()));
+        today.addActionListener(e -> monthCalendar.goToToday());
+        ;
+
+        try {
+            loadEventsToCalendar();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        /**
+         * This method adds an ActionListener to the nextMonth button. When the button is clicked,
+         * the calendar panel is move to the Month after today and the events are loaded onto the MonthCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        next.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                monthCalendar.nextMonth();
+            }
+        });
+        /**
+         * This method adds an ActionListener to the prevDay button. When the button is clicked,
+         * the calendar is moved to the previous month and the events are loaded onto the MonthCalendar. The panel is then
+         * revalidated and repainted to display the updated calendar.
+         */
+        previous.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                monthCalendar.prevMonth();
+            }
+        });
+
+        calendarPanel.revalidate();
+        frame.repaint();
+        calendarPanel.repaint();
+    }
 
 
     public static void showGUI() {
@@ -368,15 +403,19 @@ public class GUI {
     }
 
     public static void addClass(CalendarEvent aula) {
+        System.out.println(aula);
         String[] aulastring = aula.getText().split(";");
         String aulatext = aulastring[0];
         int escolha = JOptionPane.showConfirmDialog(frame, "Adicionar aula " + aulatext + " ao horário?");
 
         if (escolha == JOptionPane.YES_OPTION) {
+            horarioPessoal = new Horario();
+            String turno = aulastring[4];
             List<Bloco> aulas = horario.getAulasList();
+
             for (Bloco uc : aulas) {
-                if(uc.getUc() == aulatext) {
-                    System.out.println(uc.getUc());
+                if(uc.getTurno().equals(turno)) {
+                    horarioPessoal.addAula(uc);
                 }
             }
         }
