@@ -143,6 +143,7 @@ public class GUI {
                         JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         switchToWeekView();
                         sobrelotacao();
+                        sobreposicao();
                     }
                 }
             });
@@ -161,6 +162,7 @@ public class GUI {
                         JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         switchToWeekView();
                         sobrelotacao();
+                        sobreposicao();
                     }
                 }
             });
@@ -527,24 +529,37 @@ public class GUI {
             }
         }
 
-        JList lista = new JList(sobrelotacaoList);
-        JScrollPane scrollpane = new JScrollPane(lista);
-        JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobrelotacao (Total: " + sobrelotacaoCount + "):",JOptionPane.WARNING_MESSAGE);
+        if (!sobrelotacaoList.isEmpty()) {
+            JList lista = new JList(sobrelotacaoList);
+            JScrollPane scrollpane = new JScrollPane(lista);
+            JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobrelotacao (Total: " + sobrelotacaoCount + "):", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public static void sobreposicao() {
         int sobreposicaoCount = 0;
         DefaultListModel sobreposicaoList = new DefaultListModel();
 
-        for (Bloco uc : horarioDisplay.getAulasList()) {
-            if (uc.getInscritos() > uc.getLotacao()) {
-                sobreposicaoCount++;
-                sobreposicaoList.addElement(uc.getTurno() + " - "+ uc.getUc() + " " + uc.getData() + " (" + uc.getHoraIniToString() + " - " + uc.getHoraFimToString() + ")");
+        for (Bloco uc1 : horarioDisplay.getAulasList()) {
+            for (Bloco uc2 : horarioDisplay.getAulasList()) {
+                if (uc1 != uc2) {
+                    System.out.println(uc1);
+                    System.out.println(uc2);
+                    System.out.println(uc1.getData() + " vs " + uc2.getData());
+                    System.out.println(uc1.getHoraIni() + " vs " + uc2.getHoraIni());
+                    System.out.println(uc1.getHoraFim() + " vs " + uc2.getHoraFim());
+                    if ((uc1.getData().isEqual(uc2.getData())) && ((uc1.getHoraIni().compareTo(uc2.getHoraIni())) == 0) && (uc1.getHoraFim().compareTo(uc2.getHoraFim())) == 0) {
+                        sobreposicaoCount++;
+                        sobreposicaoList.addElement(uc1.getTurno() + " - " + uc1.getUc() + " [ X ] " + uc2.getUc() + " "+ uc1.getData() + " (" + uc1.getHoraIniToString() + " - " + uc1.getHoraFimToString() + ")");
+                    }
+                }
             }
         }
 
-        JList lista = new JList(sobreposicaoList);
-        JScrollPane scrollpane = new JScrollPane(lista);
-        JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobreposicao (Total: " + sobreposicaoCount + "):",JOptionPane.WARNING_MESSAGE);
+        if (!sobreposicaoList.isEmpty()) {
+            JList lista = new JList(sobreposicaoList);
+            JScrollPane scrollpane = new JScrollPane(lista);
+            JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobreposicao (Total: " + sobreposicaoCount + "):", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }
