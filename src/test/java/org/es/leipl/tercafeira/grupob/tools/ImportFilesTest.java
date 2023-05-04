@@ -1,7 +1,5 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
-import com.opencsv.CSVReader;
-import org.es.leipl.tercafeira.grupob.pojos.Aula;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -41,10 +39,10 @@ public class ImportFilesTest {
      */
     @Test
     @DisplayName("Tests converting a CSV file to JSON")
-    void CSVtoJSon() {
+    void csvToJson() {
 
         File file = new File("horario.csv");
-        JSONArray jsonArray = ImportFiles.CSVtoJSon(file.getAbsolutePath());
+        JSONArray jsonArray = ImportFiles.csvtojson(file.getAbsolutePath());
 
         //verifica se é capaz de retornar um objeto JSON não nulo e não vazio.
         assertNotNull(jsonArray);
@@ -73,9 +71,9 @@ public class ImportFilesTest {
      */
     @Test
     @DisplayName("Tests importing a CSV file")
-    void CSVImport() {
+    void csvImport() {
 
-        Horario horario = ImportFiles.CSVImport("Horario.csv");
+        Horario horario = ImportFiles.csvImport("Horario.csv");
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(26001, horario.getAulasList().size());
     }

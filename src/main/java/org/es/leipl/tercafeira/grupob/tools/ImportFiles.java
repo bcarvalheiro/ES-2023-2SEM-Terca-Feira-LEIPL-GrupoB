@@ -3,14 +3,20 @@ import com.opencsv.CSVReader;
 import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 
-import java.awt.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
 
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
@@ -22,18 +28,9 @@ public class ImportFiles {
      * @param file
      * @return
      */
-    private static String checkExtention(File file){
-        String extention = FilenameUtils.getExtension(file.getAbsolutePath());
-        return extention;
-    }
-
-    public static void treatFile(String file) {
-        File f = new File(file);
-        String extension = checkExtention(f);
-
-        if(extension.equals("csv") || extension.equals("CSV") || extension.equals("txt")){
-            CSVImport(file);
-        }
+    private static String checkExtension(File file){
+        String extension = FilenameUtils.getExtension(file.getAbsolutePath());
+        return extension;
     }
 
     /**
@@ -60,12 +57,12 @@ public class ImportFiles {
     /**
      * Reads a CSV file from path and converts it to a JSON object,
      * using the first row of the CSV file as the keys for the JSON object.
-     * This methods doesn't uses POJO's
+     * This method doesn't use POJO's
      * @param file the path to the CSV file to be converted
      *
      */
-    public static JSONArray CSVtoJSon(String file){
-        Horario horario = CSVImport(file);
+    public static JSONArray csvtojson(String file){
+        Horario horario = csvImport(file);
         JSONArray jsonList = new JSONArray();
         for(Bloco aula : horario.getAulasList()){
             jsonList.add(aula.toJson());
@@ -80,7 +77,7 @@ public class ImportFiles {
      * @return A JSONArray containing the converted Horario object.
      * @throws IllegalArgumentException if the given Horario object is null.
      */
-    public static JSONArray Horario2Json(Horario horario){
+    public static JSONArray horario2Json(Horario horario){
         if (horario == null) {
             throw new IllegalArgumentException("Horario object cannot be null.");
         }
@@ -89,6 +86,17 @@ public class ImportFiles {
             jsonList.add(aula.toJson());
         }
         return jsonList;
+    }
+
+    public static Horario importFile(String file) {
+        File f = new File(file);
+        System.out.println(checkExtension(f).toLowerCase());
+        if (checkExtension(f).toLowerCase().equals("csv"))
+            return csvImport(file);
+        else if (checkExtension(f).toLowerCase().equals("json"))
+            return jsonImport(file);
+        else
+            return null;
     }
 
 
@@ -100,10 +108,10 @@ public class ImportFiles {
      * @return a JSON object representing the course schedule for the given period
      * @throws IOException if there is an error reading the CSV file
      */
-    public static Horario CSVImport(String file){
+    public static Horario csvImport(String file){
         File f = new File(file);
         List<Bloco> blocosList = new LinkedList<>();
-        if(checkExtention(f).equals("csv") || checkExtention(f).equals("CSV") || checkExtention(f).equals("txt")){
+        if(checkExtension(f).equals("csv") || checkExtension(f).equals("CSV") || checkExtension(f).equals("txt")){
             CSVReader reader = null;
             try{
                 reader = new CSVReader(new FileReader(f));
@@ -154,5 +162,35 @@ public class ImportFiles {
         Horario horario = new Horario(blocosList);
 
         return horario;
+    }
+
+    public static Horario jsonImport(String file) {
+        try (InputStream is = Files.newInputStream(Paths.get(file));
+             JsonReader reader = Json.createReader(is)) {
+
+            JsonArray aulasArray = reader.readArray();
+
+            LinkedList<Bloco> blocos = new LinkedList<>();
+            for (JsonObject aulaObj : aulasArray.getValuesAs(JsonObject.class)) {
+                String curso = aulaObj.getString("Curso");
+                String uc = aulaObj.getString("Unidade Curricular");
+                String turno = aulaObj.getString("Turno");
+                String turma = aulaObj.getString("Turma");
+                int inscritos = aulaObj.getInt("Inscritos no turno");
+                String diaSem = aulaObj.getString("Dia da semana");
+                LocalDate data = LocalDate.parse(aulaObj.getString("Data da aula"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                LocalTime horaIni = LocalTime.parse(aulaObj.getString("Hora início da aula"), DateTimeFormatter.ofPattern("HH:mm"));
+                LocalTime horaFim = LocalTime.parse(aulaObj.getString("Hora fim da aula"), DateTimeFormatter.ofPattern("HH:mm"));
+                String sala = aulaObj.getString("Sala atribuída à aula");
+                int lotacao = aulaObj.getInt("Lotação da sala");
+                Bloco novoBloco = new Bloco(curso, uc, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
+                blocos.add(novoBloco);
+            }
+
+            return new Horario(blocos);
+        } catch (Exception e) {
+            System.out.println("Error reading JSON file: " + e.getMessage());
+        }
+        return new Horario();
     }
 }

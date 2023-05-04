@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -245,17 +245,20 @@ public class Bloco {
      * @return a json representation of the object.
      */
     public JSONObject toJson() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
         JSONObject json = new JSONObject();
         json.put("Inscritos no turno", this.inscritos);
-        json.put("Hora início da aula", this.horaIni);
+        json.put("Hora início da aula", this.horaIni.format(timeFormatter));
         json.put("Lotação da sala", this.lotacao);
-        json.put("Turma", this.turma);
+        json.put("Turma", this.turma.toString());
         json.put("Turno", this.turno);
-        json.put("Hora fim da aula", this.horaFim);
-        json.put("Curso", this.curso);
+        json.put("Hora fim da aula", this.horaFim.format(timeFormatter));
+        json.put("Curso", this.curso.toString());
         json.put("Unidade Curricular", this.uc);
         json.put("Dia da semana", this.diaSemana);
-        json.put("Data da aula", this.data);
+        json.put("Data da aula", this.data.format(dateFormatter));
         json.put("Sala atribuída à aula", this.sala);
         return json;
     }

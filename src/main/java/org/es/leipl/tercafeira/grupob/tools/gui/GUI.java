@@ -6,7 +6,6 @@ import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
@@ -171,7 +170,7 @@ public class GUI {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (horario != null){
-                        JSONArray json = ImportFiles.Horario2Json(horario);
+                        JSONArray json = ImportFiles.horario2Json(horario);
                         try {
                             JFileChooser fileChooser = new JFileChooser();
                             fileChooser.setDialogTitle("Save file");

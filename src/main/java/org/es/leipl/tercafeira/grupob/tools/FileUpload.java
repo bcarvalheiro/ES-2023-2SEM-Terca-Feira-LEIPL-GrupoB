@@ -5,8 +5,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -38,7 +36,7 @@ public class FileUpload {
             System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
             File archiveFile = new File(System.getProperty("user.dir") + "/arquivo/Horario.csv");
             try{
-                horario = ImportFiles.CSVImport(selectedFile.getAbsolutePath());
+                horario = ImportFiles.importFile(selectedFile.getAbsolutePath());
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -59,7 +57,7 @@ public class FileUpload {
                 String extension = FilenameUtils.getExtension(download.getAbsolutePath());
 
                 try {
-                    horario = ImportFiles.CSVImport(download.getAbsolutePath());
+                    horario = ImportFiles.importFile(download.getAbsolutePath());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
