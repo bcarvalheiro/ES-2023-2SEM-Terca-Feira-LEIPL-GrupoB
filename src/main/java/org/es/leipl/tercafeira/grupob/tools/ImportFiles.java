@@ -9,7 +9,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -112,7 +115,6 @@ public class ImportFiles {
             return null;
     }
 
-
     /**
      * Parses a CSV file containing information about academic courses, and creates a list of POJOs (Plain Old Java Objects)
      * representing the course schedule for a given period. The POJOs are then converted to a JSON object for further processing.
@@ -210,6 +212,32 @@ public class ImportFiles {
             System.out.println("Error reading JSON file: " + e.getMessage());
         }
         return new Horario();
+    }
+    /**
+     * downloads the webcal calendar
+     * @param url
+     * @return an ICS File
+     */
+    public File downloadWebcall(String url) throws IOException {
+        File file = new File("calendar.ics");
+        Path path = Paths.get(file.getAbsolutePath());
+
+        URL webcalUrl = new URL(url);
+        URLConnection connection = webcalUrl.openConnection();
+        InputStream inputStream = connection.getInputStream();
+
+        FileOutputStream outputStream = new FileOutputStream(file);
+        int bytesRead = -1;
+        byte[] buffer = new byte[4096];
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        // Close streams
+        outputStream.close();
+        inputStream.close();
+
+        return file;
     }
     /**
      * Imports an iCalendar file and creates a Horario object with the information extracted from it.
