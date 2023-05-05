@@ -1,4 +1,4 @@
-package org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar;
+package org.es.leipl.tercafeira.grupob.tools;
 
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 

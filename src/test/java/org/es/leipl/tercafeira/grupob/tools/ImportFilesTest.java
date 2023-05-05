@@ -23,8 +23,8 @@ public class ImportFilesTest {
     void saveJSONtoFile() throws IOException {
         JSONArray jsonArray = new JSONArray();
         jsonArray.add("test");
-        String filePath = System.getProperty("user.dir");
-        ImportFiles.saveJSONtoFile(jsonArray,filePath);
+        String filePath ="jsonForTestSaveFile.json";
+        ImportFiles.saveJSONtoFile(jsonArray,"jsonForTestSaveFile.json");
 
         File file = new File(filePath);
         //em vez disto, usar o file 1 de fora

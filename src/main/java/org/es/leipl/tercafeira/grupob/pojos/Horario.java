@@ -21,12 +21,10 @@ public class Horario {
     };
     public Horario (List<Bloco> aulasList) {
         if (aulasList == null) {
-            System.out.println("Horario not created, aulas list is null");
-            return;
+            throw new IllegalArgumentException("Aulas list cannot be null or empty");
         }
         if (aulasList.isEmpty()) {
-            System.out.println("Horario not created, aulas list is empty");
-            return;
+            throw new IllegalArgumentException("Aulas list cannot be null or empty");
         }
         this.aulasList = aulasList;
     }

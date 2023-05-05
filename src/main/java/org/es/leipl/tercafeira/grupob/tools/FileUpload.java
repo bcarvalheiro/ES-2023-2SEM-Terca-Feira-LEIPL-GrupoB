@@ -100,11 +100,21 @@ public class FileUpload {
     /**
      * Method to upload selected remote user file to the system
      */
-    public void uploadUrl() {
+    public void uploadUrl() throws IOException {
         String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");
-
         if(url != null) {
             if (!url.isEmpty()) {
+                if(url.startsWith("webcal://")){
+                    String link = url.replace("webcal", "https");
+                    File file = ImportFiles.downloadWebcal(link);
+                    if(file != null){
+                        try {
+                            horario = ImportFiles.importICS(file);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 File download = downloadFile(url);
                 if (download != null) {
                     if (!(download.length() == 0)) {

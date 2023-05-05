@@ -218,7 +218,7 @@ public class ImportFiles {
      * @param url
      * @return an ICS File
      */
-    public File downloadWebcall(String url) throws IOException {
+    public static File downloadWebcal(String url) throws IOException {
         File file = new File("calendar.ics");
         Path path = Paths.get(file.getAbsolutePath());
 
@@ -321,4 +321,5 @@ public class ImportFiles {
         }
         return new Bloco();
     }
+
 }

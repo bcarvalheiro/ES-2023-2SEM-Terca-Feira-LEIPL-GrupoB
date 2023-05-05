@@ -195,10 +195,13 @@ public class GUI {
                 public void actionPerformed(ActionEvent e) {
                     horarioUpload = null;
                     FileUpload fu = new FileUpload(frame);
-                    fu.uploadUrl();
+                    try {
+                        fu.uploadUrl();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     horarioUpload = fu.getHorario();
                     horarioDisplay = horarioUpload;
-
                     if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
                         setVisible();
                         JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -208,7 +211,7 @@ public class GUI {
                     }
                 }
             });
-
+            
             /**
              *  ActionListener for the "Export JSON" button. Converts the current schedule data to a JSON file and saves it to the system.
              *  If no schedule data is available, displays an error message.
