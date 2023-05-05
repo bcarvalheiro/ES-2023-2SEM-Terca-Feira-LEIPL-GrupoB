@@ -112,6 +112,7 @@ public class ImportFiles {
             return null;
     }
 
+
     /**
      * Parses a CSV file containing information about academic courses, and creates a list of POJOs (Plain Old Java Objects)
      * representing the course schedule for a given period. The POJOs are then converted to a JSON object for further processing.
