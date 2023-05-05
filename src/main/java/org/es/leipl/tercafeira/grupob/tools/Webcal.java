@@ -32,6 +32,7 @@ public class Webcal {
             content.append(line);
             content.append(System.lineSeparator());
         }
+
         reader.close();
         String icsContent = content.toString();
 

@@ -16,6 +16,7 @@ public class Main {
         GUI.createGUI();
         GUI.showGUI();
         //coloquem o vosso webcal link aqui, substituir webcal: por https://
+
         String url ="";
 
         Webcal call = new Webcal(url);
