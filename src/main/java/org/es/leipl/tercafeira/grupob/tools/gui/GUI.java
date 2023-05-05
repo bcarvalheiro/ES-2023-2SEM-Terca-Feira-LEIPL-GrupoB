@@ -3,7 +3,7 @@ package org.es.leipl.tercafeira.grupob.tools.gui;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
-import org.es.leipl.tercafeira.grupob.services.CSVLoader;
+import org.es.leipl.tercafeira.grupob.tools.CsvUtils;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.*;
@@ -338,12 +338,12 @@ public class GUI {
             button4.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (horario != null) {
-                        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horario)));
+                    if (horarioDisplay != null) {
+                        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horarioDisplay)));
                         String filepath = uploadFile.saveLocal("Guardar", "csv");
                         if (filepath != null) {
                             try {
-                                CsvUtils.blocosToCsvFile(horario.getAulasList(), filepath);
+                                CsvUtils.blocosToCsvFile(horarioDisplay.getAulasList(), filepath);
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
