@@ -61,7 +61,11 @@ public class BlocoTest {
     @Test
     public void toJson() {
 
-        String expected = "{\"Inscritos no turno\":30,\"Hora início da aula\":13:00,\"Lotação da sala\":40,\"Turma\":[\"A\"],\"Turno\":\"TP1\",\"Hora fim da aula\":14:30,\"Curso\":[\"LEI\",\"MEI\"],\"Unidade Curricular\":\"POO\",\"Dia da semana\":\"Segunda\",\"Data da aula\":2022-12-02,\"Sala atribuída à aula\":\"Sala 1\"}";
+        String expected = "{\"Inscritos no turno\":30,\"Hora início da aula\":\"13:00\"," +
+                "\"Lotação da sala\":40,\"Turma\":\"[A]\",\"Turno\":\"TP1\"," +
+                "\"Hora fim da aula\":\"14:30\",\"Curso\":\"[LEI, MEI]\"," +
+                "\"Unidade Curricular\":\"POO\",\"Dia da semana\":\"Segunda\"," +
+                "\"Data da aula\":\"2022-12-02\",\"Sala atribuída à aula\":\"Sala 1\"}";
         String actual = bloco.toJson().toJSONString();
 
         assertEquals(expected, actual);

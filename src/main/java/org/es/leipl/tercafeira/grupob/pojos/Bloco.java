@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,6 +69,22 @@ public class Bloco {
      * Atribute lotacao is the classroom student capacity
      */
     private int lotacao;
+
+    public Bloco(String uc, String turno, LocalDate data, LocalTime horaIni, LocalTime horaFim, String sala) {
+        this.uc = uc;
+        this.turno = turno;
+        this.data = data;
+        this.horaIni = horaIni;
+        this.horaFim = horaFim;
+        this.lotacao = 0;
+        this.inscritos = 0;
+        this.curso = new LinkedList<>();
+        this.curso.add("");
+        this.turma = new LinkedList<>();
+        this.turma.add("");
+        this.diaSemana="";
+        this.sala = sala;
+    }
 
     public List<String> getCurso() {
         return curso;
@@ -204,7 +220,9 @@ public class Bloco {
         return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
     }
 
+    public Bloco (){
 
+    }
     public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
         for(String s: curso.split(",")){
@@ -245,17 +263,20 @@ public class Bloco {
      * @return a json representation of the object.
      */
     public JSONObject toJson() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
         JSONObject json = new JSONObject();
         json.put("Inscritos no turno", this.inscritos);
-        json.put("Hora início da aula", this.horaIni);
+        json.put("Hora início da aula", this.horaIni.format(timeFormatter));
         json.put("Lotação da sala", this.lotacao);
-        json.put("Turma", this.turma);
+        json.put("Turma", this.turma.toString());
         json.put("Turno", this.turno);
-        json.put("Hora fim da aula", this.horaFim);
-        json.put("Curso", this.curso);
+        json.put("Hora fim da aula", this.horaFim.format(timeFormatter));
+        json.put("Curso", this.curso.toString());
         json.put("Unidade Curricular", this.uc);
         json.put("Dia da semana", this.diaSemana);
-        json.put("Data da aula", this.data);
+        json.put("Data da aula", this.data.format(dateFormatter));
         json.put("Sala atribuída à aula", this.sala);
         return json;
     }

@@ -4,6 +4,8 @@ import com.opencsv.exceptions.CsvValidationException;
 import net.fortuna.ical4j.data.ParserException;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.tools.gui.GUI;
+
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,8 +18,9 @@ import java.time.LocalTime;
 public class Main {
     public static void main(String[] args) throws IOException, ParserException, CsvValidationException {
         GUI.createGUI();
-        //Bloco blocoTeste = new Bloco("LEI", "DIAM", "01789TP01", "MEA1", 30, "Sex", LocalTime.of(18, 0, 0, 0), LocalTime.of(19, 30, 0, 0), LocalDate.of(2023, 05, 05), "AA2.25", 34);
-        //GUI.addEvent(blocoTeste);
         GUI.showGUI();
+       // Bloco bloco = new Bloco("LEI,MEI", "POO", "TP1", "A", 30, "Segunda", LocalTime.of(13, 00, 00), LocalTime.of(14, 30, 00), LocalDate.of(2022, 12, 02), "Sala 1", 40);
+       // String actual = bloco.toJson().toJSONString();
+       // System.out.println(actual);
     }
 }

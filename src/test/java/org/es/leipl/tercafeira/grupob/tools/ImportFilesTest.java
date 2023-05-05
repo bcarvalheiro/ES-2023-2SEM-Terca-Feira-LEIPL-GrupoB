@@ -1,7 +1,6 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
-import com.opencsv.CSVReader;
-import org.es.leipl.tercafeira.grupob.pojos.Aula;
+import net.fortuna.ical4j.data.ParserException;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,7 +23,8 @@ public class ImportFilesTest {
     void saveJSONtoFile() throws IOException {
         JSONArray jsonArray = new JSONArray();
         jsonArray.add("test");
-        String filePath = ImportFiles.saveJSONtoFile(jsonArray);
+        String filePath ="jsonForTestSaveFile.json";
+        ImportFiles.saveJSONtoFile(jsonArray,"jsonForTestSaveFile.json");
 
         File file = new File(filePath);
         //em vez disto, usar o file 1 de fora
@@ -37,15 +37,14 @@ public class ImportFilesTest {
      Converts a CSV file to a JSON array, where each object in the array represents a row in the CSV file.
      Each field in the CSV file becomes a key-value pair in the corresponding JSON object.
      The first row of the CSV file is assumed to contain the header, which becomes the keys of the JSON objects.
-     @param filePath the path of the CSV file to be converted
      @return a JSON array representing the CSV data
      */
     @Test
     @DisplayName("Tests converting a CSV file to JSON")
-    void CSVtoJSon() {
+    void csvToJson() {
 
         File file = new File("horario.csv");
-        JSONArray jsonArray = ImportFiles.CSVtoJSon(file.getAbsolutePath());
+        JSONArray jsonArray = ImportFiles.csvtojson(file.getAbsolutePath());
 
         //verifica se é capaz de retornar um objeto JSON não nulo e não vazio.
         assertNotNull(jsonArray);
@@ -74,10 +73,30 @@ public class ImportFilesTest {
      */
     @Test
     @DisplayName("Tests importing a CSV file")
-    void CSVImport() {
+    void csvImport() {
 
-        Horario horario = ImportFiles.CSVImport("Horario.csv");
+        Horario horario = ImportFiles.csvImport("TestCsv.csv");
         assertNotNull(horario, "Horario object should not be null");
-        assertEquals(26001, horario.getAulasList().size());
+        assertEquals(26003, horario.getAulasList().size());
+    }
+
+    /**
+     * Test method to verify that the CSVImport method is able to import a json file and return a non-null Horario object.
+     * The method also checks that the number of Aulas objects in the Horario object returned by the jsonImport method
+     * matches the expected value.
+     */
+    @Test
+    @DisplayName("Tests importing a JSON file")
+    void jsonImport() {
+        Horario horario = ImportFiles.jsonImport("TestJson.json");
+        assertNotNull(horario, "Horario object should not be null");
+        assertEquals(26003, horario.getAulasList().size());
+    }
+
+    @Test
+    void importICS() throws ParserException, IOException {
+        Horario horario = ImportFiles.importICS(new File("TestICSCalendar.ics"));
+        assertNotNull(horario, "Horario object should not be null");
+        assertEquals(561, horario.getAulasList().size());
     }
 }

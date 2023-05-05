@@ -14,20 +14,28 @@ public class Horario {
     /**
      * aulasList is the list of all classes in a student schedule
      */
-    private List<Bloco> aulasList = new LinkedList<>();
+    private List<Bloco> aulasList;
 
+    public Horario () {
+        aulasList = new LinkedList<>();
+    };
     public Horario (List<Bloco> aulasList) {
         if (aulasList == null) {
-            System.out.println("Horario not created, aulas list is null");
-            return;
+            throw new IllegalArgumentException("Aulas list cannot be null or empty");
         }
         if (aulasList.isEmpty()) {
-            System.out.println("Horario not created, aulas list is empty");
-            return;
+            throw new IllegalArgumentException("Aulas list cannot be null or empty");
         }
         this.aulasList = aulasList;
     }
 
+    public void addAula(Bloco aula) {
+        aulasList.add(aula);
+    }
+
+    public void removeAulas(List<Bloco> aulas) {
+        aulasList.removeAll(aulas);
+    }
 
     /**
      * @return a string representation of the object.
@@ -43,7 +51,9 @@ public class Horario {
 
         return result;
     }
-
+    /**
+     * @return aulasList the list of classes
+     */
     public List<Bloco> getAulasList() {
         return aulasList;
     }
