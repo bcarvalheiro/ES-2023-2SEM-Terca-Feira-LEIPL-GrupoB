@@ -45,3 +45,4 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 ## Dificuldades encontradas
 - Utilizamos o PowerUP do Trello BurndownDown by Corello e passado uma semana recebemos uma notificação para pagar a licença do software. Assim tivemos que a meio do Sprint 1 alterar o nosso Burndown Chart o que teve efeitos na apresentação do mesmo.
 - Como tinhamos que alterar o BurnDown Chart, aproveitamos para alterar o quadro do sprint 1 porque o mesmo tinha sido criado pela conta pessoal de um elemento do grupo. 
+- Os calendários importados através de webcal (exemplo calendário do fénix), não tem certos campos, como é o exemplo de lotação, curso, dia da semana ou turma.
