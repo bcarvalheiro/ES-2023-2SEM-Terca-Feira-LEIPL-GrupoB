@@ -88,7 +88,6 @@ public class ImportFilesTest {
     @Test
     @DisplayName("Tests importing a JSON file")
     void jsonImport() {
-
         Horario horario = ImportFiles.jsonImport("TestJson.json");
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(26003, horario.getAulasList().size());
@@ -96,7 +95,7 @@ public class ImportFilesTest {
 
     @Test
     void importICS() throws ParserException, IOException {
-        Horario horario = ImportFiles.importICS(new File("calendarTest.ics"));
+        Horario horario = ImportFiles.importICS(new File("TestICSCalendar.ics"));
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(561, horario.getAulasList().size());
     }
