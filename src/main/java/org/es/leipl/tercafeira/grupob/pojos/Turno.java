@@ -50,8 +50,6 @@ public class Turno {
 
     }
 
-
-
     /**
      * checks if any of the params are null
      *
@@ -98,7 +96,9 @@ public class Turno {
             return -1;
         }
     }
-
+    /**
+     * @return the class list
+     */
     public List<String> getTurmasList() {
         return turmasList;
     }
@@ -123,6 +123,9 @@ public class Turno {
         this.turmasList.addAll(turmasList);
     }
 
+    /**
+     * @return the cursos list
+     */
     public List<String> getcursosList() {
         return cursosList;
     }
@@ -180,10 +183,18 @@ public class Turno {
             this.numeroInscritos = numeroInscritos;
     }
 
+    /**
+     * Sets turmas list
+     * @param turmasList
+     */
     public void setTurmasList(List<String> turmasList) {
         this.turmasList = turmasList;
     }
 
+    /**
+     * Sets cursos list
+     * @param cursosList
+     */
     public void setCursosList(List<String> cursosList) {
         this.cursosList = cursosList;
     }
