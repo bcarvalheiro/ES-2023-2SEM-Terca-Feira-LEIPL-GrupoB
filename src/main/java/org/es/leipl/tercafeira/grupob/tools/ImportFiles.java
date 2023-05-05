@@ -1,5 +1,10 @@
 package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.PropertyList;
+import net.fortuna.ical4j.model.component.CalendarComponent;
 import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 
@@ -9,8 +14,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -202,5 +206,87 @@ public class ImportFiles {
             System.out.println("Error reading JSON file: " + e.getMessage());
         }
         return new Horario();
+    }
+    /**
+     * Imports an iCalendar file and creates a Horario object with the information extracted from it.
+     * The iCalendar file should contain calendar events with location and description properties.
+     * @param file the iCalendar file to import
+     * @return a Horario object with the information extracted from the iCalendar file
+     * @throws IOException if an I/O error occurs while reading the file
+     * @throws ParserException if the iCalendar file contains invalid data
+     * */
+    public static Horario importICS(File file) throws IOException, ParserException {
+        CalendarBuilder calBuilder = new CalendarBuilder();
+        net.fortuna.ical4j.model.Calendar calendar = null;
+        try(FileReader fr = new FileReader(file)) {
+            calendar = calBuilder.build(fr);
+        }catch (ParserException e){
+            e.printStackTrace();
+            throw e;
+        }
+        LinkedList<Bloco> blocos = new LinkedList<>();
+        Iterator<CalendarComponent> components = calendar.getComponents().iterator();
+        while(components.hasNext()){
+            CalendarComponent component = components.next();
+            PropertyList<Property> properties = component.getProperties();
+            String location = null;
+            String description = null;
+            for (Property property : properties) {
+                if(property.getName().equals(Property.LOCATION)) location = property.getValue();
+                if (property.getName().equals(Property.DESCRIPTION)) {
+                    description = property.getValue();
+                }
+                if((location!=null && description!=null)) {
+                    Bloco novoBloco = createBlocoFromDescription(description.split("\n"), location);
+                    System.out.println(novoBloco.toString());
+                    if (novoBloco.getUc()!=null && !novoBloco.getUc().equals("")) blocos.add(novoBloco);
+                }
+            }
+        }
+        Horario horario = new Horario(blocos);
+        return horario;
+    }
+
+    /**
+     * Parses a description string and location string to create a Bloco object.
+     * @param descriptionArray the array of strings containing the description information
+     * @param location the string containing the location information
+     * @return a Bloco object created from the given description and location information
+     **/
+
+    private static Bloco createBlocoFromDescription(String[] descriptionArray, String location) {
+        String[] salaLocation = location.split(",");
+        if(Arrays.stream(descriptionArray).count() > 0){
+            String curso ;
+            String uc = null;
+            String turno = null;
+            String turma ;
+            int inscritos;
+            String diaSem;
+            LocalDate data = null;
+            LocalTime horaIni = null;
+            LocalTime horaFim = null;
+            String sala = salaLocation[0];
+            int lotacao ;
+            for(String line : descriptionArray){
+                if(line.startsWith("Unidade de execução: "))
+                    uc = line.replace("Unidade de execução: ", "");
+                else if (line.startsWith("Turno: "))
+                    turno = line.replace("Turno: ", "");
+                else if(line.startsWith("Início: ")){
+                    String[] dateTime = line.split(" ");
+                    String[] date = dateTime[1].split("-");
+                    String[] startTime = dateTime[2].split(":");
+                    data = LocalDate.of(Integer.valueOf(date[0]), Integer.valueOf(date[1]), Integer.valueOf(date[2]));
+                    horaIni = LocalTime.of(Integer.valueOf(startTime[0]), Integer.valueOf(startTime[1]));
+                }
+                else if(line.startsWith("Fim: ")){
+                    String[] endTime = line.split(" ")[2].split(":");
+                    horaFim = LocalTime.of(Integer.valueOf(endTime[0]), Integer.valueOf(endTime[1]));
+                }
+            }
+            return new Bloco(uc,turno, data, horaIni,horaFim,sala);
+        }
+        return new Bloco();
     }
 }

@@ -1,5 +1,6 @@
 package org.es.leipl.tercafeira.grupob.tools;
 
+import net.fortuna.ical4j.data.ParserException;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -91,5 +92,12 @@ public class ImportFilesTest {
         Horario horario = ImportFiles.jsonImport("TestJson.json");
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(26003, horario.getAulasList().size());
+    }
+
+    @Test
+    void importICS() throws ParserException, IOException {
+        Horario horario = ImportFiles.importICS(new File("calendarTest.ics"));
+        assertNotNull(horario, "Horario object should not be null");
+        assertEquals(561, horario.getAulasList().size());
     }
 }

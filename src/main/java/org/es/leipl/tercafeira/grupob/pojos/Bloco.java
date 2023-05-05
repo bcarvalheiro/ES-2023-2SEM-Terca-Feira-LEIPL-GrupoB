@@ -70,6 +70,22 @@ public class Bloco {
      */
     private int lotacao;
 
+    public Bloco(String uc, String turno, LocalDate data, LocalTime horaIni, LocalTime horaFim, String sala) {
+        this.uc = uc;
+        this.turno = turno;
+        this.data = data;
+        this.horaIni = horaIni;
+        this.horaFim = horaFim;
+        this.lotacao = 0;
+        this.inscritos = 0;
+        this.curso = new LinkedList<>();
+        this.curso.add("");
+        this.turma = new LinkedList<>();
+        this.turma.add("");
+        this.diaSemana="";
+        this.sala = sala;
+    }
+
     public List<String> getCurso() {
         return curso;
     }
@@ -204,7 +220,9 @@ public class Bloco {
         return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
     }
 
+    public Bloco (){
 
+    }
     public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
         for(String s: curso.split(",")){
