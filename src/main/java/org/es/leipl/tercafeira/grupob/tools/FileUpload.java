@@ -15,11 +15,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ForkJoinPool;
 
 
 public class FileUpload {
     JFrame parent;
     private static Horario horario;
+
     public FileUpload(JFrame parent) {
         this.parent = parent;
     }
@@ -34,22 +36,49 @@ public class FileUpload {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jfc.getSelectedFile();
             System.out.println(selectedFile.getAbsolutePath());
-            System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
+            System.out.println("Present Project Directory : " + System.getProperty("user.dir"));
             File archiveFile = new File(System.getProperty("user.dir") + "/arquivo/Horario.csv");
-            try{
+            try {
                 horario = ImportFiles.CSVImport(selectedFile.getAbsolutePath());
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            try{
-                FileUtils.copyFile(selectedFile,archiveFile);
+            try {
+                FileUtils.copyFile(selectedFile, archiveFile);
             } catch (IOException e) {
                 System.err.format("IOException: ", e);
             }
         }
     }
 
-    public void uploadUrl() {
+    public String saveLocal(String title, String extension) {
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle(title);
+        jfc.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(extension, extension);
+        jfc.addChoosableFileFilter(filter);
+        int returnValue = jfc.showSaveDialog(parent);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jfc.getSelectedFile();
+            System.out.println(selectedFile.getAbsolutePath());
+            if (verifyExtension(selectedFile.getAbsolutePath(), extension)) {
+                return selectedFile.getAbsolutePath();
+            }else{
+                return selectedFile.getAbsolutePath() + "." + extension;
+            }
+        }
+        return null;
+    }
+
+    private boolean verifyExtension ( String filepath, String extension){
+        int extensionLegth = extension.length();
+        String filepathExtension = filepath.substring(filepath.length() - extensionLegth - 1);
+    return ("." + extension).equals(filepathExtension);
+
+    }
+
+
+        public void uploadUrl() {
         JTextField urlField;
         JFrame frame = new JFrame("CSV Downloader");
 
@@ -119,6 +148,10 @@ public class FileUpload {
 
     }
 
+    public static void main (String [] args ){
+        FileUpload uploadFile =  new FileUpload(new JFrame());
+        uploadFile.saveLocal("Guarde o seu ficheiro no sistema","");
+    }
     public static Horario getHorario(){
         return horario;
     }

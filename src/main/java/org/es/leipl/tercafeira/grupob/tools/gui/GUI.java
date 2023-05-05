@@ -4,13 +4,10 @@ import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
+import org.es.leipl.tercafeira.grupob.services.CSVLoader;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.Calendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.WeekCalendar;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
+import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.*;
 import org.json.simple.JSONArray;
 
 import javax.swing.*;
@@ -67,6 +64,7 @@ public class GUI {
 
             JButton next = new JButton("Next");
             JButton previous = new JButton("Previous");
+
 
             previous.setBounds(620,10,150,40);
             next.setBounds(770,10,150,40);
@@ -179,10 +177,13 @@ public class GUI {
             JButton button1 = new JButton("Upload Local");
             JButton button2 = new JButton("Upload Remoto");
             JButton button3 = new JButton("Convert to JSON");
+            JButton button4 = new JButton("Save file");
+
 
             button1.setBounds(10,10,150,40);
             button2.setBounds(160,10,150,40);
             button3.setBounds(310,10,150,40);
+            button4.setBounds(460,10,150,40);
 
             /**
              * ActionListener for the "Upload Local" button. Opens a file chooser to select a file from the system.
@@ -236,11 +237,31 @@ public class GUI {
                 }
             });
 
+            button4.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (horario != null) {
+                        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horario)));
+                        String filepath = uploadFile.saveLocal("Guardar", "csv");
+                        if (filepath != null) {
+                            try {
+                                CsvUtils.blocosToCsvFile(horario.getAulasList(), filepath);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            JOptionPane.showMessageDialog(frame, "Ficheiro CSV criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(frame, "Impossivel guardar o ficheiro sem horário carregado","Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            });
             // add the buttons to the JFrame object
             frame.add(button1);
             frame.add(button2);
             frame.add(button3);
-
+            frame.add(button4);
 
             frame.add(monthlyView);
             frame.add(weeklyView);

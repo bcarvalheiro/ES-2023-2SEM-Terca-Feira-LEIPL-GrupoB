@@ -27,7 +27,7 @@ public final class CsvUtils {
      * @param bloco - A calendar event
      * @return - A String to be used on a CSV file
      */
-    private String blocoToStringCsv(Bloco bloco) {
+    private static String blocoToStringCsv(Bloco bloco) {
         return bloco.getCursosToString()
                 + "," + bloco.getUc()
                 + "," + bloco.getTurno()
@@ -49,7 +49,7 @@ public final class CsvUtils {
      * @throws IOException - When the path doesn't exist
      * @throws IllegalArgumentException - When at least one of the parameters is null
      */
-    public void blocosToCsvFile(List<Bloco> blocos, String filePath) throws IOException, IllegalArgumentException {
+    public static void blocosToCsvFile(List<Bloco> blocos, String filePath) throws IOException, IllegalArgumentException {
         if ( blocos == null || filePath == null || filePath.isEmpty())
             throw new IllegalArgumentException();
         FileWriter csvWriter = new FileWriter(filePath);
