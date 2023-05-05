@@ -4,6 +4,14 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * @author davejm
+ * @version 1.10
+ */
+
+/**
+ * Java Object for representation of an CalendarEvent object
+ */
 public class CalendarEvent {
 
     private static final Color DEFAULT_COLOR = Color.PINK;

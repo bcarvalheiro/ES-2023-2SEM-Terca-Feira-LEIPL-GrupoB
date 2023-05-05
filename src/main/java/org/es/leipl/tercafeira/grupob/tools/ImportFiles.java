@@ -25,12 +25,16 @@ import javax.json.JsonReader;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 1.3
+ */
 
 public class ImportFiles {
     /**
      * Checks the file extension
      * @param file
-     * @return
+     * @return String - extension
      */
     private static String checkExtension(File file){
         String extension = FilenameUtils.getExtension(file.getAbsolutePath());
@@ -107,7 +111,6 @@ public class ImportFiles {
         else
             return null;
     }
-
 
     /**
      * Parses a CSV file containing information about academic courses, and creates a list of POJOs (Plain Old Java Objects)

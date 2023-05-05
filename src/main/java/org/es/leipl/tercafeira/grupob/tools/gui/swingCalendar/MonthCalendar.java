@@ -10,8 +10,19 @@ import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MonthCalendar extends Calendar {
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.1
+ */
 
+/**
+ * Java Object for representation of a Month Calendar
+ */
+
+public class MonthCalendar extends Calendar {
+    /**
+     * Calendar month
+     */
     private Month month;
 
     public MonthCalendar(ArrayList<CalendarEvent> events) {
@@ -19,52 +30,97 @@ public class MonthCalendar extends Calendar {
         month = new Month(LocalDate.now());
     }
 
-    //rever
+    /**
+     * Overrides the Abstract method to return true if input date equals the start of the month
+     * @param date
+     * @return
+     */
     @Override
     protected boolean dateInRange(LocalDate date) {
         return Month.getStartOfMonth(date).equals(month.getDay(DayOfWeek.MONDAY));
     }
 
+    /**
+     * Overrides the Abstract method to return a day of the week from the month day
+     * @param day
+     */
     @Override
     protected LocalDate getDateFromDay(DayOfWeek day) {
         return month.getDay(day);
     }
 
+    /**
+     * Overrides the Abstract method to return the number of days the month has
+     * @return int
+     */
     protected int numDaysToShow() {
         return month.getLastday().getDayOfMonth();
     }
 
+    /**
+     * Overrides the Abstract method to return a day of week from the first day of the month
+     * @return DayofWeek
+     */
     @Override
     protected DayOfWeek getStartDay() {
         return month.getFirstday().getDayOfWeek();
     }
 
+    /**
+     * Overrides the Abstract method to return a day of week from the last day of the month
+     * @return DayofWeek
+     */
     @Override
     protected DayOfWeek getEndDay() {
         return month.getLastday().getDayOfWeek();
     }
 
+    /**
+     * Overrides the Abstract method to return a day of week from the first day of the month, in int
+     * @return Int
+     */
     protected int getStartDayInt() {
         return month.getFirstday().getDayOfMonth();
     }
 
+    /**
+     * Overrides the Abstract method to return a day of week from the last day of the month, in int
+     * @return Int
+     */
     protected int getEndDayInt() {
         return month.getLastday().getDayOfMonth();
     }
 
+    /**
+     * Overrides the Abstract method to set the range to current date of the month
+     */
     @Override
     protected void setRangeToToday() {
         month = new Month(LocalDate.now());
     }
 
+    /**
+     * Overrides the Abstract method to return the pixel representation to the defined in the global var + day width
+     * @return dayToPixel
+     */
     @Override
     protected double dayToPixel(DayOfWeek dayOfWeek) {
         return TIME_COL_WIDTH + getDayWidth() * (dayOfWeek.getValue() - 1);
     }
 
+    /**
+     * New method to convert a day pixel to a day
+     * @param day
+     * @return dayToPixel
+     */
     private double dayToPixelMonth(int day) {
         return TIME_COL_WIDTH + getDayWidth() * (day - 1);
     }
+
+
+    /**
+     * Overrides the method since the original is only able to handle 7 days, month view needs a maximum of 31
+     */
     @Override
     public void drawDayHeadings() {
         int y = 20;
@@ -83,29 +139,23 @@ public class MonthCalendar extends Calendar {
         }
     }
 
+    /**
+     * Overrides the method since the original is only able to handle 7 days, month view needs a maximum of 31
+     */
     @Override
     public void drawGrid() {
-        // Save the original colour
         final Color ORIG_COLOUR = g2.getColor();
-        LocalDate day;
-        DayOfWeek dayOfWeek;
 
-        // Set colour to grey with half alpha (opacity)
         Color alphaGray = new Color(128, 128, 128, 128);
         Color alphaGrayLighter = new Color(200, 200, 200, 128);
         g2.setColor(alphaGray);
 
-        // Draw vertical grid lines
         double x;
         for (int i = getStartDayInt(); i <= getEndDayInt(); i++) {
-            day = LocalDate.of(month.getYear(), month.getMonth(),i);
-            dayOfWeek = day.getDayOfWeek();
-
             x = dayToPixelMonth(i);
             g2.draw(new Line2D.Double(x, HEADER_HEIGHT, x, timeToPixel(END_TIME)));
         }
 
-        // Draw horizontal grid lines
         double y;
         int x1;
         for (LocalTime time = START_TIME; time.compareTo(END_TIME) <= 0; time = time.plusMinutes(30)) {
@@ -120,14 +170,16 @@ public class MonthCalendar extends Calendar {
             g2.draw(new Line2D.Double(x1, y, dayToPixelMonth(getEndDayInt()) + dayWidth, y));
         }
 
-        // Reset the graphics context's colour
         g2.setColor(ORIG_COLOUR);
     }
+
+    /**
+     * Overrides the method since the original is only able to handle 7 days, month view needs a maximum of 31
+     */
     @Override
     public void drawTodayShade() {
         LocalDate today = LocalDate.now();
 
-        // Check that date range being viewed is current date range
         if (!dateInRange(today)) return;
 
         final double x = dayToPixelMonth(today.getDayOfMonth());
@@ -142,11 +194,13 @@ public class MonthCalendar extends Calendar {
         g2.setColor(origColor);
     }
 
+    /**
+     * Overrides the method since the original is only able to handle 7 days, month view needs a maximum of 31
+     */
     @Override
     public void drawCurrentTimeLine() {
         LocalDate today = LocalDate.now();
 
-        // Check that date range being viewed is current date range
         if (!dateInRange(today)) return;
 
         final double x0 = dayToPixel(today.getDayOfWeek());
@@ -164,24 +218,19 @@ public class MonthCalendar extends Calendar {
         g2.setStroke(origStroke);
     }
 
-    public void nextWeek() {
-        month = month.nextMonth();
-        repaint();
-    }
-
-    public void prevWeek() {
-        month = month.prevMonth();
-        repaint();
-    }
-
+    /**
+     * New method to calculate the nexth month
+     */
     public void nextMonth() {
         month = month.nextMonth();
         repaint();
     }
 
+    /**
+     * New method to calculate the previous month
+     */
     public void prevMonth() {
         month = month.prevMonth();
         repaint();
     }
-
 }

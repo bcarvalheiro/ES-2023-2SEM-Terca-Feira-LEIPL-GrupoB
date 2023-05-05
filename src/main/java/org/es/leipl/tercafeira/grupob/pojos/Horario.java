@@ -53,7 +53,9 @@ public class Horario {
 
         return result;
     }
-
+    /**
+     * @return aulasList the list of classes
+     */
     public List<Bloco> getAulasList() {
         return aulasList;
     }

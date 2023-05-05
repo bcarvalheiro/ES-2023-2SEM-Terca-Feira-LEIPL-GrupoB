@@ -5,7 +5,15 @@ import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+/**
+ * @author GRUPO_B_LEI_PL
+ * @version 0.1
+ */
 
+/**
+ * Java Object for representation of an csv utils
+ * Aids on converting an uploaded CSV file to Calendar Events
+ */
 public final class CsvUtils {
 
     private static CsvUtils INSTANCE;
