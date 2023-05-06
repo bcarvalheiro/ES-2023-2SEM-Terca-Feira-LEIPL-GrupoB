@@ -99,4 +99,32 @@ public class ImportFilesTest {
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(561, horario.getAulasList().size());
     }
+
+    @Test
+    void horario2Json() {
+        Horario horario = ImportFiles.csvImport("TestCsv.csv");
+        JSONArray jsonArray = ImportFiles.horario2Json(horario);
+        assertNotNull(jsonArray);
+        assertEquals(jsonArray.size(),horario.getAulasList().size());
+    }
+
+    @Test
+    void importFile() {
+        Horario horario = ImportFiles.importFile("TestCsv.csv");
+        Horario horario2 = ImportFiles.importFile("TestJson.json");
+        assertNotNull(horario2);
+        assertNotNull(horario);
+        assertEquals(26003, horario.getAulasList().size());
+    }
+
+    @Test
+    void downloadWebcal() throws IOException {
+        File file = ImportFiles.downloadWebcal("https://www.google.com/calendar/ical/pt.portuguese%23holiday%40group.v.calendar.google.com/public/basic.ics");
+        assertNotNull(file);
+    }
+
+    @Test
+    void testImportICS() {
+
+    }
 }
