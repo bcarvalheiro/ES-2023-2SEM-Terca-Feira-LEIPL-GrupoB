@@ -96,24 +96,7 @@ public class FileUpload {
                 JOptionPane.showConfirmDialog(parent, "Ficheiro importado com formato incorreto", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public String saveLocal(String title, String extension) {
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle(title);
-        jfc.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(extension, extension);
-        jfc.addChoosableFileFilter(filter);
-        int returnValue = jfc.showSaveDialog(parent);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = jfc.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
-            if (verifyExtension(selectedFile.getAbsolutePath(), extension)) {
-                return selectedFile.getAbsolutePath();
-            }else{
-                return selectedFile.getAbsolutePath() + "." + extension;
-            }
-        }
-        return null;
-    }
+
     /**
      * Method to upload selected remote user file to the system
      */
@@ -145,12 +128,7 @@ public class FileUpload {
             }
         }
     }
-    private boolean verifyExtension ( String filepath, String extension){
-        int extensionLegth = extension.length();
-        String filepathExtension = filepath.substring(filepath.length() - extensionLegth - 1);
-        return ("." + extension).equals(filepathExtension);
 
-    }
     /**
      * Method to download remote user file to the system
      */

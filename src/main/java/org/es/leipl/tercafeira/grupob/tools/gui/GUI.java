@@ -3,10 +3,7 @@ package org.es.leipl.tercafeira.grupob.tools.gui;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.es.leipl.tercafeira.grupob.pojos.Bloco;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
-import org.es.leipl.tercafeira.grupob.tools.CsvUtils;
-import org.es.leipl.tercafeira.grupob.tools.FileUpload;
-import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.*;
+import org.es.leipl.tercafeira.grupob.tools.*;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
@@ -49,13 +46,14 @@ public class GUI {
     private static JButton monthlyView;
     private static JButton weeklyView;
     private static JButton dailyView;
-    private static JButton saveJ;
+
+    private static JButton export;
 
     /**
      * String variables for the dynamic horario button
      */
-    private static String pessoalH = "Horario Pessoal";
-    private static String fullH = "Horario Completo";
+    private static String pessoalH = "Personal Schedule";
+    private static String fullH = "Complete Schedule";
 
     /**
      * Boolean var that shows if the current view is personal or not
@@ -98,29 +96,31 @@ public class GUI {
             int frameY = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
             JButton bUploadL = new JButton("Upload Local");
-            JButton buploadR = new JButton("Upload Remoto");
+            JButton buploadR = new JButton("Upload Remote");
             JButton switchHorario = new JButton(pessoalH);
-            JButton button4 = new JButton("Save file");
+
 
             bUploadL.setBounds(10,10,150,40);
             buploadR.setBounds(160,10,150,40);
             switchHorario.setBounds(310,10,150,40);
-            button4.setBounds(460,10,150,40);
 
-            saveJ = new JButton("Gravar em JSON");
+
             dailyView = new JButton("Daily View");
             weeklyView = new JButton("Weekly View");
             monthlyView = new JButton("Monthly View");
+            export = new JButton("Export to file");
 
             monthlyView.setBounds(frameX-160,10,150,40);
             weeklyView.setBounds(frameX-310,10,150,40);
             dailyView.setBounds(frameX-460,10,150,40);
-            saveJ.setBounds(460,10,150,40);
+            export.setBounds(460,10,150,40);
+
+
 
             monthlyView.setVisible(false);
             weeklyView.setVisible(false);
             dailyView.setVisible(false);
-            saveJ.setVisible(false);
+            export.setVisible(false);
 
             next = new JButton("Next");
             today = new JButton("Today");
@@ -141,9 +141,8 @@ public class GUI {
 
             frame.add(bUploadL);
             frame.add(buploadR);
-            frame.add(saveJ);
             frame.add(switchHorario);
-            frame.add(button4);
+            frame.add(export);
 
             frame.add(monthlyView);
             frame.add(weeklyView);
@@ -192,7 +191,7 @@ public class GUI {
              * ActionListener for the "Upload Remoto" button. Opens a text box for the user to input an url, followed by
              * a save file box for the user to choose where to save the uploaded file in the system.
              * The file is then parsed and the schedule data is loaded into the program. The buttons are then added
-             * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
+             * to the frame and the frame is repainted if the schedule is successfully loaded.
              * @param the ActionEvent representing the user's button click
              */
             buploadR.addActionListener(new ActionListener() {
@@ -217,39 +216,8 @@ public class GUI {
                 }
             });
 
-            /**
-             *  ActionListener for the "Export JSON" button. Converts the current schedule data to a JSON file and saves it to the system.
-             *  If no schedule data is available, displays an error message.
-             *  @param e the ActionEvent object representing the user's button click
-             */
-            saveJ.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (horarioDisplay != null){
-                        JSONArray json = ImportFiles.horario2Json(horarioDisplay);
-                        try {
-                            JFileChooser fileChooser = new JFileChooser();
-                            fileChooser.setDialogTitle("Save file");
-                            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "JSON");
-                            fileChooser.setAcceptAllFileFilterUsed(false);
-                            fileChooser.addChoosableFileFilter(filter);
-                            fileChooser.setApproveButtonText("Save");
-                            int result = fileChooser.showSaveDialog(frame);
 
-                            String filePath = "";
-                            if (result == JFileChooser.APPROVE_OPTION) {
-                                filePath = fileChooser.getSelectedFile().getPath() + ".json";
-                                System.out.println("File path: " + filePath);
-                                ImportFiles.saveJSONtoFile(json, filePath);
-                                JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            }
 
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                }
-            });
             /**
              *  ActionListener for the "Horário Pessoal/Horário Completo" button. Switches the view from imported calendar
              *  to personal calendar
@@ -335,30 +303,33 @@ public class GUI {
                 }
             });
 
-            button4.addActionListener(new ActionListener(){
+            /**
+             *  ActionListener for the "Export to File button. Converts the current schedule data to a JSON file and saves it to the system.
+             *  If no schedule data is available, displays an error message.
+             *  @param e the ActionEvent object representing the user's button click            */
+            export.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (horarioDisplay != null) {
-                        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horarioDisplay)));
-                        String filepath = uploadFile.saveLocal("Guardar", "csv");
-                        if (filepath != null) {
-                            try {
-                                CsvUtils.blocosToCsvFile(horarioDisplay.getAulasList(), filepath);
-                            } catch (IOException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            JOptionPane.showMessageDialog(frame, "Ficheiro CSV criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(frame, "Impossivel guardar o ficheiro sem horário carregado","Erro", JOptionPane.ERROR_MESSAGE);
-                    }
+                    int option = exportFormatFrame();
+                    String format = "";
+                    if (option==0) format = "csv";
+                    else if (option==1) format = "json";
+                    ExportToFile.exportToFormat(horarioDisplay,frame,format);
                 }
-
             });
 
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
+    }
+    public static int exportFormatFrame() {
+        JFrame frame = new JFrame("Export format");
+        String[] options = new String[] {"CSV", "JSON", "Cancel"};
+        int option = JOptionPane.showOptionDialog(frame,"Please choose your file export format!",
+                "Export Format", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
+        frame.setVisible(true);
+        return option;
     }
 
     //add Calendar events
@@ -387,6 +358,7 @@ public class GUI {
             calendarEvents.add(calendarEvent);
         }
     }
+
 
     /**
      * Loads events from the 'horario' object to the calendar view.
@@ -553,7 +525,9 @@ public class GUI {
         next.setVisible(true);
         today.setVisible(true);
         previous.setVisible(true);
-        saveJ.setVisible(true);
+        //saveCSV.setVisible(true);
+        //saveJSON.setVisible(true);
+        export.setVisible(true);
     }
 
     /**
