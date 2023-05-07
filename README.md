@@ -1,5 +1,5 @@
 
-[logo]: https://www.clipartmax.com/png/small/85-855284_clippit-microsoft-clippy.png "Calendar Schedule"
+[logo]: [https://www.clipartmax.com/png/small/85-855284_clippit-microsoft-clippy.png](https://github.com/bcarvalheiro/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB/blob/master/Windows_11_Clippy_paperclip_emoji.png) "Calendar Schedule"
 # Horário - Conversor e Visualizador
 Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Software, com o objetivo de criar uma aplicação Java capaz de carregar um horário em formato CSV ou JSON, converter para o outro formato e visualizar em HTML, permitindo ainda a criação de horários para estudantes e a sobreposição e sobrelotação de aulas.
 
