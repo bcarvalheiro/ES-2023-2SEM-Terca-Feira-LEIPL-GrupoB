@@ -30,8 +30,8 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 ## Como Usar
 - Primeiro deve fazer um import de um ficheiro CSV ou JSON através do botão "Upload Horario". O ficheiro deve ter o formato : 
     
-    |Curso|Unidade|Curricular|Turno|Turma|Inscritos no turno|Dia da semana|Hora início da aula|Hora fim da aula|Data da aula|Sala atribuída à aula|Lotação da sala|
-    |-----|:-----:|:--------:|:---:|:---:|:----------------:|:-----------:|:-----------------:|:--------------:|:----------:|:--------------------:|-------------:|
+    |Curso|UnidadeCurricular|Turno|Turma|Inscritos no turno|Dia da semana|Hora início da aula|Hora fim da aula|Data da aula|Sala atribuída à aula|Lotação da sala|
+    |-----|:---------------:|:---:|:---:|:----------------:|:-----------:|:-----------------:|:--------------:|:----------:|:--------------------:|-------------:|
     |CT|Gestão|00668TP02|CI-CT-02|24|Qui|16:00:00|17:00:00|28/04/2023|AA3.30|24
     
 - Após carregamento do horário em sistema, consegue iterar as visualizações entre dia, semana e mês através dos botões.
