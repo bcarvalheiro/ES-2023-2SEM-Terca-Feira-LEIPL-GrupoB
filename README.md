@@ -29,10 +29,11 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 
 ## Como Usar
 - Primeiro deve fazer um import de um ficheiro CSV ou JSON através do botão "Upload Horario". O ficheiro deve ter o formato : 
-    ```
-    Curso,Unidade Curricular,Turno,Turma,Inscritos no turno,Dia da semana,Hora início da aula,Hora fim da aula,Data da aula,Sala atribuída à aula,Lotação da sala
-    [exemplo]CT,Gestão,00668TP02,CI-CT-02,24,Qui,16:00:00,17:00:00,28/04/2023,AA3.30,24
-    ´´´
+    
+    |Curso|Unidade|Curricular|Turno|Turma|Inscritos no turno|Dia da semana|Hora início da aula|Hora fim da aula|Data da aula|Sala atribuída à aula|Lotação da sala|
+    |-----|:-----:|:--------:|:---:|:---:|:----------------:|:-----------:|:-----------------:|:--------------:|:----------:|:--------------------:|-------------:|
+    |CT|Gestão|00668TP02|CI-CT-02|24|Qui|16:00:00|17:00:00|28/04/2023|AA3.30|24
+    
 - Após carregamento do horário em sistema, consegue iterar as visualizações entre dia, semana e mês através dos botões.
 - Possui dois botões para avançar no dia/mes/semana, e um para se posicionar no dia/mes/semana actual.
 - Se o calendário estiver importado, através do botão "Gravar Horário" conseguirá exportar o ficheiro em formato CSV ou JSon
@@ -45,7 +46,8 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Fazer checkout para branch criada
 - Fazer alterações ao código
 - Fazer commit/push
-- Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), e fazer merge. Seleccionar a branch que estavamos a trabalhar e aceitar. Poderão aparecer conflitos, que terão que ser resolvidos manualmente. Depois do merge estar completo, apagar a branch criada anteriormente.
+- Assim que terminado, fazer checkout para master, pull (para ir buscar a última versão), e fazer merge. Seleccionar a branch que estavamos a trabalhar e aceitar. Poderão aparecer conflitos, que terão que ser resolvidos manualmente. 
+
 
 ## Dificuldades encontradas
 - Utilizamos o PowerUP do Trello BurndownDown by Corello e passado uma semana recebemos uma notificação para pagar a licença do software. Assim tivemos que a meio do Sprint 1 alterar o nosso Burndown Chart o que teve efeitos na apresentação do mesmo.
