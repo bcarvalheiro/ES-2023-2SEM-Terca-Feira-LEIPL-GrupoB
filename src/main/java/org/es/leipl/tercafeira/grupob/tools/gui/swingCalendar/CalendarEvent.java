@@ -74,6 +74,12 @@ public class CalendarEvent {
         return color;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param o the reference object with which to compare.
+     * @return true if this object is the same as the o argument; false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,7 +91,11 @@ public class CalendarEvent {
         if (!start.equals(that.start)) return false;
         return end.equals(that.end);
     }
-
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
     @Override
     public int hashCode() {
         int result = date.hashCode();

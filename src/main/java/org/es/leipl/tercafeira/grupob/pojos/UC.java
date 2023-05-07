@@ -23,6 +23,12 @@ public class UC {
      */
     private String nome;
 
+    /**
+     * Creates a new instance of the UC class with the specified nome (name) and Turno object.
+     *
+     * @param nome   a string representing the nome (name) of the UC.
+     * @param turno  a Turno object representing the turno associated with the UC.
+     */
     public UC (String nome, Turno turno) {
         if (isNull(nome, turno)) {
             System.out.println("UC not created, at least one argument is null");

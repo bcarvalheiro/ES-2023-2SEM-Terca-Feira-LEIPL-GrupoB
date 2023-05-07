@@ -40,6 +40,11 @@ public class Month {
      */
     private int year;
 
+    /**
+     * Creates a new instance of the Month class with the specified LocalDate object representing a date within the month.
+     *
+     * @param date a LocalDate object representing a date within the month.
+     */
     public Month(LocalDate date) {
         days = new ArrayList<>();
         firstday = getStartOfMonth(date);

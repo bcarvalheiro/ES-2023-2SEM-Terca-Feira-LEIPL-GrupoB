@@ -34,6 +34,15 @@ public class Turno {
      */
     private int numeroInscritos;
 
+    /**
+     * Creates a new instance of the Turno class with the specified designation, list of turmas (class groups),
+     * number of enrolled students, and list of cursos (courses).
+     *
+     * @param designacao        a string representing the designation of the turno.
+     * @param turmasList        a list of strings representing the turmas (class groups) associated with the turno.
+     * @param numeroInscritos   a string representing the number of enrolled students in the turno.
+     * @param cursosList        a list of strings representing the cursos (courses) associated with the turno.
+     */
     public Turno (String designacao, List<String> turmasList, String numeroInscritos, List<String> cursosList) {
         if (isNull(designacao, turmasList, numeroInscritos, cursosList)) {
             System.out.println("Turno not created, at least one argument is null");

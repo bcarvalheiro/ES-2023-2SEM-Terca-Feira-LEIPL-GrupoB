@@ -20,6 +20,12 @@ public class Sala {
      */
     private int lotacao;
 
+    /**
+     * Creates a new instance of the Sala class with the specified designation and capacity.
+     *
+     * @param designacao a string representing the designation of the room.
+     * @param lotacao    a string representing the capacity of the room.
+     */
     public Sala (String designacao, String lotacao) {
         if (designacao == null || designacao.trim().isEmpty() || lotacao == null) {
             this.designacao = "Aguarda atribuição de sala";
