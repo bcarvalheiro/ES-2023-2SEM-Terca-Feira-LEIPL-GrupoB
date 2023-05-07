@@ -287,4 +287,8 @@ public class Bloco {
         json.put("Sala atribuída à aula", this.sala);
         return json;
     }
+
+    public Bloco () {
+
+    }
 }

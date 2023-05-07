@@ -71,7 +71,8 @@ public class FileUpload {
                 try{
                     horario = ImportFiles.importFile(selectedFile.getAbsolutePath());
                 } catch (Exception e){
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    System.err.format("IOException: ", e);
                 }
             }
 
@@ -86,7 +87,7 @@ public class FileUpload {
                 try{
                     horario = ImportFiles.importFile(selectedFile.getAbsolutePath());
                 } catch (Exception e){
-                    e.printStackTrace();
+                    System.err.format("IOException: ", e);
                 }
             }
             else
@@ -125,37 +126,8 @@ public class FileUpload {
     public Boolean uploadUrl() throws IOException {
         String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");
         if(url != null) {
-            if (!url.isEmpty()) {
-                if(url.startsWith("webcal://")){
-                    String link = url.replace("webcal", "https");
-                    File file = ImportFiles.downloadWebcal(link);
-                    if(file != null){
-                        try {
-                            horario = ImportFiles.importICS(file);
-                            return true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                else {
-                    File download = downloadFile(url);
-                    if (download != null) {
-                        if (!(download.length() == 0)) {
-                            try {
-                                horario = ImportFiles.importFile(download.getAbsolutePath());
-                                return false;
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(parent, "Url sem horário válido!", "Erro", JOptionPane.ERROR_MESSAGE);
-                            return false;
-                        }
-                    }
-                }
-            }
+            Boolean x = getaBoolean(url);
+            if (x != null) return x;
         }
         else {
             JOptionPane.showMessageDialog(parent, "Url sem horário válido!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -163,6 +135,42 @@ public class FileUpload {
         }
         return false;
     }
+
+    private Boolean getaBoolean(String url) throws IOException {
+        if (!url.isEmpty()) {
+            if(url.startsWith("webcal://")){
+                String link = url.replace("webcal", "https");
+                File file = ImportFiles.downloadWebcal(link);
+                if(file != null){
+                    try {
+                        horario = ImportFiles.importICS(file);
+                        return true;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            else {
+                File download = downloadFile(url);
+                if (download != null) {
+                    if ((download.length() != 0)) {
+                        try {
+                            horario = ImportFiles.importFile(download.getAbsolutePath());
+                            return false;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(parent, "Url sem horário válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      * Verifies if the given file path has the specified extension.
      *
@@ -200,15 +208,16 @@ public class FileUpload {
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
                     File archiveFile = fileChooser.getSelectedFile();
                     InputStream inputStream = connection.getInputStream();
-                    FileOutputStream outputStream = new FileOutputStream(archiveFile);
+                    try (FileOutputStream outputStream = new FileOutputStream(archiveFile)) {
 
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+                            outputStream.write(buffer, 0, bytesRead);
+                        }
+
+                        outputStream.close();
                     }
-
-                    outputStream.close();
                     inputStream.close();
 
                     JOptionPane.showMessageDialog(parent, "File downloaded successfully.");

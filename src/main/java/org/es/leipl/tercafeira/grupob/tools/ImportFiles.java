@@ -59,7 +59,7 @@ public class ImportFiles {
             System.out.println("JSON successfully saved");
         } catch (IOException e) {
             System.out.println("Error saving JSON");
-            e.printStackTrace();
+            System.err.format("IOException: ", e);
         } finally {
             fw.close();
         }
@@ -235,14 +235,15 @@ public class ImportFiles {
         URLConnection connection = webcalUrl.openConnection();
         InputStream inputStream = connection.getInputStream();
 
-        FileOutputStream outputStream = new FileOutputStream(file);
-        int bytesRead = -1;
-        byte[] buffer = new byte[4096];
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            int bytesRead = -1;
+            byte[] buffer = new byte[4096];
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            // Close streams
+            outputStream.close();
         }
-        // Close streams
-        outputStream.close();
         inputStream.close();
         return file;
     }
@@ -260,29 +261,33 @@ public class ImportFiles {
         try(FileReader fr = new FileReader(file)) {
             calendar = calBuilder.build(fr);
         }catch (ParserException e){
-            e.printStackTrace();
+            System.err.format("IOException: ", e);
             throw e;
         }
         LinkedList<Bloco> blocos = new LinkedList<>();
         Iterator<CalendarComponent> components = calendar.getComponents().iterator();
         while(components.hasNext()){
-            CalendarComponent component = components.next();
-            PropertyList<Property> properties = component.getProperties();
-            String location = null;
-            String description = null;
-            for (Property property : properties) {
-                if(property.getName().equals(Property.LOCATION)) location = property.getValue();
-                if (property.getName().equals(Property.DESCRIPTION)) {
-                    description = property.getValue();
-                }
-                if((location!=null && description!=null)) {
-                    Bloco novoBloco = createBlocoFromDescription(description.split("\n"), location);
-                    if (novoBloco.getUc()!=null && !novoBloco.getUc().equals("")) blocos.add(novoBloco);
-                }
-            }
+            newBloco(blocos, components);
         }
         Horario horario = new Horario(blocos);
         return horario;
+    }
+
+    private static void newBloco(LinkedList<Bloco> blocos, Iterator<CalendarComponent> components) {
+        CalendarComponent component = components.next();
+        PropertyList<Property> properties = component.getProperties();
+        String location = null;
+        String description = null;
+        for (Property property : properties) {
+            if(property.getName().equals(Property.LOCATION)) location = property.getValue();
+            if (property.getName().equals(Property.DESCRIPTION)) {
+                description = property.getValue();
+            }
+            if((location!=null && description!=null)) {
+                Bloco novoBloco = createBlocoFromDescription(description.split("\n"), location);
+                if (novoBloco.getUc()!=null && !novoBloco.getUc().equals("")) blocos.add(novoBloco);
+            }
+        }
     }
 
     /**
