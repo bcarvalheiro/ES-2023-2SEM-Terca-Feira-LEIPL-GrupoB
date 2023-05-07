@@ -1,5 +1,6 @@
 package org.es.leipl.tercafeira.grupob.tools;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Property;
@@ -61,7 +62,9 @@ public class ImportFiles {
             System.out.println("Error saving JSON");
             System.err.format("IOException: ", e);
         } finally {
-            fw.close();
+            if (fw != null) {
+                fw.close();
+            }
         }
     }
 
@@ -122,30 +125,41 @@ public class ImportFiles {
      * @param file the path to the CSV file to be parsed
      * @return a Horario object converted from the CSV File
      */
-    public static Horario csvImport(String file){
+    public static Horario csvImport(String file) {
         File f = new File(file);
         List<Bloco> blocosList = new LinkedList<>();
-        if(checkExtension(f).equals("csv") || checkExtension(f).equals("CSV") || checkExtension(f).equals("txt")){
-            CSVReader reader = null;
-            try{
-                reader = new CSVReader(new FileReader(f));
-                reader.readNext();
-                String[] nextLine;
-                int lineNumber = 0;
-                while((nextLine = reader.readNext()) != null){
-                    lineNumber++;
-                    if (createNewBloco(blocosList, nextLine, lineNumber)) continue;
-                }
-            } catch (Exception e){
-                System.out.println("Error reading CSV file");
-            }
-        } else{
-            System.out.println("File is not a CSV, can't convert to JSON");
-        }
-        Horario horario = new Horario(blocosList);
 
+        if (checkExtension(f).equalsIgnoreCase("csv") || checkExtension(f).equalsIgnoreCase("txt")) {
+            try (CSVReader reader = new CSVReader(new FileReader(f))) {
+                reader.readNext(); // Skip the header line
+
+                String[] nextLine;
+                int lineNumber = 1; // Start from line 1
+
+                while ((nextLine = reader.readNext()) != null) {
+                    if (createNewBloco(blocosList, nextLine, lineNumber)) {
+                        continue;
+                    }
+
+                    lineNumber++;
+                }
+
+                System.out.println("CSV file successfully imported");
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            } catch (IOException e) {
+                System.out.println("Error reading CSV file");
+            } catch (CsvValidationException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            System.out.println("File is not a CSV or TXT file, can't import");
+        }
+
+        Horario horario = new Horario(blocosList);
         return horario;
     }
+
 
     private static boolean createNewBloco(List<Bloco> blocosList, String[] nextLine, int lineNumber) {
         try {
