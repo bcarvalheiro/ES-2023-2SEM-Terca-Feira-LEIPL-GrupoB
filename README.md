@@ -16,25 +16,29 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - SonarLint para prevenção de defeitos, vulnerabilidades, cheiros no código e más práticas de programação no repositório local antes de cada commit, com plugin no IDE
 - SonarCloud para avaliação da qualidade do software do projeto como um todo no repositório remoto
 - JUnit 5 para construção da bateria de testes unitários, com plugin no IDE
-- EMMA para avaliação da cobertura da bateria de testes unitários, com plugin no IDE
+- JaCoCo para avaliação da cobertura da bateria de testes unitários, com plugin no IDE
 -Trello com PowerUp do GitHub para gestão do projeto segundo abordagem Scrum, com rastreio entre os cartões das user stories e os eventos respetivos no GitHub (commits, pull requests e issues)
 
 ## Participantes
 - Ana Rita Pereira Francisco (94639) - RitaAPF
-- Bruno Alexandre Guinapo Carvalheiro (94514) - bitilitos
+- Bruno Alexandre Guinapo Carvalheiro (94514) - bcarvalheiro
 - Carolina Varanda Roque (98494) - CarolinaVRoque
 - Catarina Alexandre do Carmo Loureiro (94575) - neoeve
 - Nuno Filipe de Oliveira Monteiro (94587) - bitilitos
 - Diogo Miguel Leal da Costa (94466) - DiogoM107
 
 ## Como Usar
-- Clone o repositório para a sua máquina:
-- git clone https://github.com/bcarvalheiro/ES-2023-2SEM-Terca-Feira-LEIPL-GrupoB.git
-- Abra o projeto em um ambiente de desenvolvimento Java de sua escolha.
-- Compile o projeto.
-- Execute a aplicação.
-- Siga as instruções na tela para carregar, converter e visualizar o horário, criar horários para estudantes e visualizar aulas em sobreposição e sobrelotação.
-- Branch principal -> master
+- Primeiro deve fazer um import de um ficheiro CSV ou JSON através do botão "Upload Horario". O ficheiro deve ter o formato : 
+    ´´´
+    Curso,Unidade Curricular,Turno,Turma,Inscritos no turno,Dia da semana,Hora início da aula,Hora fim da aula,Data da aula,Sala atribuída à aula,Lotação da sala
+    [exemplo]CT,Gestão,00668TP02,CI-CT-02,24,Qui,16:00:00,17:00:00,28/04/2023,AA3.30,24
+    ´´´
+- Após carregamento do horário em sistema, consegue iterar as visualizações entre dia, semana e mês através dos botões.
+- Possui dois botões para avançar no dia/mes/semana, e um para se posicionar no dia/mes/semana actual.
+- Se o calendário estiver importado, através do botão "Gravar Horário" conseguirá exportar o ficheiro em formato CSV ou JSon
+- Para criação de um calendário pessoal:
+  - Pode importar um ficheiro com aulas ou
+  - Através do horário actual importado, ir clicando aula a aula, e adicionar ao seu horario pessoal   
 
 ## Metodologia de trabalho Git
 - Criar branch a partir do master para issue especifico. Nome da branch deve informar qual o issue (ex.: feature/conversion-csv-to-json)
@@ -48,3 +52,4 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Como tinhamos que alterar o BurnDown Chart, aproveitamos para alterar o quadro do sprint 1 porque o mesmo tinha sido criado pela conta pessoal de um elemento do grupo. 
 - Os calendários importados através de webcal (exemplo calendário do fénix), não tem certos campos, como é o exemplo de lotação, curso, dia da semana ou turma.
 - Tivemos dificuldade ao testar as funções de importar o horário do fénix devido à necessidade de cookies
+- As aulas sobrepostas não ficaram com uma boa representação na GUI do programa
