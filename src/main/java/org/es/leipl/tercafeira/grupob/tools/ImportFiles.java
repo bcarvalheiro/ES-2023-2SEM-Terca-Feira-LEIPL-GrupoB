@@ -50,6 +50,8 @@ public class ImportFiles {
      *If the user selects a file, the method writes the contents of the JSONArray to the file.
      *If an IOException occurs while writing to the file, the method prints a stack trace and outputs an error message to the console.
      @param jsonList the JSONArray to be saved to a file
+     @param filePath path of the file
+     @throws IOException if fails to save file
      */
     public static void saveJSONtoFile(JSONArray jsonList, String filePath) throws IOException {
         FileWriter fw = null;
@@ -71,6 +73,7 @@ public class ImportFiles {
      * using the first row of the CSV file as the keys for the JSON object.
      * This method doesn't use POJO's
      * @param file the path to the CSV file to be converted
+     * @return JSONArray - json array from csv
      *
      */
     public static JSONArray csvtojson(String file){
@@ -221,8 +224,9 @@ public class ImportFiles {
     }
     /**
      * downloads the webcal calendar
-     * @param url
+     * @param url - url for webcal download
      * @return an ICS File
+     * @throws IOException if fails to download
      */
     public static File downloadWebcal(String url) throws IOException {
         File file = new File("calendar.ics");

@@ -459,7 +459,7 @@ public class GUI {
 
     /**
      * This method decides, based on the current calendar view, if it's to add classes or remove to the personal calendar
-     * @Param: CalendarEvent – the event to treat
+     * @param aula: CalendarEvent – the event to treat
      */
     public static void treatClass(CalendarEvent aula) {
         if(!viewP)
@@ -470,7 +470,7 @@ public class GUI {
 
     /**
      * This method adds classes to the personal calendar
-     * @Param: CalendarEvent – the event to add
+     * @param aula: CalendarEvent – the event to add
      */
     public static void addClass(CalendarEvent aula) {
         List<Bloco> aExistentes = new LinkedList<>();
@@ -504,7 +504,7 @@ public class GUI {
 
     /**
      * This method removes  classes from the personal calendar
-     * @Param: CalendarEvent – the event to remove
+     * @param aula: CalendarEvent – the event to remove
      */
     public static void removeClass(CalendarEvent aula) {
         List<Bloco> toRemove = new LinkedList<>();

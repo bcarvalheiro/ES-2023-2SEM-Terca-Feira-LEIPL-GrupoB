@@ -146,7 +146,7 @@ public class Bloco {
 
     /**
      * Returns turma
-     * @returns turma - turma returned
+     * @return turma - turma returned
      */
     public List<String> getTurma() {
         return turma;
@@ -162,7 +162,7 @@ public class Bloco {
 
     /**
      * Returns inscritos
-     * @returninscritos - inscritos returned
+     * @return inscritos - inscritos returned
      */
     public int getInscritos() {
         return inscritos;

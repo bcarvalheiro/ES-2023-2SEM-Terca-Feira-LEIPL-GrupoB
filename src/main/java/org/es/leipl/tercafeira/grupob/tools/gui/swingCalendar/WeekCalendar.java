@@ -19,6 +19,11 @@ public class WeekCalendar extends Calendar {
      */
     private Week week;
 
+
+    /**
+     * Week Calendar construtor
+     * @param events - events
+     */
     public WeekCalendar(ArrayList<CalendarEvent> events) {
         super(events);
         week = new Week(LocalDate.now());
@@ -26,8 +31,8 @@ public class WeekCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return true if input date equals the start of the week
-     * @param date
-     * @return
+     * @param date - date to check range
+     * @return true if data in rage
      */
     @Override
     protected boolean dateInRange(LocalDate date) {
@@ -36,7 +41,7 @@ public class WeekCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return a day of the week from the week day
-     * @param day
+     * @param day - day of the week
      */
     @Override
     protected LocalDate getDateFromDay(DayOfWeek day) {

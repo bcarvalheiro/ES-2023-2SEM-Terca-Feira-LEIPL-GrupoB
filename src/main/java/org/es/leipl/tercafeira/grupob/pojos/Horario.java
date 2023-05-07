@@ -35,10 +35,18 @@ public class Horario {
         this.aulasList = aulasList;
     }
 
+    /**
+     * Adds aula to bloco
+     * @param aula - aula to add
+     */
     public void addAula(Bloco aula) {
         aulasList.add(aula);
     }
 
+    /**
+     * Removes aulas from list
+     * @param aulas - aula to add
+     */
     public void removeAulas(List<Bloco> aulas) {
         aulasList.removeAll(aulas);
     }
@@ -58,10 +66,10 @@ public class Horario {
         return result;
     }
     /**
+     * Returns aulas list
      * @return aulasList the list of classes
      */
     public List<Bloco> getAulasList() {
         return aulasList;
     }
-
 }

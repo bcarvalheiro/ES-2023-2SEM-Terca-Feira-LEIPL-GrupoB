@@ -60,7 +60,7 @@ public class Month {
 
     /**
      * Returns the start of the month, in date
-     * @param date
+     * @param date - date to get month start
      * @return LocalDate
      */
     public static LocalDate getStartOfMonth(LocalDate date) {
@@ -87,6 +87,7 @@ public class Month {
 
     /**
      * Returns a local date from a day of the week
+     * @param dayOfWeek - day of the week
      * @return LocalDate
      */
     public LocalDate getDay(DayOfWeek dayOfWeek) {
@@ -133,6 +134,10 @@ public class Month {
         return year;
     }
 
+    /**
+     * Test
+     * @param args input
+     */
     public static void main(String[] args) {
         LocalDate now = LocalDate.now();
         Month currentMonth = new Month(now);

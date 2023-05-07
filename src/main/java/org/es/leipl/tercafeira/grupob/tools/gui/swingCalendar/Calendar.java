@@ -93,9 +93,8 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Adjusts the local time given by the minutes
-     * @param time
-     * @param minutes
-     *
+     * @param time - input time
+     * @param minutes - adjustment minutes
      * @return LocalTime
      */
     public static LocalTime roundTime(LocalTime time, int minutes) {
@@ -127,7 +126,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Abstract method for data in range
-     * @param date
+     * @param date - data to check range
      * @return true
      */
     protected abstract boolean dateInRange(LocalDate date);
@@ -174,14 +173,14 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Abstract method to return a local date given a day of the week
-     * @param day
-     * @return LocaDate
+     * @param day - day of the week
+     * @return LocaDate from day
      */
     protected abstract LocalDate getDateFromDay(DayOfWeek day);
 
     /**
      * Method to add a calendar event listener
-     * @param l
+     * @param l - event listener
      */
     public void addCalendarEventClickListener(CalendarEventClickListener l) {
         listenerList.add(CalendarEventClickListener.class, l);
@@ -189,7 +188,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Method to remove a calendar event listener
-     * @param l
+     * @param l - empty event listener
      */
     public void removeCalendarEventClickListener(CalendarEventClickListener l) {
         listenerList.remove(CalendarEventClickListener.class, l);
@@ -213,7 +212,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Method to add an empty calendar event listener
-     * @param l
+     * @param l - empty event listener
      */
     public void addCalendarEmptyClickListener(CalendarEmptyClickListener l) {
         listenerList.add(CalendarEmptyClickListener.class, l);
@@ -221,7 +220,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Method to remove an empty calendar event listener
-     * @param l
+     * @param l - empty event listener
      */
     public void removeCalendarEmptyClickListener(CalendarEmptyClickListener l) {
         listenerList.remove(CalendarEmptyClickListener.class, l);
@@ -269,13 +268,14 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Abstract method to convert day of the week to a pixel representation
-     * @param dayOfWeek
+     * @param dayOfWeek - day of the weel
      */
     protected abstract double dayToPixel(DayOfWeek dayOfWeek);
 
     /**
      * Method to convert time to a pixel representation
-     * @param time
+     * @param time - time to convert
+     * @return pixel - pixel from time
      */
     public double timeToPixel(LocalTime time) {
         return ((time.toSecondOfDay() - START_TIME.toSecondOfDay()) * timeScale) + HEADER_HEIGHT;
@@ -310,7 +310,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * Method to paint the GUI colors and call the other draw methods
-     * @param g
+     * @param g - GUI graphics
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -559,7 +559,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * method to add event to Calendar
-     * @param event
+     * @param event - event to add
      */
     public void addEvent(CalendarEvent event) {
         events.add(event);
@@ -568,7 +568,7 @@ public abstract class Calendar extends JComponent {
 
     /**
      * method to remove event from Calendar
-     * @param event
+     * @param event - event to remove
      * @return true if removed
      */
     public boolean removeEvent(CalendarEvent event) {
@@ -578,7 +578,7 @@ public abstract class Calendar extends JComponent {
     }
     /**
      * method import the a list of events
-     * @param events
+     * @param events -  events to define
      */
     public void setEvents(ArrayList<CalendarEvent> events) {
         this.events = events;

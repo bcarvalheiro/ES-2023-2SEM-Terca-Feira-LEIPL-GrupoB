@@ -32,13 +32,18 @@ public class FileUpload {
      * Var for horario
      */
     private static Horario horario;
+
+    /**
+     * Main costructor
+     * @param parent - master frame
+     */
     public FileUpload(JFrame parent) {
         this.parent = parent;
     }
 
     /**
      * Checks the file extension
-     * @param file
+     * @param file - file to check the extension
      * @return String - extension
      */
     private static String checkExtension(File file){
@@ -122,7 +127,8 @@ public class FileUpload {
     }
     /**
      * Method to upload selected remote user file to the system
-     * @returns true if it was from a webcal
+     * @return true if it was from a webcal
+     * @throws IOException - if fails to get url
      */
     public Boolean uploadUrl() throws IOException {
         String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");

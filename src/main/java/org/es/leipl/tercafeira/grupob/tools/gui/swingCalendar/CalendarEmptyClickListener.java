@@ -11,5 +11,10 @@ import java.util.EventListener;
  * Java Object for representation of an empty Calendar click event listener
  */
 public interface CalendarEmptyClickListener extends EventListener {
+
+    /**
+     * empty calendar click listener
+     * @param e - event
+     */
     void calendarEmptyClick(CalendarEmptyClickEvent e);
 }
