@@ -22,10 +22,25 @@ public class CalendarEvent {
     private String text;
     private Color color;
 
+    /**
+     * Main calendar event construtor
+     * @param date event date
+     * @param start - event start time
+     * @param end - event end time
+     * @param text - event text
+     */
     public CalendarEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
         this(date, start, end, text, DEFAULT_COLOR);
     }
 
+    /**
+     * Secunndary calendar event construtor
+     * @param date event date
+     * @param start - event start time
+     * @param end - event end time
+     * @param text - event text
+     * @param color - colour of the event
+     */
     public CalendarEvent(LocalDate date, LocalTime start, LocalTime end, String text, Color color) {
         this.date = date;
         this.start = start;
@@ -34,42 +49,82 @@ public class CalendarEvent {
         this.color = color;
     }
 
+    /**
+     * Returns the event local date
+     * @return Locadate current event date
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Sets the current event date
+     * @param date - sets the event date
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Returns the event local start time
+     * @return start current event start time
+     */
     public LocalTime getStart() {
         return start;
     }
 
+    /**
+     * Sets the current event start time
+     * @param start - sets the event start time
+     */
     public void setStart(LocalTime start) {
         this.start = start;
     }
 
+    /**
+     * Returns the event local end time
+     * @return end current event end time
+     */
     public LocalTime getEnd() {
         return end;
     }
 
+    /**
+     * Sets the current event end time
+     * @param end - sets the event end time
+     */
     public void setEnd(LocalTime end) {
         this.end = end;
     }
 
+    /**
+     * Returns the event text
+     * @return text returns the event name
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * Sets the current event text
+     * @param text - text to set for the current event
+     */
     public void setText(String text) {
         this.text = text;
     }
 
+    /**
+     * String representation of the class Calendar Event
+     * @return String - description of the current event
+     */
     public String toString() {
         return getDate() + " " + getStart() + "-" + getEnd() + ". " + getText();
     }
 
+    /**
+     * Returns the event color
+     * @return color - event color
+     */
     public Color getColor() {
         return color;
     }

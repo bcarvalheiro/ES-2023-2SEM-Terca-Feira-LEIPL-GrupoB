@@ -12,5 +12,10 @@ import java.util.EventListener;
  */
 
 public interface CalendarEventClickListener extends EventListener {
+
+    /**
+     * Calendar event click
+     * @param e - click event
+     */
     void calendarEventClick(CalendarEventClickEvent e);
 }

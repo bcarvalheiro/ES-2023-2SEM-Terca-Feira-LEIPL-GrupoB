@@ -19,11 +19,20 @@ public class DayCalendar extends Calendar {
      */
     private LocalDate calDate;
 
+    /**
+     * Main constructor
+     * @param events - list of events
+     */
     public DayCalendar(ArrayList<CalendarEvent> events) {
         super(events);
         calDate = LocalDate.now();
     }
 
+    /**
+     * Main constructor
+     * @param events - list of events
+     * @param date - day date
+     */
     public DayCalendar(ArrayList<CalendarEvent> events, LocalDate date) {
         super(events);
         calDate = date;
@@ -31,8 +40,8 @@ public class DayCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return true if input date equals calendar date
-     * @param date
-     * @return
+     * @param date -  date to check in range
+     * @return true if data in range
      */
     @Override
     protected boolean dateInRange(LocalDate date) {
@@ -41,7 +50,7 @@ public class DayCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return a day of the week from the calendar date
-     * @param day
+     * @param day - day from date
      */
     @Override
     protected LocalDate getDateFromDay(DayOfWeek day) {

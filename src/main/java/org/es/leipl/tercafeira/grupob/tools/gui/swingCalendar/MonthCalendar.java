@@ -25,6 +25,10 @@ public class MonthCalendar extends Calendar {
      */
     private Month month;
 
+    /**
+     * Main constructor
+     * @param events events for the month
+     */
     public MonthCalendar(ArrayList<CalendarEvent> events) {
         super(events);
         month = new Month(LocalDate.now());
@@ -32,7 +36,7 @@ public class MonthCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return true if input date equals the start of the month
-     * @param date
+     * @param date - date to check range
      * @return
      */
     @Override
@@ -42,7 +46,7 @@ public class MonthCalendar extends Calendar {
 
     /**
      * Overrides the Abstract method to return a day of the week from the month day
-     * @param day
+     * @param day to get date
      */
     @Override
     protected LocalDate getDateFromDay(DayOfWeek day) {

@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class BlocoTest {
 
     /**
-     Creates a new block.
+     * Default construtor for blocotest
      @param curso the course(s) for which the block is being offered
      @param uc the academic unit to which the block belongs
      @param turno the code of the time slot
@@ -36,7 +36,6 @@ public class BlocoTest {
      Tests the toString method of the Bloco class.
      Checks if the string representation of the Bloco object is correct, including its course, unit, class and turn information,
      the number of enrolled students, the day of the week, the start and end time, the date, the assigned room, and the room capacity.
-     @return void
      */
     @Test
     public void testToString() {

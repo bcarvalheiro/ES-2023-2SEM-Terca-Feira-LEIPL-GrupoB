@@ -22,6 +22,7 @@ public final class CsvUtils {
     private CsvUtils() {}
 
     /**
+     * CsvUtils instance
      * @return - The singleton instance
      */
     public static CsvUtils getInstance() {

@@ -35,7 +35,7 @@ public class Week {
 
     /**
      * Returns the start of the week, in date
-     * @param date
+     * @param date to get start of the week
      * @return LocalDate
      */
     public static LocalDate getStartOfWeek(LocalDate date) {
@@ -48,6 +48,7 @@ public class Week {
 
     /**
      * Returns the first date of the week, in date
+     * @param dayOfWeek day of the week
      * @return LocalDate
      */
     public LocalDate getDay(DayOfWeek dayOfWeek) {
@@ -81,6 +82,10 @@ public class Week {
         return "Week of the " + getDay(DayOfWeek.MONDAY);
     }
 
+    /**
+     * Test
+     * @param args input
+     */
     public static void main(String[] args) {
         LocalDate now = LocalDate.now();
         Week currentWeek = new Week(now);
