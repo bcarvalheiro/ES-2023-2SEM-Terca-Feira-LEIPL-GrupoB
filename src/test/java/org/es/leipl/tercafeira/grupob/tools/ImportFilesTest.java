@@ -78,6 +78,7 @@ public class ImportFilesTest {
         Horario horario = ImportFiles.csvImport("TestCsv.csv");
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(26003, horario.getAulasList().size());
+        assertThrows(IllegalArgumentException.class, () -> ImportFiles.csvImport(""));
     }
 
     /**
@@ -98,5 +99,21 @@ public class ImportFilesTest {
         Horario horario = ImportFiles.importICS(new File("TestICSCalendar.ics"));
         assertNotNull(horario, "Horario object should not be null");
         assertEquals(561, horario.getAulasList().size());
+    }
+
+    @Test
+    public void downloadWebcal() throws IOException {
+        File file = ImportFiles.downloadWebcal("webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=bagco1@iscte.pt&password=Mg1cRSYIQA9HnZD5Xqe1t8cbpfRBcsyyoiVOc5e7YJyJplLBz2N5WwDY5uFpKIjnQHNbIiQpDae429ZTQDmAEUeWJNqbgY5MM3li3h4kCqV8ljWdCW1N8rH43jy1dant");
+        assertNotNull(file);
+        File file2 = ImportFiles.downloadWebcal("");
+        assertNull(file2);
+    }
+
+    @Test
+    public void testImportICS() throws IOException, ParserException {
+        File file = ImportFiles.downloadWebcal("webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=bagco1@iscte.pt&password=Mg1cRSYIQA9HnZD5Xqe1t8cbpfRBcsyyoiVOc5e7YJyJplLBz2N5WwDY5uFpKIjnQHNbIiQpDae429ZTQDmAEUeWJNqbgY5MM3li3h4kCqV8ljWdCW1N8rH43jy1dant");
+        Horario horario = ImportFiles.importICS(file);
+        assertNotNull(horario, "Horario object should not be null");
+        assertEquals(531, horario.getAulasList().size());
     }
 }

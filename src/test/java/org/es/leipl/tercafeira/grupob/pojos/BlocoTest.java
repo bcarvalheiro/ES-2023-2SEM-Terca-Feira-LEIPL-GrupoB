@@ -197,4 +197,29 @@ public class BlocoTest {
         bloco.setHoraIni(LocalTime.of(14, 00, 00));
         assertEquals(LocalTime.of(14, 00, 00), bloco.getHoraIni());
     }
+
+    @Test
+    public void addTurma() {
+        bloco.addTurma("B");
+        LinkedList<String> excepectd = new LinkedList<>();
+        excepectd.add("A");
+        excepectd.add("B");
+        assertEquals(excepectd, bloco.getTurma());
+    }
+
+    @Test
+    public void addCurso() {
+        bloco.addCurso("TEI");
+        LinkedList<String> excepectd = new LinkedList<>();
+        excepectd.add("LEI");
+        excepectd.add("MEI");
+        excepectd.add("TEI");
+        assertEquals(excepectd, bloco.getCurso());
+    }
+
+    @Test
+    public void emptyBlock(){
+        Bloco bloco = new Bloco();
+        assertNull(bloco.getUc());
+    }
 }

@@ -134,38 +134,7 @@ public class ImportFiles {
                 int lineNumber = 0;
                 while((nextLine = reader.readNext()) != null){
                     lineNumber++;
-                    try {
-                        if (nextLine.length < 8) {
-                            throw new Exception();
-                        }
-                        String curso = nextLine[0];
-                        String UC = nextLine[1];
-                        String turno = nextLine[2];
-                        String turma = nextLine[3];
-                        int inscritos = Integer.parseInt(nextLine[4]);
-                        String diaSem = nextLine[5];
-                        String[] horaIni_arr = nextLine[6].split(":");
-                        String[] horaFim_arr = nextLine[7].split(":");
-                        LocalTime horaIni = LocalTime.of(Integer.valueOf(horaIni_arr[0]), Integer.valueOf(horaIni_arr[1]),
-                                Integer.valueOf(horaIni_arr[2]));
-                        LocalTime horaFim = LocalTime.of(Integer.valueOf(horaFim_arr[0]), Integer.valueOf(horaFim_arr[1]),
-                                Integer.valueOf(horaFim_arr[2]));
-                        String[] data_arr = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? nextLine[8].split("/") : new String[0];
-                        LocalDate data = null;
-                        if (data_arr.length == 3) {
-                            data = LocalDate.of(Integer.valueOf(data_arr[2]), Integer.valueOf(data_arr[1]), Integer.valueOf(data_arr[0]));
-                        }
-                        String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
-                        int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
-                        if (curso == null || UC == null || turno == null || turma == null || diaSem == null || data == null) {
-                            throw new Exception("Empty fields");
-                        }
-                        Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
-                        blocosList.add(novoBloco);
-                    }catch (Exception e){
-                        System.out.println("Error parsing CSV file on line : " + lineNumber + "");
-                        continue;
-                    }
+                    if (createNewBloco(blocosList, nextLine, lineNumber)) continue;
                 }
             } catch (Exception e){
                 System.out.println("Error reading CSV file");
@@ -176,6 +145,42 @@ public class ImportFiles {
         Horario horario = new Horario(blocosList);
 
         return horario;
+    }
+
+    private static boolean createNewBloco(List<Bloco> blocosList, String[] nextLine, int lineNumber) {
+        try {
+            if (nextLine.length < 8) {
+                throw new Exception();
+            }
+            String curso = nextLine[0];
+            String UC = nextLine[1];
+            String turno = nextLine[2];
+            String turma = nextLine[3];
+            int inscritos = Integer.parseInt(nextLine[4]);
+            String diaSem = nextLine[5];
+            String[] horaIni_arr = nextLine[6].split(":");
+            String[] horaFim_arr = nextLine[7].split(":");
+            LocalTime horaIni = LocalTime.of(Integer.valueOf(horaIni_arr[0]), Integer.valueOf(horaIni_arr[1]),
+                    Integer.valueOf(horaIni_arr[2]));
+            LocalTime horaFim = LocalTime.of(Integer.valueOf(horaFim_arr[0]), Integer.valueOf(horaFim_arr[1]),
+                    Integer.valueOf(horaFim_arr[2]));
+            String[] data_arr = (nextLine.length > 8 && nextLine[8] != null && !nextLine[8].isEmpty()) ? nextLine[8].split("/") : new String[0];
+            LocalDate data = null;
+            if (data_arr.length == 3) {
+                data = LocalDate.of(Integer.valueOf(data_arr[2]), Integer.valueOf(data_arr[1]), Integer.valueOf(data_arr[0]));
+            }
+            String sala = (nextLine.length > 9 && nextLine[9] != null && !nextLine[9].isEmpty()) ? nextLine[9] : "";
+            int lotacao = (nextLine.length > 10 && nextLine[10] != null && !nextLine[10].isEmpty()) ? Integer.parseInt(nextLine[10]) : 0;
+            if (curso == null || UC == null || turno == null || turma == null || diaSem == null || data == null) {
+                throw new Exception("Empty fields");
+            }
+            Bloco novoBloco = new Bloco(curso, UC, turno, turma, inscritos, diaSem, horaIni, horaFim, data, sala, lotacao);
+            blocosList.add(novoBloco);
+        }catch (Exception e){
+            System.out.println("Error parsing CSV file on line : " + lineNumber + "");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -221,6 +226,10 @@ public class ImportFiles {
     public static File downloadWebcal(String url) throws IOException {
         File file = new File("calendar.ics");
         Path path = Paths.get(file.getAbsolutePath());
+        if(url.equals(""))
+            return null;
+        url = url.replace("webcal://", "https://");
+
 
         URL webcalUrl = new URL(url);
         URLConnection connection = webcalUrl.openConnection();
@@ -232,11 +241,9 @@ public class ImportFiles {
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
-
         // Close streams
         outputStream.close();
         inputStream.close();
-
         return file;
     }
     /**
