@@ -19,7 +19,11 @@ public class Week {
      */
     private ArrayList<LocalDate> days;
 
-    // Gets week variables from any date (can be within week)
+    /**
+     * Creates a new instance of the Week class with the specified LocalDate object representing a date within the week.
+     *
+     * @param date a LocalDate object representing a date within the week.
+     */
     public Week(LocalDate date) {
         days = new ArrayList<>();
         LocalDate monday = getStartOfWeek(date);

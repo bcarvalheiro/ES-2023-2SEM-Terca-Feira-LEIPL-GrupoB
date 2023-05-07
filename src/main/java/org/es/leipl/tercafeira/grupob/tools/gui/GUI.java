@@ -587,10 +587,10 @@ public class GUI {
                 optionsToChoose[0]);
         if (getOption != null) {
             if (getOption.equals(optionsToChoose[0]))
-                saveJSON();
+                saveCSV();
 
             if (getOption.equals(optionsToChoose[1]))
-                saveCSV();
+                saveJSON();
         }
     }
 
@@ -626,7 +626,7 @@ public class GUI {
      */
     public static void saveCSV() {
         FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horarioDisplay)));
-        String filepath = uploadFile.saveLocal("Guardar", "csv");
+        String filepath = uploadFile.saveLocal("Guardar", "CSV");
         if (filepath != null) {
             try {
                 CsvUtils.blocosToCsvFile(horarioDisplay.getAulasList(), filepath);

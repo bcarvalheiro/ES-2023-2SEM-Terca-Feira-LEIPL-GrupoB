@@ -130,10 +130,6 @@ public class Bloco {
         return diaSemana;
     }
 
-//    public void setDiaSemana(String diaSemana) {
-//        this.diaSemana = diaSemana;
-//    }
-
     public LocalTime getHoraIni() {
         return horaIni;
     }
@@ -219,10 +215,21 @@ public class Bloco {
     public String getHoraFimToString() {
         return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
     }
-
-    public Bloco (){
-
-    }
+    /**
+     * Creates a new instance of the Bloco class with the specified parameters.
+     *
+     * @param curso     a string representing the course(s) associated with the block.
+     * @param uc        a string representing the course unit (subject) associated with the block.
+     * @param turno     a string representing the shift associated with the block.
+     * @param turma     a string representing the class group associated with the block.
+     * @param inscritos an integer representing the number of enrolled students in the block.
+     * @param diaSemana a string representing the day of the week for the block.
+     * @param horaIni   a LocalTime object representing the start time of the block.
+     * @param horaFim   a LocalTime object representing the end time of the block.
+     * @param data      a LocalDate object representing the date associated with the block.
+     * @param sala      a string representing the room associated with the block.
+     * @param lotacao   an integer representing the capacity/limit of the room.
+     */
     public Bloco(String curso, String uc, String turno, String turma, int inscritos, String diaSemana, LocalTime horaIni, LocalTime horaFim, LocalDate data, String sala, int lotacao) {
         this.curso = new LinkedList<>();
         for(String s: curso.split(",")){

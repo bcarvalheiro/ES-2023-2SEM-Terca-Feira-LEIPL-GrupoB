@@ -19,6 +19,12 @@ public class Horario {
     public Horario () {
         aulasList = new LinkedList<>();
     };
+    /**
+     * Creates a new instance of the Horario class with the given list of aulas (classes).
+     *
+     * @param aulasList a list of Bloco objects representing the classes.
+     * @throws IllegalArgumentException if the aulasList is null or empty.
+     */
     public Horario (List<Bloco> aulasList) {
         if (aulasList == null) {
             throw new IllegalArgumentException("Aulas list cannot be null or empty");

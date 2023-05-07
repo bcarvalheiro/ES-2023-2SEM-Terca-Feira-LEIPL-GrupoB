@@ -93,6 +93,13 @@ public class FileUpload {
                 JOptionPane.showConfirmDialog(parent, "Ficheiro importado com formato incorreto", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    /**
+     * Opens a file save dialog to save a file locally with the specified title and extension.
+     *
+     * @param title     the title of the file save dialog.
+     * @param extension the desired file extension.
+     * @return the absolute path of the selected file to save, including the extension, or null if no file was selected.
+     */
     public String saveLocal(String title, String extension) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle(title);
@@ -156,6 +163,13 @@ public class FileUpload {
         }
         return false;
     }
+    /**
+     * Verifies if the given file path has the specified extension.
+     *
+     * @param filepath  the file path to verify.
+     * @param extension the desired file extension.
+     * @return true if the file path has the specified extension, false otherwise.
+     */
     private boolean verifyExtension ( String filepath, String extension){
         int extensionLegth = extension.length();
         String filepathExtension = filepath.substring(filepath.length() - extensionLegth - 1);
