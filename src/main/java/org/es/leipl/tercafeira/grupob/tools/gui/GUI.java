@@ -6,7 +6,6 @@ import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.es.leipl.tercafeira.grupob.tools.CsvUtils;
 import org.es.leipl.tercafeira.grupob.tools.FileUpload;
 import org.es.leipl.tercafeira.grupob.tools.ImportFiles;
-import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.*;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.CalendarEvent;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.DayCalendar;
 import org.es.leipl.tercafeira.grupob.tools.gui.swingCalendar.MonthCalendar;
@@ -49,7 +48,8 @@ public class GUI {
     private static JButton monthlyView;
     private static JButton weeklyView;
     private static JButton dailyView;
-    private static JButton saveJ;
+    private static JButton saveF;
+    private static JButton switchHorario;
 
     /**
      * String variables for the dynamic horario button
@@ -90,60 +90,53 @@ public class GUI {
      */
     public static void createGUI() {
         try {
-            UIManager.setLookAndFeel( new FlatDarculaLaf() );
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
 
             frame = new JFrame();
 
-            int frameX = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-            int frameY = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+            int frameX = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+            int frameY = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-            JButton bUploadL = new JButton("Upload Local");
-            JButton buploadR = new JButton("Upload Remoto");
-            JButton switchHorario = new JButton(pessoalH);
-            JButton button4 = new JButton("Save file");
+            JButton bUpload = new JButton("Upload Horário");
+            saveF = new JButton("Gravar Horário");
+            switchHorario = new JButton(pessoalH);
 
-            bUploadL.setBounds(10,10,150,40);
-            buploadR.setBounds(160,10,150,40);
-            switchHorario.setBounds(310,10,150,40);
-            button4.setBounds(460,10,150,40);
+            bUpload.setBounds(10, 10, 150, 40);
+            saveF.setBounds(160, 10, 150, 40);
+            switchHorario.setBounds(310, 10, 150, 40);
 
-            saveJ = new JButton("Gravar em JSON");
             dailyView = new JButton("Daily View");
             weeklyView = new JButton("Weekly View");
             monthlyView = new JButton("Monthly View");
 
-            monthlyView.setBounds(frameX-160,10,150,40);
-            weeklyView.setBounds(frameX-310,10,150,40);
-            dailyView.setBounds(frameX-460,10,150,40);
-            saveJ.setBounds(460,10,150,40);
+            monthlyView.setBounds(frameX - 160, 10, 150, 40);
+            weeklyView.setBounds(frameX - 310, 10, 150, 40);
+            dailyView.setBounds(frameX - 460, 10, 150, 40);
 
             monthlyView.setVisible(false);
             weeklyView.setVisible(false);
             dailyView.setVisible(false);
-            saveJ.setVisible(false);
 
-            next = new JButton("Next");
+            next = new JButton(">>");
             today = new JButton("Today");
-            previous = new JButton("Previous");
+            previous = new JButton("<<");
 
-            previous.setBounds(620,10,150,40);
-            today.setBounds(770,10,150,40);
-            next.setBounds(920,10,150,40);
+            previous.setBounds(535, 10, 150, 40);
+            today.setBounds(685, 10, 150, 40);
+            next.setBounds(835, 10, 150, 40);
 
             next.setVisible(false);
             today.setVisible(false);
             previous.setVisible(false);
 
             calendarPanel = new JPanel();
-            calendarPanel.setPreferredSize(new Dimension(frameX, frameY-150));
+            calendarPanel.setPreferredSize(new Dimension(frameX, frameY - 150));
             calendarPanel.setLayout(new BorderLayout());
-            calendarPanel.setBounds(0,70,frameX,frameY-150);
+            calendarPanel.setBounds(0, 70, frameX, frameY - 150);
 
-            frame.add(bUploadL);
-            frame.add(buploadR);
-            frame.add(saveJ);
+            frame.add(bUpload);
+            frame.add(saveF);
             frame.add(switchHorario);
-            frame.add(button4);
 
             frame.add(monthlyView);
             frame.add(weeklyView);
@@ -156,7 +149,7 @@ public class GUI {
             frame.add(calendarPanel);
             frame.setLayout(new BorderLayout());
 
-            frame.setSize(1920 , 1080);
+            frame.setSize(1920, 1080);
             frame.setTitle("Upload de Horário");
 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -164,56 +157,13 @@ public class GUI {
 
 
             /**
-             * ActionListener for the "Upload Local" button. Opens a file chooser to select a file from the system.
-             * The file is then parsed and the schedule data is loaded into the program. The buttons are then added
-             * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
-             * @param the ActionEvent representing the user's button click
+             * ActionListener for the "Upload  button. Opens a input box for the user to select if he wants
+             * o upload locally or from the web
              */
-            bUploadL.addActionListener(new ActionListener() {
+            bUpload.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    horarioUpload = null;
-                    FileUpload fu = new FileUpload(frame);
-                    fu.uploadLocal();
-                    horarioUpload = fu.getHorario();
-                    horarioDisplay = horarioUpload;
-
-                    if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
-                        setVisible();
-                        JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        switchToWeekView();
-                        sobrelotacao();
-                        sobreposicao();
-                    }
-                }
-            });
-
-            /**
-             * ActionListener for the "Upload Remoto" button. Opens a text box for the user to input an url, followed by
-             * a save file box for the user to choose where to save the uploaded file in the system.
-             * The file is then parsed and the schedule data is loaded into the program. The buttons are then added
-             * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
-             * @param the ActionEvent representing the user's button click
-             */
-            buploadR.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    horarioUpload = null;
-                    FileUpload fu = new FileUpload(frame);
-                    try {
-                        fu.uploadUrl();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    horarioUpload = fu.getHorario();
-                    horarioDisplay = horarioUpload;
-                    if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
-                        setVisible();
-                        JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        switchToWeekView();
-                        sobrelotacao();
-                        sobreposicao();
-                    }
+                    uploadChoose();
                 }
             });
 
@@ -222,32 +172,13 @@ public class GUI {
              *  If no schedule data is available, displays an error message.
              *  @param e the ActionEvent object representing the user's button click
              */
-            saveJ.addActionListener(new ActionListener() {
+            saveF.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (horarioDisplay != null){
-                        JSONArray json = ImportFiles.horario2Json(horarioDisplay);
-                        try {
-                            JFileChooser fileChooser = new JFileChooser();
-                            fileChooser.setDialogTitle("Save file");
-                            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "JSON");
-                            fileChooser.setAcceptAllFileFilterUsed(false);
-                            fileChooser.addChoosableFileFilter(filter);
-                            fileChooser.setApproveButtonText("Save");
-                            int result = fileChooser.showSaveDialog(frame);
-
-                            String filePath = "";
-                            if (result == JFileChooser.APPROVE_OPTION) {
-                                filePath = fileChooser.getSelectedFile().getPath() + ".json";
-                                System.out.println("File path: " + filePath);
-                                ImportFiles.saveJSONtoFile(json, filePath);
-                                JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            }
-
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
+                    if (horarioDisplay != null)
+                        saveChoose();
+                    else
+                        JOptionPane.showMessageDialog(frame, "Horário vazio! Impossível guardar", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             });
             /**
@@ -260,33 +191,32 @@ public class GUI {
                 public void actionPerformed(ActionEvent e) {
                     int escolha;
                     if (switchHorario.getText().equals(pessoalH)) {
-                        if(horarioPessoal == null) {
+                        if (horarioPessoal == null) {
                             escolha = JOptionPane.showConfirmDialog(frame, "Horario Pessoal vazio! Carregar horário?");
-                            if(escolha == JOptionPane.YES_OPTION) {
-                                FileUpload fu = new FileUpload(frame);
-                                fu.uploadLocal();
-                                horarioPessoal = fu.getHorario();
-                                horarioDisplay = horarioPessoal;
+                            if (escolha == JOptionPane.YES_OPTION) {
+                                uploadChoose();
+                                horarioPessoal = horarioDisplay;
+                                horarioUpload = null;
 
-                                if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
-                                    setVisible();
-                                    JOptionPane.showMessageDialog(frame, "Horario carregado!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                if (!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())) {
                                     switchHorario.setText(fullH);
                                     viewP = true;
                                     switchToWeekView();
+                                    sobrelotacao();
+                                    sobreposicao();
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             switchHorario.setText(fullH);
                             horarioDisplay = horarioPessoal;
                             viewP = true;
                             switchToWeekView();
+                            sobrelotacao();
+                            sobreposicao();
                         }
-                    }
-                    else {
-                        if(horarioUpload == null)
-                            JOptionPane.showMessageDialog(frame,"Tem de fazer upload de um horário primeiro!","Failure", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        if (horarioUpload == null)
+                            JOptionPane.showMessageDialog(frame, "Tem de fazer upload de um horário primeiro!", "Failure", JOptionPane.INFORMATION_MESSAGE);
                         else {
                             switchHorario.setText(pessoalH);
                             horarioDisplay = horarioUpload;
@@ -309,7 +239,6 @@ public class GUI {
                     switchToDayView();
                 }
             });
-
             /**
              * This method adds an ActionListener to the weeklyView button. When the button is selected,
              * the calendar panel is cleared and the events are loaded onto the WeekCalendar. The panel is then
@@ -334,37 +263,9 @@ public class GUI {
                     switchToMonthView();
                 }
             });
-
-            button4.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (horarioDisplay != null) {
-                        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horarioDisplay)));
-                        String filepath = uploadFile.saveLocal("Guardar", "csv");
-                        if (filepath != null) {
-                            try {
-                                CsvUtils.blocosToCsvFile(horarioDisplay.getAulasList(), filepath);
-                            } catch (IOException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            JOptionPane.showMessageDialog(frame, "Ficheiro CSV criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(frame, "Impossivel guardar o ficheiro sem horário carregado","Erro", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-            });
-
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
-    }
-
-    //add Calendar events
-    public static void addEvent(LocalDate date, LocalTime start, LocalTime end, String text) {
-        CalendarEvent calendarEvent = new CalendarEvent(date, start, end, text, Color.PINK);
-        calendarEvents.add(calendarEvent);
     }
 
     /**
@@ -553,7 +454,6 @@ public class GUI {
         next.setVisible(true);
         today.setVisible(true);
         previous.setVisible(true);
-        saveJ.setVisible(true);
     }
 
     /**
@@ -671,4 +571,147 @@ public class GUI {
             JOptionPane.showConfirmDialog(frame, scrollpane, "Alerta - Aulas em sobreposicao (Total: " + sobreposicaoCount + "):", JOptionPane.WARNING_MESSAGE);
         }
     }
+
+    /**
+     * Method for choosing the save method
+     */
+    public static void saveChoose() {
+        String[] optionsToChoose = {"CSV", "JSON"};
+        String getOption= (String) JOptionPane.showInputDialog(
+                frame,
+                "Em que formato quer gravar o ficheiro?",
+                "Gragar",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                optionsToChoose,
+                optionsToChoose[0]);
+        if (getOption != null) {
+            if (getOption.equals(optionsToChoose[0]))
+                saveJSON();
+
+            if (getOption.equals(optionsToChoose[1]))
+                saveCSV();
+        }
+    }
+
+    /**
+     * Method that saves file to json
+     */
+    public static void saveJSON() {
+        JSONArray json = ImportFiles.horario2Json(horarioDisplay);
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Save file");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "JSON");
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.addChoosableFileFilter(filter);
+            fileChooser.setApproveButtonText("Save");
+            int result = fileChooser.showSaveDialog(frame);
+
+            String filePath = "";
+            if (result == JFileChooser.APPROVE_OPTION) {
+                filePath = fileChooser.getSelectedFile().getPath() + ".json";
+                System.out.println("File path: " + filePath);
+                ImportFiles.saveJSONtoFile(json, filePath);
+                JOptionPane.showMessageDialog(frame, "Ficheiro JSON criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    /**
+     * Method that saves file to CSV
+     */
+    public static void saveCSV() {
+        FileUpload uploadFile = new FileUpload(new JFrame(String.valueOf(horarioDisplay)));
+        String filepath = uploadFile.saveLocal("Guardar", "csv");
+        if (filepath != null) {
+            try {
+                CsvUtils.blocosToCsvFile(horarioDisplay.getAulasList(), filepath);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            JOptionPane.showMessageDialog(frame, "Ficheiro CSV criado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    /**
+     * Method for choosing the upload method
+     */
+    public static void uploadChoose() {
+        String[] optionsToChoose = {"Local", "Remoto"};
+        String getOption= (String) JOptionPane.showInputDialog(
+                frame,
+                "Como quer fazer o Upload?",
+                "Upload",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                optionsToChoose,
+                optionsToChoose[0]);
+
+        if (getOption != null) {
+            if (getOption.equals(optionsToChoose[0]))
+                uploadLocal();
+
+            if (getOption.equals(optionsToChoose[1]))
+                uploadRemoto();
+        }
+    }
+
+    /**
+     * Method for the "Upload Local" . Opens a file chooser to select a file from the system.
+     * The file is then parsed and the schedule data is loaded into the program. The buttons are then added
+     * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
+     */
+    public static void uploadLocal() {
+        horarioUpload = null;
+        FileUpload fu = new FileUpload(frame);
+        fu.uploadLocal();
+        horarioUpload = fu.getHorario();
+        horarioDisplay = horarioUpload;
+
+        if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
+            setVisible();
+            JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            switchToWeekView();
+        }
+    }
+
+    /**
+     * Method for the "Upload Remoto". Opens a text box for the user to input an url, followed by
+     * a save file box for the user to choose where to save the uploaded file in the system.
+     * The file is then parsed and the schedule data is loaded into the program. The buttons are then added
+     * to the frame and the frame is repainted if the schedule is sucessfuly loaded.
+     */
+    public static void uploadRemoto() {
+        horarioUpload = null;
+        boolean webcal;
+        FileUpload fu = new FileUpload(frame);
+        try {
+            webcal = fu.uploadUrl();
+            if (webcal) {
+                horarioUpload = fu.getHorario();
+                horarioDisplay = horarioUpload;
+            }
+            else {
+                horarioPessoal = fu.getHorario();
+                horarioDisplay = horarioPessoal;
+            }
+            if(!(horarioDisplay == null) && (!horarioDisplay.getAulasList().isEmpty())){
+                setVisible();
+                JOptionPane.showMessageDialog(frame, "Horario carregado em sistema!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                switchToWeekView();
+                switchHorario.setText(fullH);
+                viewP = true;
+                sobrelotacao();
+                sobreposicao();
+            }
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
 }
+

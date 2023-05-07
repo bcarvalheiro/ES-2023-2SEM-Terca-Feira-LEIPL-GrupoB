@@ -5,8 +5,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.es.leipl.tercafeira.grupob.pojos.Horario;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -16,7 +14,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.ForkJoinPool;
 
 /**
  * @author GRUPO_B_LEI_PL
@@ -116,8 +113,9 @@ public class FileUpload {
     }
     /**
      * Method to upload selected remote user file to the system
+     * @returns true if it was from a webcal
      */
-    public void uploadUrl() throws IOException {
+    public Boolean uploadUrl() throws IOException {
         String url = JOptionPane.showInputDialog(parent, "Coloque o url para download");
         if(url != null) {
             if (!url.isEmpty()) {
@@ -127,23 +125,36 @@ public class FileUpload {
                     if(file != null){
                         try {
                             horario = ImportFiles.importICS(file);
+                            return true;
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 }
-                File download = downloadFile(url);
-                if (download != null) {
-                    if (!(download.length() == 0)) {
-                        try {
-                            horario = ImportFiles.importFile(download.getAbsolutePath());
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                else {
+                    File download = downloadFile(url);
+                    if (download != null) {
+                        if (!(download.length() == 0)) {
+                            try {
+                                horario = ImportFiles.importFile(download.getAbsolutePath());
+                                return false;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(parent, "Url sem horário válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                            return false;
                         }
                     }
                 }
             }
         }
+        else {
+            JOptionPane.showMessageDialog(parent, "Url sem horário válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return false;
     }
     private boolean verifyExtension ( String filepath, String extension){
         int extensionLegth = extension.length();
@@ -170,7 +181,7 @@ public class FileUpload {
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV ou JSON", "csv", "JSON");
                 fileChooser.addChoosableFileFilter(filter);
                 fileChooser.setSelectedFile(new File(fileName));
-                int userSelection = fileChooser.showSaveDialog(null);
+                int userSelection = fileChooser.showSaveDialog(parent);
 
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
                     File archiveFile = fileChooser.getSelectedFile();
@@ -186,18 +197,18 @@ public class FileUpload {
                     outputStream.close();
                     inputStream.close();
 
-                    JOptionPane.showMessageDialog(null, "File downloaded successfully.");
+                    JOptionPane.showMessageDialog(parent, "File downloaded successfully.");
                     return archiveFile;
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to download file. Response code: " + responseCode);
+                JOptionPane.showMessageDialog(parent, "Failed to download file. Response code: " + responseCode);
                 return null;
             }
         } catch (MalformedURLException e) {
-            JOptionPane.showMessageDialog(null, "Invalid URL: " + url);
+            JOptionPane.showMessageDialog(parent, "Invalid URL: " + url);
             return  null;
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error downloading file: " + e.getMessage());
+            JOptionPane.showMessageDialog(parent, "Error downloading file: " + e.getMessage());
             return null;
         }
         return null;

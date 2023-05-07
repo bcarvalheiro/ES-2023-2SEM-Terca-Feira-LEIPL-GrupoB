@@ -270,7 +270,6 @@ public class ImportFiles {
                 }
                 if((location!=null && description!=null)) {
                     Bloco novoBloco = createBlocoFromDescription(description.split("\n"), location);
-                    System.out.println(novoBloco.toString());
                     if (novoBloco.getUc()!=null && !novoBloco.getUc().equals("")) blocos.add(novoBloco);
                 }
             }
