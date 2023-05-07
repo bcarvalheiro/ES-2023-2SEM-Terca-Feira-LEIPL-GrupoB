@@ -34,6 +34,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Compile o projeto.
 - Execute a aplicação.
 - Siga as instruções na tela para carregar, converter e visualizar o horário, criar horários para estudantes e visualizar aulas em sobreposição e sobrelotação.
+- Branch principal -> master
 
 ## Metodologia de trabalho Git
 - Criar branch a partir do master para issue especifico. Nome da branch deve informar qual o issue (ex.: feature/conversion-csv-to-json)
