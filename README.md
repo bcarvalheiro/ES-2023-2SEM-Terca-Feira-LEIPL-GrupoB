@@ -23,7 +23,7 @@ Este é um projeto desenvolvido em equipa para a disciplina de Engenharia de Sof
 - Ana Rita Pereira Francisco (94639)
 - Bruno Alexandre Guinapo Carvalheiro (94514)
 - Carolina Varanda Roque (98494)
-- Catarina Alexandre do Carmo Loureiro (94575)
+- Catarina Alexandre do Carmo Loureiro (94575) - neoeve
 - Nuno Filipe de Oliveira Monteiro (94587)
 - Diogo Miguel Leal da Costa (94466)
 
