@@ -60,14 +60,16 @@ public final class CsvUtils {
     public static void blocosToCsvFile(List<Bloco> blocos, String filePath) throws IOException, IllegalArgumentException {
         if ( blocos == null || filePath == null || filePath.isEmpty())
             throw new IllegalArgumentException();
-        FileWriter csvWriter = new FileWriter(filePath);
-        csvWriter.append(HEADER);
-        for (Bloco bloco : blocos) {
-            csvWriter.append("\n");
-            csvWriter.append(blocoToStringCsv(bloco));
+
+        try (FileWriter csvWriter = new FileWriter(filePath)) {
+            csvWriter.append(HEADER);
+            for (Bloco bloco : blocos) {
+                csvWriter.append("\n");
+                csvWriter.append(blocoToStringCsv(bloco));
+            }
+            csvWriter.flush();
+            csvWriter.close();
         }
-        csvWriter.flush();
-        csvWriter.close();
     }
 
 
