@@ -27,6 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Main Calendar GUI
  * @author GRUPO_B_LEI_PL
  * @version 1.3
  */
@@ -55,7 +56,7 @@ public class GUI {
      * String variables for the dynamic horario button
      */
     private static String pessoalH = "Horario Pessoal";
-    private static String fullH = "Horario Completo";
+    private static String fullH = "Horari0o Completo";
 
     /**
      * Boolean var that shows if the current view is personal or not

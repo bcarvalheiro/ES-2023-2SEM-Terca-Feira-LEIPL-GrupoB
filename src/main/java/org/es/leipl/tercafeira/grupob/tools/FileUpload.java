@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
+ * Class responsible to upload files to the system
  * @author GRUPO_B_LEI_PL
  * @version 1.3
  */

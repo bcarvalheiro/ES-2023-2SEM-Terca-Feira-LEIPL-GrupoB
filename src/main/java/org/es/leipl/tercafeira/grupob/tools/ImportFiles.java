@@ -29,6 +29,7 @@ import org.es.leipl.tercafeira.grupob.pojos.Horario;
 import org.json.simple.JSONArray;
 
 /**
+ * Class responsible to import and convert files
  * @author GRUPO_B_LEI_PL
  * @version 1.3
  */

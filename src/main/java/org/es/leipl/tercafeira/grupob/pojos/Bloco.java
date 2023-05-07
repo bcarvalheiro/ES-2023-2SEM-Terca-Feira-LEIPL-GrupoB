@@ -9,8 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Classe de bloco de aulas
  * @author GRUPO_B_LEI_PL
- * @version 0.0
+ * @version 1.0
  */
 
 public class Bloco {
@@ -70,6 +71,15 @@ public class Bloco {
      */
     private int lotacao;
 
+    /**
+     * Main bloco constructor
+     * @param uc - Class name
+     * @param turno - turno
+     * @param data - class data
+     * @param horaIni - start time
+     * @param horaFim - end time
+     * @param sala - room
+     */
     public Bloco(String uc, String turno, LocalDate data, LocalTime horaIni, LocalTime horaFim, String sala) {
         this.uc = uc;
         this.turno = turno;
@@ -86,90 +96,178 @@ public class Bloco {
         this.sala = sala;
     }
 
+    /**
+     * Returns curso
+     * @return List - list of cusro
+     */
     public List<String> getCurso() {
         return curso;
     }
 
+    /**
+     * Sets curso
+     * @param curso - curso to set
+     */
     public void setCurso(List<String> curso) {
         this.curso = curso;
     }
 
+    /**
+     * Returns UC
+     * @return String - returns uc
+     */
     public String getUc() {
         return uc;
     }
 
+    /**
+     * Sets UC
+     * @param uc - sets uc
+     */
     public void setUc(String uc) {
         this.uc = uc;
     }
 
+    /**
+     * Returns turno
+     * @return return - turno returned
+     */
     public String getTurno() {
         return turno;
     }
 
+    /**
+     * Sets turno
+     * @param turno - turno to set
+     */
     public void setTurno(String turno) {
         this.turno = turno;
     }
 
+    /**
+     * Returns turma
+     * @returns turma - turma returned
+     */
     public List<String> getTurma() {
         return turma;
     }
 
+    /**
+     * Sets turma
+     * @param turma - turma to set
+     */
     public void setTurma(List<String> turma) {
         this.turma = turma;
     }
 
+    /**
+     * Returns inscritos
+     * @returninscritos - inscritos returned
+     */
     public int getInscritos() {
         return inscritos;
     }
 
+    /**
+     * Sets inscritos
+     * @param inscritos - inscritos to set
+     */
     public void setInscritos(int inscritos) {
         this.inscritos = inscritos;
     }
 
+    /**
+     * Returns day of week
+     * @return String  - day of week
+     */
     public String getDiaSemana() {
         return diaSemana;
     }
 
+    /**
+     * Returns start time
+     * @return horaIni - start time
+     */
     public LocalTime getHoraIni() {
         return horaIni;
     }
 
+    /**
+     * Sets the start time
+     * @param horaIni - start time to set
+     */
     public void setHoraIni(LocalTime horaIni) {
         this.horaIni = horaIni;
     }
 
+    /**
+     * Returns start time
+     * @return horaIni - start time
+     */
     public LocalTime getHoraFim() {
         return horaFim;
     }
 
+    /**
+     * Sets the end time for class
+     * @param horaFim - end time for class
+     */
     public void setHoraFim(LocalTime horaFim) {
         this.horaFim = horaFim;
     }
 
+    /**
+     * Return class date
+     * @return date - class date
+     */
     public LocalDate getData() {
         return data;
     }
 
+    /**
+     * Sets class date
+     * @param  data - class date
+     */
     public void setData(LocalDate data) {
         this.data = data;
     }
 
+    /**
+     * returns class room
+     * @return  sala - class room
+     */
     public String getSala() {
         return sala;
     }
 
+    /**
+     * Sets class room
+     * @param sala - class room
+     */
     public void setSala(String sala) {
         this.sala = sala;
     }
 
+    /**
+     * Returns lotação
+     * @return lotacao - max number of students per class
+     */
     public int getLotacao() {
         return lotacao;
     }
 
+    /**
+     * sets lotação
+     * @param lotacao - max number of students per class
+     */
     public void setLotacao(int lotacao) {
         this.lotacao = lotacao;
     }
 
+    /**
+     * String representation of cursos
+     * @return String - string representation of a cursos
+     */
     public String getCursosToString() {
         if (curso == null || curso.isEmpty()) {
             return "";
@@ -187,6 +285,10 @@ public class Bloco {
         return "\"" + sb + "\"";
     }
 
+    /**
+     * String representation of turmas
+     * @return String - string representation of a turmas
+     */
     public String getTurmasToString() {
         if (turma == null || turma.isEmpty()) {
             return "";
@@ -204,14 +306,26 @@ public class Bloco {
         return "\"" + sb + "\"";
     }
 
+    /**
+     * String representation of data
+     * @return String - string representation of a data
+     */
     public String getDataToString() {
         return data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear();
     }
 
+    /**
+     * String representation of hour start
+     * @return String - string representation of a hours start
+     */
     public String getHoraIniToString() {
         return horaIni.getHour() + ":" + horaIni.getMinute() + ":" + horaIni.getSecond();
     }
 
+    /**
+     * String representation of hour end
+     * @return String - string representation of a hours end
+     */
     public String getHoraFimToString() {
         return horaFim.getHour() + ":" + horaFim.getMinute() + ":" + horaFim.getSecond();
     }
@@ -250,10 +364,20 @@ public class Bloco {
         this.lotacao = lotacao;
     }
 
+    /**
+     * Adds turma to bloco
+     * Converts object to Json format
+     * @param turma - class to add
+     */
     public void addTurma(String turma) {
         this.turma.add(turma);
     }
 
+    /**
+     * Adds curso to bloco
+     * Converts object to Json format
+     * @param curso - curso to add
+     */
     public void addCurso(String curso) {
         this.curso.add(curso);
     }
@@ -267,6 +391,7 @@ public class Bloco {
     }
 
     /**
+     * Converts object to Json format
      * @return a json representation of the object.
      */
     public JSONObject toJson() {
@@ -287,7 +412,9 @@ public class Bloco {
         json.put("Sala atribuída à aula", this.sala);
         return json;
     }
-
+    /**
+     * empty bloco construtor
+     */
     public Bloco () {
 
     }
