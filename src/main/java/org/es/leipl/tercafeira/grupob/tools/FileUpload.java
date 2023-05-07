@@ -146,7 +146,10 @@ public class FileUpload {
                         horario = ImportFiles.importICS(file);
                         return true;
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        //e.printStackTrace();
+                        System.err.format("IOException: ", e);
+
+
                     }
                 }
             }
@@ -158,7 +161,9 @@ public class FileUpload {
                             horario = ImportFiles.importFile(download.getAbsolutePath());
                             return false;
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            //e.printStackTrace();
+                            System.err.format("IOException: ", e);
+
                         }
                     }
                     else {
